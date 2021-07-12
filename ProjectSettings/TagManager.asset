@@ -1,0 +1,69 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - objects
+  - placeholders
+  - arraySlots
+  - otherObjects
+  - inventory
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Prednji plan
+  - Srednji plan
+  - Zadnji plan
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Boja pozadine
+    uniqueID: 229173917
+    locked: 0
+  - name: Zadnji plan
+    uniqueID: 3000766795
+    locked: 0
+  - name: Pozadina
+    uniqueID: 34349197
+    locked: 0
+  - name: Srednji plan
+    uniqueID: 639884311
+    locked: 0
+  - name: Prednji plan
+    uniqueID: 2271870919
+    locked: 0
+  - name: Prvi plan
+    uniqueID: 945378845
+    locked: 0
+  - name: Objekti
+    uniqueID: 448582527
+    locked: 0
