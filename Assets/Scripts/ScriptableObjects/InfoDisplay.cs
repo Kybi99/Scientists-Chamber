@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-public class InfoDisplay : MonoBehaviour
+namespace FourGear.ScriptableObjects
+{
+    public class InfoDisplay : MonoBehaviour
 {
     [SerializeField] Information[] information; 
     [SerializeField] Image infoImage; 
@@ -15,15 +17,7 @@ public class InfoDisplay : MonoBehaviour
         infoText.text = information[index].text; 
 
         return index;
-        /*if(x==0)
-        {
-            infoImage.sprite = information1.blueprint;    
-            infoText.text = information1.text;
-        }  
-        else if(x==1)
-        {
-            infoImage.sprite = information2.blueprint;    
-            infoText.text = information2.text;
-        }*/
     }
+}
+
 }
