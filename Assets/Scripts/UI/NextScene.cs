@@ -64,11 +64,7 @@ namespace FourGear.UI
                     if (placeholders[i] != null)
                         placeholders[i].transform.gameObject.SetActive(true);                                                                  //activate placeholders
                 }
-
             }
-
-
         }
     }
-
 }

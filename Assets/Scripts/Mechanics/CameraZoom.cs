@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FourGear.UI;
 namespace FourGear.Mechanics
 {
     public class CameraZoom : MonoBehaviour
@@ -18,33 +19,39 @@ namespace FourGear.Mechanics
         }
         void Update()
         {
-            newPosition = main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
-            pos = transform.position;
+            ZoomInOnRightClick();
+        }
 
-            if (transform.position.x < -3.5f)
-                pos.x = -3.5f;
-            else if (transform.position.x > 3.5f)
-                pos.x = 3.5f;
-            if (transform.position.y < -2)
-                pos.y = -2;
-            else if (transform.position.y > 2)
-                pos.y = 2;
-
-            transform.position = pos;
-
-
-            if (Input.GetMouseButtonDown(1))
+        private void ZoomInOnRightClick()
+        {
+            if(ShowHint.canZoom)
             {
-                main.enabled = false;
-                cam.enabled = true;
-            }
-            if (Input.GetMouseButtonUp(1))
-            {
-                main.enabled = true;
-                cam.enabled = false;
+                newPosition = main.ScreenToWorldPoint(Input.mousePosition);
+                transform.position = Vector3.Lerp(transform.position, newPosition, Time.deltaTime * speed);
+                pos = transform.position;
+
+                if (transform.position.x < -3.5f)
+                    pos.x = -3.5f;
+                else if (transform.position.x > 3.5f)
+                    pos.x = 3.5f;
+                if (transform.position.y < -2)
+                    pos.y = -2;
+                else if (transform.position.y > 2)
+                    pos.y = 2;
+
+                transform.position = pos;
+
+                if (Input.GetMouseButtonDown(1))
+                {
+                    main.enabled = false;
+                    cam.enabled = true;
+                }
+                if (Input.GetMouseButtonUp(1))
+                {
+                    main.enabled = true;
+                    cam.enabled = false;
+                }
             }
         }
     }
-
 }

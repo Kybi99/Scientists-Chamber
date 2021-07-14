@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FourGear.Singletons;
+using FourGear.UI;
 
 namespace FourGear.Mechanics
 {
@@ -28,7 +29,7 @@ namespace FourGear.Mechanics
         {
             routeToGo = 0;
             tParam = 0f;
-            speedModifier = 1f;
+            speedModifier = 2f;
             coroutineAllowed = true;
             inInventory = false;
             resetParent = this.transform.parent;
@@ -74,7 +75,6 @@ namespace FourGear.Mechanics
             StopCoroutine(GoByTheRoute(routeToGo));
 
             routeToGo++;
-
             inInventory = true;
             //yield return new WaitForSeconds(0.25f);
             coroutineAllowed = true;
@@ -136,14 +136,14 @@ namespace FourGear.Mechanics
             if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Skladiste")
             {
 
-                if (!inInventory && coroutineAllowed && routeToGo < Inventory.arraySlots.Length)
+                if (!inInventory && coroutineAllowed && routeToGo < Inventory.arraySlots.Length && ShowHint.canClick)
                 {
                     routeToGo = CheckFirstEmptySlot(Inventory.arraySlots);
                     if (routeToGo != -1)
                         StartCoroutine(GoByTheRoute(routeToGo));
                 }
 
-                else if (inInventory && coroutineAllowed)
+                else if (inInventory && coroutineAllowed && ShowHint.canClick)
                 {
                     routeToGo = CheckFirstEmptySlot(Inventory.arraySlots);
                     StartCoroutine(GoByTheRoute2(routeTaken));

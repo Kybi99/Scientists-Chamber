@@ -6,14 +6,37 @@ namespace FourGear.UI
 {
     public class ShowHint : MonoBehaviour
     {
-        [SerializeField] private GameObject Canvas;
+        //[SerializeField] private GameObject Canvas;
+        [SerializeField] private GameObject helpScript;
+        public static bool canClick;
+        public static bool canZoom;
         // Start is called before the first frame update
+        private void Start()
+        {
+            canClick = true;
+            canZoom = true;
+        }
         public void ShowHints()
         {
-            if (Canvas.activeSelf == false)
-                Canvas.SetActive(true);
+            if (helpScript.activeSelf == false)
+            {
+                helpScript.SetActive(true);
+                canClick = false;
+                canZoom = false;
+            }
             else
-                Canvas.SetActive(false);
+            {
+                helpScript.SetActive(false);
+                canClick = true;
+                canZoom = true;
+            }
+                
+        }
+        public void CloseHint()
+        {
+            helpScript.SetActive(false);
+            canClick = true;
+            canZoom = true;
         }
     }
 

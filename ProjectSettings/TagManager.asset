@@ -9,6 +9,8 @@ TagManager:
   - arraySlots
   - otherObjects
   - inventory
+  - firstFrame
+  - secondFrame
   layers:
   - Default
   - TransparentFX
