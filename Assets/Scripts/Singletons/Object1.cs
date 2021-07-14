@@ -9,7 +9,6 @@ namespace FourGear.Singletons
         private static Object1 objectInstance;
         void Start()
         {
-
             if (objectInstance != null)
             {
                 Destroy(this.gameObject);

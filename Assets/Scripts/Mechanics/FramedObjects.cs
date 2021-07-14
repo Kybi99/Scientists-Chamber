@@ -40,11 +40,12 @@ namespace FourGear.Mechanics
                 FindValues();
 
                 firstObjectRenderer.enabled = false;
-
+            
                 if (secondObjectRenderer.enabled && secondFrame.gameObject.name == "DoorsOpen")
                 {
-                    firstFrameObjects[0].gameObject.SetActive(false);
-                    Debug.Log(secondObjectRenderer.enabled);
+                    for(int i = 0 ; i < firstFrameObjects.Length; i++)
+                        firstFrameObjects[i].gameObject.SetActive(false);
+                    //Debug.Log(secondObjectRenderer.enabled);
                     nextScene.LoadNextScene();
                     isMouseOnObject = false;
                     Cursor.SetCursor(null, Vector2.zero, cursorMode);
@@ -60,12 +61,14 @@ namespace FourGear.Mechanics
             if (clickCount == 0)
             {
                 firstFrameObjects = GameObject.FindGameObjectsWithTag("firstFrame");
+                /*for(int i = 0 ; i < firstFrameObjects.Length; i++)
+                    Debug.Log(firstFrameObjects[i]);*/
                 secondFrame.GetComponent<SpriteRenderer>();
                 firstObjectRenderer = this.gameObject.GetComponent<SpriteRenderer>();
                 secondObjectRenderer = secondFrame.GetComponent<SpriteRenderer>();
                 clickCount++;
-                Debug.Log(firstObjectRenderer);
-                Debug.Log(secondObjectRenderer);
+                //Debug.Log(firstObjectRenderer);
+                //Debug.Log(secondObjectRenderer);
             }
            
         }

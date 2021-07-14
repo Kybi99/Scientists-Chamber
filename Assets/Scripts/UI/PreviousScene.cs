@@ -52,9 +52,12 @@ namespace FourGear.UI
             }
             /*for (i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
             {*/
+            for(int i = 0 ; i < FramedObjects.firstFrameObjects.Length; i++)
+            {
+                if(FramedObjects.firstFrameObjects[i] != null)
+                    FramedObjects.firstFrameObjects[i].gameObject.SetActive(true);
 
-            FramedObjects.firstFrameObjects[0].gameObject.SetActive(true);
-
+            }
             FramedObjects.firstObjectRenderer.enabled = false;
             FramedObjects.secondObjectRenderer.enabled = true;
             
