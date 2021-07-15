@@ -27,8 +27,8 @@ namespace FourGear.UI
         }
         public void LoadNextScene()
         {
-            if (ObjectPath.coroutineAllowed)
-            {
+           // if (ObjectPath.coroutineAllowed)
+            //{
                 SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
                 //Get objects from scene
@@ -64,7 +64,7 @@ namespace FourGear.UI
                     if (placeholders[i] != null)
                         placeholders[i].transform.gameObject.SetActive(true);                                                                  //activate placeholders
                 }
-            }
+           // }
         }
     }
 }

@@ -8,9 +8,9 @@ namespace FourGear.Dialogue
     {
         public Story story;
 
-        public void TriggerDialogue()
+        public void TriggerDialogue(int index)
         {
-            FindObjectOfType<DialogueManager>().StartDialogue(story);
+            FindObjectOfType<DialogueManager>().StartDialogue(story,index);
         }
     }
 }

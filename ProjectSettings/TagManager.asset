@@ -11,6 +11,7 @@ TagManager:
   - inventory
   - firstFrame
   - secondFrame
+  - image
   layers:
   - Default
   - TransparentFX

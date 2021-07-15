@@ -58,8 +58,8 @@ namespace FourGear.UI
                     FramedObjects.firstFrameObjects[i].gameObject.SetActive(true);
 
             }
-            FramedObjects.firstObjectRenderer.enabled = false;
-            FramedObjects.secondObjectRenderer.enabled = true;
+            /*FramedObjects.firstObjectRenderer.enabled = false;
+            FramedObjects.secondObjectRenderer.enabled = true;*/
             
         
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);

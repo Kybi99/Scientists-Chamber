@@ -41,11 +41,11 @@ namespace FourGear.Mechanics
 
                 firstObjectRenderer.enabled = false;
             
-                if (secondObjectRenderer.enabled && secondFrame.gameObject.name == "DoorsOpen")
+                if (secondObjectRenderer.enabled && secondFrame.gameObject.name == "DoorsOpen" && ObjectPath.coroutineAllowed)
                 {
                     for(int i = 0 ; i < firstFrameObjects.Length; i++)
                         firstFrameObjects[i].gameObject.SetActive(false);
-                    //Debug.Log(secondObjectRenderer.enabled);
+                    //Debug.Log(secondObjectRenderer.enabled);\
                     nextScene.LoadNextScene();
                     isMouseOnObject = false;
                     Cursor.SetCursor(null, Vector2.zero, cursorMode);

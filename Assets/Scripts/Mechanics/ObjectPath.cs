@@ -42,7 +42,7 @@ namespace FourGear.Mechanics
         {
             coroutineAllowed = false;
             tParam = 0f;
-            Debug.Log(routeNumber);
+            //Debug.Log(routeNumber);
             Vector2 p0 = routes[routeNumber].GetChild(0).position;                                                                              //get routes
             Vector2 p1 = routes[routeNumber].GetChild(1).position;
             Vector2 p2 = routes[routeNumber].GetChild(2).position;

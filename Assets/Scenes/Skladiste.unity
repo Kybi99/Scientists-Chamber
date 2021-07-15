@@ -1471,6 +1471,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdb337b7e8608f4aa17f470ef52c742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
 --- !u!212 &444753568
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1796,6 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdb337b7e8608f4aa17f470ef52c742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
 --- !u!114 &460487670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2662,7 +2664,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 807558984}
   serializedVersion: 7
-  lengthInSec: 0.5
+  lengthInSec: 0.3
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -7632,6 +7634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdb337b7e8608f4aa17f470ef52c742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
 --- !u!1 &834159781
 GameObject:
   m_ObjectHideFlags: 0
@@ -8814,6 +8817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdb337b7e8608f4aa17f470ef52c742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
 --- !u!1 &1185419397
 GameObject:
   m_ObjectHideFlags: 0
@@ -9001,36 +9005,6 @@ MonoBehaviour:
   - {fileID: 1283938843}
   - {fileID: 1979305900}
   - {fileID: 1589219603}
---- !u!1 &1243496184
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1243496185}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1243496185
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1243496184}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.2733781, y: 1.1428235, z: -0.15261942}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 14
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1272004982
 GameObject:
   m_ObjectHideFlags: 0
@@ -10454,6 +10428,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bdb337b7e8608f4aa17f470ef52c742, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueTrigger: {fileID: 0}
 --- !u!1 &1665642577
 GameObject:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ namespace FourGear.Singletons
             children = inventoryObject.childCount;
             arraySlots = new GameObject[inventoryObject.childCount];
 
-            Debug.Log(inventoryObject);
+            //Debug.Log(inventoryObject);
             for (int i = 0; i < children; i++)
             {
                 arraySlots[i] = inventoryObject.GetChild(i).gameObject;

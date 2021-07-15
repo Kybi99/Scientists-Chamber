@@ -15,7 +15,7 @@ namespace FourGear.Mechanics
         private float speed;
         void Start()
         {
-            speed = 5;
+            speed = 20;
         }
         void Update()
         {
@@ -45,11 +45,13 @@ namespace FourGear.Mechanics
                 {
                     main.enabled = false;
                     cam.enabled = true;
+                    speed  = 0;
                 }
                 if (Input.GetMouseButtonUp(1))
                 {
                     main.enabled = true;
                     cam.enabled = false;
+                    speed = 20;
                 }
             }
         }
