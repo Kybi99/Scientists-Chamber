@@ -13,62 +13,76 @@ namespace FourGear.Dialogue
         public TMP_Text dialogueText;
         private string[] sentences;
         private  string sentence;
-        private Animator animator;    
+        private Animator imageAnimator;    
+        private Animator teslaAnimator;   
+        private GameObject tesla;
+        private SpriteRenderer teslaRenderer;
+        private bool isContinueButtonEnabled;
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
+        public TMP_Text continueClick;
+        //private Button myButton;
         
         void Start()
         {
-            animator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
-           
+            //continueClick.enabled = false;
+            imageAnimator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
+            tesla = GameObject.FindGameObjectWithTag("tesla");
+            //tesla.transform.position =  new Vector2(10, 0.46f);
+            //tesla.GetComponent<SpriteRenderer>().enabled = false;
+            teslaRenderer = tesla.GetComponent<SpriteRenderer>();
+            teslaRenderer.enabled = false;
+            teslaAnimator = tesla.GetComponent<Animator>();
             dialogueTrigger = GetComponent<DialogueTrigger>();
-            //sentences = new Queue<string>();
         }
 
-        public void StartDialogue(Story story, int index)
+        public void StartDialogue(Story story, int index)                                                                       //start a dialogue when right object is on place with animations
         {
             isCorrectObjectIn = true;
-            animator.SetBool("isCorrectObjectIn", true);
-            Debug.Log(animator.GetBool("isCorrectObjectIn"));
-            //Debug.Log("yay");
-            nameText.text = story.nameOfNpc;
-            //sentences.Clear();
+            teslaRenderer.enabled = true;
+            isContinueButtonEnabled = false;
+            teslaAnimator.SetBool("isCorrectObjectIn", true);
+            imageAnimator.SetBool("isCorrectObjectIn", true);
             
-            Debug.Log(DragAnDrop.numberOfPartsIn);
+            //tesla.SetActive(true);
+            nameText.text = story.nameOfNpc;
+
+            
+            //Debug.Log(DragAnDrop.numberOfPartsIn);
             if(DragAnDrop.numberOfPartsIn < 2)
                 sentence = story.sentences[index];
             else 
                 sentence = story.sentences[index]+ " Uspesno si zavrsio nivo.";
 
-            dialogueText.text = sentence;            
+            StopAllCoroutines();
+            //if(imageAnimator.GetCurrentAnimatorStateInfo(0).IsName("DialogueCominIn"))
+            StartCoroutine(TypeSentence(sentence));            
+        }
+        IEnumerator TypeSentence(string sentence)
+        {
+            yield return new WaitForSeconds(0.25f);
+
+            dialogueText.text = "";
+            foreach (char letter in sentence.ToCharArray())
+            {
+                dialogueText.text += letter;
+                yield return new WaitForSeconds(0.03f);
+            }
+            isContinueButtonEnabled = true;
+            continueClick.enabled = true;
         }
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0))
+            if(Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled)                                        //dont let player cancel the text animation and leave room while tesla is done speaking
             {
+                continueClick.enabled = false;
                 isCorrectObjectIn = false;
-                animator.SetBool("isCorrectObjectIn", false);
-                Debug.Log(animator.GetBool("isCorrectObjectIn"));
-
+                //Debug.Log(imageAnimator.GetBool("isCorrectObjectIn"));
+                imageAnimator.SetBool("isCorrectObjectIn", false);
+                teslaAnimator.SetBool("isCorrectObjectIn", false);
             }
                 
 
-        }
-
-        /*public void DisplayNextSentence()
-        {
-            if(sentences[i] != null)
-            {
-                EndDialogue();
-                return;
-            }
-            string sentence = sentences.Dequeue();
-            dialogueText.text = sentence;
-        }
-        private void EndDialogue()
-        {
-            Debug.Log("end of dialogue");
-        }*/
-     
+        }     
     }
 }

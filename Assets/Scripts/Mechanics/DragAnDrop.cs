@@ -19,10 +19,12 @@ namespace FourGear.Mechanics
         public static int numberOfPartsIn = 0;
         private Vector3 resetPosition;
         //[SerializeField] private DialogueTrigger dialogueTrigger;
-        private DialogueTrigger dialogueTrigger;
+        private DialogueTrigger dialogueTrigger; 
+        private bool thisObjectIsIn;
        
         private void Start()
         {
+            thisObjectIsIn = false;
             //dialogueTrigger = FindObjectOfType<DialogueManager>().GetComponent<DialogueTrigger>();
             resetPosition = this.transform.localPosition;            
         }
@@ -44,7 +46,7 @@ namespace FourGear.Mechanics
         private void OnMouseDown()
         {
             resetParent = this.transform.parent;
-            if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Radna soba" && !DialogueManager.isCorrectObjectIn)                                                                                   //OnDrag Find correct placeholder for clicked object 
+            if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Radna soba" && !thisObjectIsIn)                                                                                   //OnDrag Find correct placeholder for clicked object 
             {
 
                 for (int i = 0; i < NextScene.placeholders.Length; i++)
@@ -77,7 +79,7 @@ namespace FourGear.Mechanics
         private void OnMouseUp()                                                                                                                                                    //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
         {
 
-            if (Input.GetMouseButtonUp(0) && SceneManager.GetActiveScene().name == "Radna soba" && !DialogueManager.isCorrectObjectIn)
+            if (Input.GetMouseButtonUp(0) && SceneManager.GetActiveScene().name == "Radna soba"  && !thisObjectIsIn)
             {
                 isMoving = false;
 
@@ -87,7 +89,7 @@ namespace FourGear.Mechanics
                 {
                     //Debug.Log( DialogueManager.dialogueTrigger);
                     this.transform.parent = correctForm.transform;
-                
+                    thisObjectIsIn = true;
                     DialogueManager.dialogueTrigger.TriggerDialogue(index);
 
                     this.transform.position = new Vector3(correctForm.transform.position.x, correctForm.transform.position.y, correctForm.transform.position.z);

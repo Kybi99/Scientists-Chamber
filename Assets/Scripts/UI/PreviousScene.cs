@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FourGear.Mechanics;
-
+using FourGear.Dialogue;
 namespace FourGear.UI
 {
 
@@ -19,8 +19,9 @@ namespace FourGear.UI
         }
         public void LoadPreviousScene()
         {
-            //isComingHome = true;
+
             //Change active scripts on objects and activate deactivated objects when coming back to first room 
+
             for (i = 0; i < NextScene.objects.Length; i++)
             {
                 if (NextScene.objects[i] != null)
@@ -52,17 +53,18 @@ namespace FourGear.UI
             }
             /*for (i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
             {*/
-            for(int i = 0 ; i < FramedObjects.firstFrameObjects.Length; i++)
+            for (int i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
             {
-                if(FramedObjects.firstFrameObjects[i] != null)
+                if (FramedObjects.firstFrameObjects[i] != null)
                     FramedObjects.firstFrameObjects[i].gameObject.SetActive(true);
-
             }
             /*FramedObjects.firstObjectRenderer.enabled = false;
             FramedObjects.secondObjectRenderer.enabled = true;*/
-            
-        
+
+
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+
+
 
         }
     }
