@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
@@ -38,7 +38,7 @@ namespace FourGear.Singletons
 
         }
 
-    }*/
+    }
     public static class Factorization
     {
         private static Dictionary<string, Type> objectsByName;
@@ -81,3 +81,4 @@ namespace FourGear.Singletons
         }
     }
 }
+*/
