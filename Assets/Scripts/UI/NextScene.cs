@@ -27,9 +27,8 @@ namespace FourGear.UI
         }
         public void LoadNextScene()
         {
-
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
+            AsyncOperation op = SceneManager.LoadSceneAsync("Radna Soba");
+        
             //Get objects from scene
             objects = GameObject.FindGameObjectsWithTag("objects");
             otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
@@ -63,7 +62,6 @@ namespace FourGear.UI
                 if (placeholders[i] != null)
                     placeholders[i].transform.gameObject.SetActive(true);                                                                  //activate placeholders
             }
-
         }
     }
 }
