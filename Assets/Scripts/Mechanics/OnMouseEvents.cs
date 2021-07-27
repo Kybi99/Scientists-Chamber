@@ -38,13 +38,13 @@ namespace FourGear.Mechanics
             else if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Radna soba" && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)                                       //DragAndDrop                                                                              //OnDrag Find correct placeholder for clicked object 
             {
                 dragAnDrop.resetParent = this.transform.parent;
-                for (int i = 0; i < NextScene.placeholders.Length; i++)
+                for (int i = 0; i < DragAnDrop.placeholders.Length; i++)
                 {
-                    if (NextScene.placeholders[i] != null)
+                    if (DragAnDrop.placeholders[i] != null)
                     {
-                        if (this.gameObject.name == NextScene.placeholders[i].name + "X")
+                        if (this.gameObject.name == DragAnDrop.placeholders[i].name + "X")
                         {
-                            dragAnDrop.correctForm = NextScene.placeholders[i];
+                            dragAnDrop.correctForm = DragAnDrop.placeholders[i];
                             index = i;
                             break;
                         }
@@ -52,7 +52,7 @@ namespace FourGear.Mechanics
                 }
 
                 this.transform.parent = null;
-                transform.localScale = new Vector2(0.5f, 0.5f);                                                                                                                     //make object bigger
+                transform.localScale = new Vector2(1, 1);                                                                                                                     //make object bigger
 
                 Vector3 mousePos;
                 mousePos = Input.mousePosition;
@@ -87,7 +87,7 @@ namespace FourGear.Mechanics
                 {
                     this.transform.parent = dragAnDrop.resetParent;
                     this.transform.localPosition = new Vector3(dragAnDrop.resetPosition.x, dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
-                    transform.localScale = new Vector2(0.25f, 0.25f);
+                    transform.localScale = new Vector2(0.5f, 0.5f);
                 }
             }
         }

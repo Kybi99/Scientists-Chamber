@@ -20,9 +20,11 @@ namespace FourGear.Mechanics
         //[SerializeField] private DialogueTrigger dialogueTrigger;
         private DialogueTrigger dialogueTrigger;
         [HideInInspector] public bool thisObjectIsIn;
+        public static GameObject[] placeholders;
 
         private void Start()
         {
+            placeholders = GameObject.FindGameObjectsWithTag("placeholders");
             thisObjectIsIn = false;
             //dialogueTrigger = FindObjectOfType<DialogueManager>().GetComponent<DialogueTrigger>();
             resetPosition = this.transform.localPosition;
@@ -42,7 +44,7 @@ namespace FourGear.Mechanics
             }
 
         }
-     
+
     }
 
 }

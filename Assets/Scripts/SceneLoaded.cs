@@ -52,15 +52,15 @@ namespace FourGear
                     NextScene.objects[i].gameObject.SetActive(false);
                 }
             }
-            for (int i = 0; i < NextScene.placeholders.Length; i++)
+            /*for (int i = 0; i < DragAnDrop.placeholders.Length; i++)
             {
-                if (NextScene.placeholders[i] != null)
-                    NextScene.placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
-                foreach (Transform child in NextScene.placeholders[i].transform)
+                if (DragAnDrop.placeholders[i] != null)
+                    DragAnDrop.placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
+                foreach (Transform child in DragAnDrop.placeholders[i].transform)
                 {
                     child.GetComponent<SpriteRenderer>().enabled = true;
                 }
-            }
+            }*/
             for (int i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
             {
                 if (FramedObjects.firstFrameObjects[i] != null)
@@ -87,15 +87,15 @@ namespace FourGear
 
             //Deactivate placeholders
 
-            for (i = 0; i < NextScene.placeholders.Length; i++)
+            /*for (i = 0; i < DragAnDrop.placeholders.Length; i++)
             {
-                if (NextScene.placeholders[i] != null)
-                    NextScene.placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
-                foreach (Transform child in NextScene.placeholders[i].transform)
+                if (DragAnDrop.placeholders[i] != null)
+                    DragAnDrop.placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
+                foreach (Transform child in DragAnDrop.placeholders[i].transform)
                 {
                     child.GetComponent<SpriteRenderer>().enabled = false;
                 }
-            }
+            }*/
 
             //Change active scripts on incorrect objects and activate deactivated objects when coming back to first room
             for (i = 0; i < NextScene.otherObjects.Length; i++)

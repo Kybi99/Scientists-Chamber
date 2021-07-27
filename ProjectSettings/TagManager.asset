@@ -25,7 +25,7 @@ TagManager:
   - Prednji plan
   - Srednji plan
   - Zadnji plan
-  - 
+  - IgnoreClicks
   - 
   - 
   - 
@@ -70,6 +70,12 @@ TagManager:
   - name: Prvi plan
     uniqueID: 945378845
     locked: 0
+  - name: Inventar
+    uniqueID: 751630547
+    locked: 0
   - name: Objekti
     uniqueID: 448582527
+    locked: 0
+  - name: Ispred svega
+    uniqueID: 704479851
     locked: 0

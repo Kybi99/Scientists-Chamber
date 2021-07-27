@@ -20,6 +20,7 @@ namespace FourGear.Mechanics
         private int clickCount;
         public static SpriteRenderer firstObjectRenderer;
         public static SpriteRenderer secondObjectRenderer;
+        private PolygonCollider2D polygonCollider2D;
 
         void Start()
         {
@@ -29,6 +30,7 @@ namespace FourGear.Mechanics
             if (this.transform.GetChild(0).gameObject != null)
                 secondFrame = this.transform.GetChild(0).gameObject;
             clickCount = 0;
+            polygonCollider2D = GetComponent<PolygonCollider2D>();
         }
         void Update()
         {                                                                                                                                   //check the active scene and on first scene update next frame for objects, if doors are open on click load next scene
@@ -43,15 +45,21 @@ namespace FourGear.Mechanics
 
                 firstObjectRenderer.enabled = false;
 
-                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen"  || secondFrame.gameObject.name == "DoorsOpenX" ) && ObjectPath.coroutineAllowed)           //Open the door
+                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)           //Open the door
                 {
                     nextScene.LoadNextScene();
                     isMouseOnObject = false;
                     Cursor.SetCursor(null, Vector2.zero, cursorMode);
                     isObjectMoved = true;
                 }
-                else
+                else if ((this.gameObject.name == "DoorsOpen" || this.gameObject.name == "DoorsOpenX") && !secondObjectRenderer.enabled)
                     secondObjectRenderer.enabled = true;
+                else
+                {
+                    secondObjectRenderer.enabled = true;
+                    if (polygonCollider2D != null)
+                        polygonCollider2D.enabled = false;
+                }
             }
             else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && SceneManager.GetActiveScene().name == "Radna soba")                      //load previous scene when click on door in radna soba scene
             {

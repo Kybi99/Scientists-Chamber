@@ -6,7 +6,7 @@ namespace FourGear
 {
     public class Particles : MonoBehaviour
     {
-        private static GameObject explosion;
+        private static GameObject effect;
         private static GameObject trail;
         void Start()
         {
@@ -14,15 +14,14 @@ namespace FourGear
         }
         public static void PlayParticle(Transform objectTransform)
         {
-            explosion = Instantiate(trail, objectTransform.position, Quaternion.identity);
-            explosion.GetComponent<ParticleSystem>().Play();
-            explosion.transform.parent = objectTransform;
-
+            effect = Instantiate(trail, objectTransform.position, Quaternion.identity);
+            effect.GetComponent<ParticleSystem>().Play();
+            effect.transform.parent = objectTransform;
         }
         public static void RestartParticles()
         {
-            explosion.GetComponent<ParticleSystem>().Simulate(5, true, true);
-            Destroy(explosion);
+            effect.GetComponent<ParticleSystem>().Simulate(0, true, true);
+            Destroy(effect);
         }
 
     }

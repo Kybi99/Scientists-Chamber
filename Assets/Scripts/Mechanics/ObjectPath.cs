@@ -19,6 +19,7 @@ namespace FourGear.Mechanics
         private SpriteRenderer sprite;
         public static bool coroutineAllowed;
         [HideInInspector] public bool inInventory;
+        private Quaternion resetRotation;
 
         void Start()
         {
@@ -31,6 +32,7 @@ namespace FourGear.Mechanics
             //bezierMovement.InstantiateRoutes(this.gameObject);
             sprite = this.gameObject.GetComponent<SpriteRenderer>();
             sortingLayer = sprite.sortingLayerName;
+            resetRotation = this.gameObject.transform.rotation;
         }
 
         public IEnumerator GoByTheRoute(int routeNumber)
@@ -42,7 +44,7 @@ namespace FourGear.Mechanics
 
             routeTaken = routeToGo;
             startPosition = new Vector2(transform.position.x, transform.position.y);
-            sprite.sortingLayerName = "Objekti";
+            sprite.sortingLayerName = "Ispred svega";
 
             while (tParam < 1)
             {
@@ -63,9 +65,9 @@ namespace FourGear.Mechanics
 
             routeToGo++;
             inInventory = true;
-            coroutineAllowed = true;
-            //yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.2f);
             Particles.RestartParticles();
+            coroutineAllowed = true;
         }
 
         private void AddXtoName()
@@ -77,15 +79,15 @@ namespace FourGear.Mechanics
 
         private void FixItInSlot()
         {
-            transform.localScale = new Vector2(0.85f, 0.85f);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.localScale = new Vector2(0.5f, 0.5f);
+            transform.rotation = resetRotation;
             this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
             this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
         {
-           // bezierMovement.ObjectParentConfig();
+            // bezierMovement.ObjectParentConfig();
 
             tParam = 1f;
             bezierMovement.GetValuesForBezier(routeNumber);
@@ -105,15 +107,16 @@ namespace FourGear.Mechanics
             StopCoroutine(GoByTheRoute2(routeTaken));
 
             inInventory = false;
-            coroutineAllowed = true;
 
+            yield return new WaitForSeconds(0.2f);
             Particles.RestartParticles();
+            coroutineAllowed = true;
         }
 
         private void PutItBack()
         {
             transform.localScale = new Vector2(1, 1);
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            transform.rotation = resetRotation;
             sprite.sortingLayerName = sortingLayer;
             this.transform.parent = resetParent;
             this.transform.position = startPosition;
