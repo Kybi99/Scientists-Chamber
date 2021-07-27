@@ -6,7 +6,7 @@ using FourGear.UI;
 using FourGear.Dialogue;
 
 namespace FourGear.Mechanics
-{   
+{
     public class FramedObjects : MonoBehaviour
     {
         [SerializeField] private Texture2D cursorTexture;
@@ -26,22 +26,25 @@ namespace FourGear.Mechanics
             hotSpot = Vector2.zero;
             isMouseOnObject = false;
             nextScene = this.gameObject.GetComponent<NextScene>();
-            if(this.transform.GetChild(0).gameObject != null)
+            if (this.transform.GetChild(0).gameObject != null)
                 secondFrame = this.transform.GetChild(0).gameObject;
             clickCount = 0;
         }
         void Update()
         {                                                                                                                                   //check the active scene and on first scene update next frame for objects, if doors are open on click load next scene
-            if(Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && SceneManager.GetActiveScene().name =="Skladiste")
+            FramedObjectClicked();
+        }
+
+        private void FramedObjectClicked()
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && SceneManager.GetActiveScene().name == "Skladiste")
             {
                 FindValues();
 
                 firstObjectRenderer.enabled = false;
-            
-                if (secondObjectRenderer.enabled && secondFrame.gameObject.name == "DoorsOpen" && ObjectPath.coroutineAllowed)
+
+                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen"  || secondFrame.gameObject.name == "DoorsOpenX" ) && ObjectPath.coroutineAllowed)           //Open the door
                 {
-                    for(int i = 0 ; i < firstFrameObjects.Length; i++)
-                        firstFrameObjects[i].gameObject.SetActive(false);
                     nextScene.LoadNextScene();
                     isMouseOnObject = false;
                     Cursor.SetCursor(null, Vector2.zero, cursorMode);
@@ -50,9 +53,9 @@ namespace FourGear.Mechanics
                 else
                     secondObjectRenderer.enabled = true;
             }
-            else if(Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && SceneManager.GetActiveScene().name =="Radna soba")                      //load previous scene when click on door in radna soba scene
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && SceneManager.GetActiveScene().name == "Radna soba")                      //load previous scene when click on door in radna soba scene
             {
-                if(!DialogueManager.isCorrectObjectIn)
+                if (!DialogueManager.isCorrectObjectIn)
                 {
                     GetComponent<PreviousScene>().LoadPreviousScene();
                     isMouseOnObject = false;
@@ -66,12 +69,11 @@ namespace FourGear.Mechanics
             if (clickCount == 0)
             {
                 firstFrameObjects = GameObject.FindGameObjectsWithTag("firstFrame");
-                secondFrame.GetComponent<SpriteRenderer>();
                 firstObjectRenderer = this.gameObject.GetComponent<SpriteRenderer>();
                 secondObjectRenderer = secondFrame.GetComponent<SpriteRenderer>();
                 clickCount++;
             }
-           
+
         }
 
         void OnMouseEnter()

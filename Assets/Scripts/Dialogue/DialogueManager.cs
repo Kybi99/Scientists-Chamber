@@ -12,17 +12,17 @@ namespace FourGear.Dialogue
         public TMP_Text nameText;
         public TMP_Text dialogueText;
         private string[] sentences;
-        private  string sentence;
-        private Animator imageAnimator;    
-        private Animator teslaAnimator;   
+        private string sentence;
+        private Animator imageAnimator;
+        private Animator teslaAnimator;
         private GameObject tesla;
         private SpriteRenderer teslaRenderer;
-        private bool isContinueButtonEnabled;
+        public static bool isContinueButtonEnabled;
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
         public TMP_Text continueClick;
         //private Button myButton;
-        
+
         void Start()
         {
             //continueClick.enabled = false;
@@ -34,6 +34,7 @@ namespace FourGear.Dialogue
             teslaRenderer.enabled = false;
             teslaAnimator = tesla.GetComponent<Animator>();
             dialogueTrigger = GetComponent<DialogueTrigger>();
+            isContinueButtonEnabled = true;
         }
 
         public void StartDialogue(Story story, int index)                                                                       //start a dialogue when right object is on place with animations
@@ -43,20 +44,20 @@ namespace FourGear.Dialogue
             isContinueButtonEnabled = false;
             teslaAnimator.SetBool("isCorrectObjectIn", true);
             imageAnimator.SetBool("isCorrectObjectIn", true);
-            
+
             //tesla.SetActive(true);
             nameText.text = story.nameOfNpc;
 
-            
+
             //Debug.Log(DragAnDrop.numberOfPartsIn);
-            if(DragAnDrop.numberOfPartsIn < 2)
+            if (DragAnDrop.numberOfPartsIn < 2)
                 sentence = story.sentences[index];
-            else 
-                sentence = story.sentences[index]+ " Uspesno si zavrsio nivo.";
+            else
+                sentence = story.sentences[index] + " Uspesno si zavrsio nivo.";
 
             StopAllCoroutines();
             //if(imageAnimator.GetCurrentAnimatorStateInfo(0).IsName("DialogueCominIn"))
-            StartCoroutine(TypeSentence(sentence));            
+            StartCoroutine(TypeSentence(sentence));
         }
         IEnumerator TypeSentence(string sentence)
         {
@@ -73,7 +74,7 @@ namespace FourGear.Dialogue
         }
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled)                                        //dont let player cancel the text animation and leave room while tesla is done speaking
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled)                                        //dont let player cancel the text animation and leave room while tesla is done speaking
             {
                 continueClick.enabled = false;
                 isCorrectObjectIn = false;
@@ -81,8 +82,8 @@ namespace FourGear.Dialogue
                 imageAnimator.SetBool("isCorrectObjectIn", false);
                 teslaAnimator.SetBool("isCorrectObjectIn", false);
             }
-                
 
-        }     
+
+        }
     }
 }

@@ -10,7 +10,6 @@ namespace FourGear.UI
         [SerializeField] private GameObject helpScript;
         public static bool canClick;
         public static bool canZoom;
-        // Start is called before the first frame update
         private void Start()
         {
             canClick = true;

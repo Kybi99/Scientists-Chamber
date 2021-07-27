@@ -1,4 +1,4 @@
-/*using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Diagnostics;
@@ -19,15 +19,13 @@ namespace FourGear.Singletons
         public abstract void Process();
     }
     
-    /*public class Object1 : Factory
+    public class Object1 : Factory
     {
         private static Factory objectInstance;
         public override string Name => "Object1";
 
         public override void Process()
         {
-            objectInstance = Factorization.GetFactory("Object1");
-            
             if (objectInstance != null)
             {
                 Destroy(objectInstance);
@@ -39,6 +37,25 @@ namespace FourGear.Singletons
         }
 
     }
+    public class Object2 : Factory
+    {
+        private static Factory objectInstance;
+        public override string Name => "Object2";
+
+        public override void Process()
+        {
+            if (objectInstance != null)
+            {
+                Destroy(objectInstance);
+                return;
+            }
+
+            objectInstance = this;
+
+        }
+
+    }
+
     public static class Factorization
     {
         private static Dictionary<string, Type> objectsByName;
@@ -81,4 +98,3 @@ namespace FourGear.Singletons
         }
     }
 }
-*/

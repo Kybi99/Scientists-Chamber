@@ -1,154 +1,122 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using FourGear.Singletons;
-using FourGear.UI;
 
 namespace FourGear.Mechanics
 {
     public class ObjectPath : MonoBehaviour
     {
-        [SerializeField] private Transform[] routes;
-        //[SerializeField] private GameObject[] correctForms; 
-        private static int routeToGo;
-        private int routeTaken;
-        //private int numberOfSlots;
+        [SerializeField] private BezierMovement bezierMovement;
+        public static int routeToGo;
+        [HideInInspector] public int routeTaken;
         private float tParam;
         private float speedModifier;
         private string sortingLayer;
-        private Vector2 objectPosition;
         private Vector2 startPosition;
+        private Vector2 p0, p1, p2, p3;
+        [HideInInspector] public Vector2 objectPosition;
         private Transform resetParent;
+        private SpriteRenderer sprite;
         public static bool coroutineAllowed;
         [HideInInspector] public bool inInventory;
-        private SpriteRenderer sprite;
-        //public static Transform inventory; 
 
         void Start()
         {
             routeToGo = 0;
             tParam = 0f;
-            speedModifier = 2f;
+            speedModifier = 1.5f;
             coroutineAllowed = true;
             inInventory = false;
             resetParent = this.transform.parent;
+            //bezierMovement.InstantiateRoutes(this.gameObject);
             sprite = this.gameObject.GetComponent<SpriteRenderer>();
             sortingLayer = sprite.sortingLayerName;
-
         }
 
-        private IEnumerator GoByTheRoute(int routeNumber)
+        public IEnumerator GoByTheRoute(int routeNumber)
         {
-            coroutineAllowed = false;
+            //bezierMovement.ObjectParentConfig();
+
             tParam = 0f;
-            //Debug.Log(routeNumber);
-            Vector2 p0 = routes[routeNumber].GetChild(0).position;                                                                              //get routes
-            Vector2 p1 = routes[routeNumber].GetChild(1).position;
-            Vector2 p2 = routes[routeNumber].GetChild(2).position;
-            Vector2 p3 = routes[routeNumber].GetChild(3).position;
+            bezierMovement.GetValuesForBezier(routeNumber);
 
             routeTaken = routeToGo;
             startPosition = new Vector2(transform.position.x, transform.position.y);
-            sprite.sortingLayerName = "Prvi plan";
+            sprite.sortingLayerName = "Objekti";
 
             while (tParam < 1)
             {
                 tParam += Time.deltaTime * speedModifier;
-                objectPosition = Mathf.Pow(1 - tParam, 3) * p0 +                                                                            //Bezieur formula     
-                    3 * Mathf.Pow(1 - tParam, 3) * tParam * p1 +
-                    3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 +
-                    Mathf.Pow(tParam, 3) * p3;
-
-                //Update position
+                bezierMovement.Bezier(tParam, speedModifier);
+                //Update position and rotation
                 transform.position = objectPosition;
-                transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime));
+                transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
+
                 yield return new WaitForEndOfFrame();
             }
 
+            AddXtoName();
 
-            this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-            transform.localScale = new Vector2(0.25f, 0.25f);
-            this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
+            FixItInSlot();
 
             StopCoroutine(GoByTheRoute(routeToGo));
 
             routeToGo++;
             inInventory = true;
-            //yield return new WaitForSeconds(0.25f);
             coroutineAllowed = true;
+            //yield return new WaitForSeconds(0.2f);
+            Particles.RestartParticles();
         }
 
-        private IEnumerator GoByTheRoute2(int routeNumber)
+        private void AddXtoName()
         {
-            coroutineAllowed = false;
-            tParam = 1f;
+            for (int i = 0; i < this.gameObject.name.Length; i++)
+                if (!this.gameObject.name.Contains("X"))
+                    this.gameObject.name += "X";
+        }
 
-            Vector2 p0 = routes[routeNumber].GetChild(0).position;
-            Vector2 p1 = routes[routeNumber].GetChild(1).position;
-            Vector2 p2 = routes[routeNumber].GetChild(2).position;
-            Vector2 p3 = routes[routeNumber].GetChild(3).position;
+        private void FixItInSlot()
+        {
+            transform.localScale = new Vector2(0.85f, 0.85f);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
+            this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
+        }
+
+        public IEnumerator GoByTheRoute2(int routeNumber)
+        {
+           // bezierMovement.ObjectParentConfig();
+
+            tParam = 1f;
+            bezierMovement.GetValuesForBezier(routeNumber);
 
             while (tParam > 0)
             {
                 tParam -= Time.deltaTime * speedModifier;
-                objectPosition = Mathf.Pow(1 - tParam, 3) * p0 +
-                    3 * Mathf.Pow(1 - tParam, 3) * tParam * p1 +
-                    3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 +
-                    Mathf.Pow(tParam, 3) * p3;
-
+                bezierMovement.Bezier(tParam, speedModifier);
                 transform.position = objectPosition;
-                transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime));
+                transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
+
                 yield return new WaitForEndOfFrame();
             }
 
-            sprite.sortingLayerName = sortingLayer;
-            this.transform.parent = resetParent;
-            transform.rotation = Quaternion.Euler(0, 0, 0);
-            transform.localScale = new Vector2(0.5f, 0.5f);
-            this.transform.position = startPosition;
+            PutItBack();
 
             StopCoroutine(GoByTheRoute2(routeTaken));
 
             inInventory = false;
-            // yield return new WaitForSeconds(0.25f);
             coroutineAllowed = true;
+
+            Particles.RestartParticles();
         }
 
-        int CheckFirstEmptySlot(GameObject[] arraySlots)
+        private void PutItBack()
         {
-            int id = -1;
-            for (int i = 0; i < arraySlots.Length; i++)
-            {
-                if (arraySlots[i] != null && arraySlots[i].transform.childCount == 0)
-                {
-                    id = i;
-                    break;
-                }
-            }
-
-            return id;
-        }
-        public void OnMouseDown()                                                                                                           //OnClickFuntions
-        {
-
-            if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Skladiste")
-            {
-
-                if (!inInventory && coroutineAllowed && routeToGo < Inventory.arraySlots.Length && ShowHint.canClick)
-                {
-                    routeToGo = CheckFirstEmptySlot(Inventory.arraySlots);
-                    if (routeToGo != -1)
-                        StartCoroutine(GoByTheRoute(routeToGo));
-                }
-
-                else if (inInventory && coroutineAllowed && ShowHint.canClick)
-                {
-                    routeToGo = CheckFirstEmptySlot(Inventory.arraySlots);
-                    StartCoroutine(GoByTheRoute2(routeTaken));
-                }
-            }
+            transform.localScale = new Vector2(1, 1);
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            sprite.sortingLayerName = sortingLayer;
+            this.transform.parent = resetParent;
+            this.transform.position = startPosition;
         }
     }
 }
