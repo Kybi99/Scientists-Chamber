@@ -12,7 +12,7 @@ namespace FourGear.Mechanics
         private float tParam;
         private float speedModifier;
         private string sortingLayer;
-        private Vector2 startPosition;
+        private Vector3 startPosition;
         private Vector2 p0, p1, p2, p3;
         [HideInInspector] public Vector2 objectPosition;
         private Transform resetParent;
@@ -20,6 +20,9 @@ namespace FourGear.Mechanics
         public static bool coroutineAllowed;
         [HideInInspector] public bool inInventory;
         private Quaternion resetRotation;
+        private Vector2 resetCollider;
+        private BoxCollider2D boxCollider2D;
+
 
         void Start()
         {
@@ -33,6 +36,8 @@ namespace FourGear.Mechanics
             sprite = this.gameObject.GetComponent<SpriteRenderer>();
             sortingLayer = sprite.sortingLayerName;
             resetRotation = this.gameObject.transform.rotation;
+            boxCollider2D = this.gameObject.GetComponent<BoxCollider2D>();
+            resetCollider = boxCollider2D.size;
         }
 
         public IEnumerator GoByTheRoute(int routeNumber)
@@ -43,7 +48,7 @@ namespace FourGear.Mechanics
             bezierMovement.GetValuesForBezier(routeNumber);
 
             routeTaken = routeToGo;
-            startPosition = new Vector2(transform.position.x, transform.position.y);
+            startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
             sprite.sortingLayerName = "Ispred svega";
 
             while (tParam < 1)
@@ -83,6 +88,7 @@ namespace FourGear.Mechanics
             transform.rotation = resetRotation;
             this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
             this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
+            this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size *2;
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
@@ -120,6 +126,7 @@ namespace FourGear.Mechanics
             sprite.sortingLayerName = sortingLayer;
             this.transform.parent = resetParent;
             this.transform.position = startPosition;
+            boxCollider2D.size = resetCollider;
         }
     }
 }
