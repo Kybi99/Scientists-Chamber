@@ -20,8 +20,8 @@ namespace FourGear
         }
         public static void RestartParticles()
         {
-            effect.GetComponent<ParticleSystem>().Simulate(0, true, true);
-            Destroy(effect);
+            effect.GetComponent<ParticleSystem>().Simulate(1, true, true);
+            //Destroy(effect);
         }
 
     }

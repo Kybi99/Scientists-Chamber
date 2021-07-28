@@ -28,7 +28,7 @@ namespace FourGear.Mechanics
         {
             routeToGo = 0;
             tParam = 0f;
-            speedModifier = 1.5f;
+            speedModifier = 1f;
             coroutineAllowed = true;
             inInventory = false;
             resetParent = this.transform.parent;
@@ -57,7 +57,7 @@ namespace FourGear.Mechanics
                 bezierMovement.Bezier(tParam, speedModifier);
                 //Update position and rotation
                 transform.position = objectPosition;
-                transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
+               // transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
 
                 yield return new WaitForEndOfFrame();
             }
@@ -70,7 +70,7 @@ namespace FourGear.Mechanics
 
             routeToGo++;
             inInventory = true;
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.4f);
             Particles.RestartParticles();
             coroutineAllowed = true;
         }
@@ -85,7 +85,7 @@ namespace FourGear.Mechanics
         private void FixItInSlot()
         {
             transform.localScale = new Vector2(0.5f, 0.5f);
-            transform.rotation = resetRotation;
+            //transform.rotation = resetRotation;
             this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
             this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size *2;
@@ -103,7 +103,7 @@ namespace FourGear.Mechanics
                 tParam -= Time.deltaTime * speedModifier;
                 bezierMovement.Bezier(tParam, speedModifier);
                 transform.position = objectPosition;
-                transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
+               // transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
 
                 yield return new WaitForEndOfFrame();
             }
@@ -114,7 +114,7 @@ namespace FourGear.Mechanics
 
             inInventory = false;
 
-            yield return new WaitForSeconds(0.2f);
+            yield return new WaitForSeconds(0.4f);
             Particles.RestartParticles();
             coroutineAllowed = true;
         }
@@ -122,7 +122,7 @@ namespace FourGear.Mechanics
         private void PutItBack()
         {
             transform.localScale = new Vector2(1, 1);
-            transform.rotation = resetRotation;
+            //transform.rotation = resetRotation;
             sprite.sortingLayerName = sortingLayer;
             this.transform.parent = resetParent;
             this.transform.position = startPosition;

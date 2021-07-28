@@ -9,9 +9,10 @@ namespace FourGear.Mechanics
 {
     public class FramedObjects : MonoBehaviour
     {
+        [SerializeField] private Texture2D resetCursorTexture;
         [SerializeField] private Texture2D cursorTexture;
-        [SerializeField] private CursorMode cursorMode = CursorMode.Auto;
-        private Vector2 hotSpot;
+        private CursorMode cursorMode;
+        [SerializeField] private Vector2 hotSpot;
         private GameObject secondFrame;
         public static GameObject[] firstFrameObjects;
         private NextScene nextScene;
@@ -24,7 +25,9 @@ namespace FourGear.Mechanics
 
         void Start()
         {
-            hotSpot = Vector2.zero;
+            cursorMode = CursorMode.ForceSoftware;
+            Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
+            //hotSpot = Vector2.zero;
             isMouseOnObject = false;
             nextScene = this.gameObject.GetComponent<NextScene>();
             if (this.transform.GetChild(0).gameObject != null)
@@ -49,7 +52,7 @@ namespace FourGear.Mechanics
                 {
                     nextScene.LoadNextScene();
                     isMouseOnObject = false;
-                    Cursor.SetCursor(null, Vector2.zero, cursorMode);
+                    Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
                     isObjectMoved = true;
                 }
                 else if ((this.gameObject.name == "DoorsOpen" || this.gameObject.name == "DoorsOpenX") && !secondObjectRenderer.enabled)
@@ -67,7 +70,7 @@ namespace FourGear.Mechanics
                 {
                     GetComponent<PreviousScene>().LoadPreviousScene();
                     isMouseOnObject = false;
-                    Cursor.SetCursor(null, Vector2.zero, cursorMode);
+                    Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
                 }
             }
         }
@@ -93,7 +96,7 @@ namespace FourGear.Mechanics
         void OnMouseExit()
         {
             isMouseOnObject = false;
-            Cursor.SetCursor(null, Vector2.zero, cursorMode);
+            Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
         }
     }
 }

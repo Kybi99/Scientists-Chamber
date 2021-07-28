@@ -13,9 +13,9 @@ namespace FourGear.UI
  
         public static GameObject[] otherObjects;
 
-        public void Start()
+        /*public void Start()
         {
-           /* if (placeholders == null)
+            if (placeholders == null)
             {
                 placeholders = GameObject.FindGameObjectsWithTag("placeholders");
 
@@ -23,8 +23,8 @@ namespace FourGear.UI
             for (int i = 0; i < placeholders.Length; i++)
             {
                 placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
-            }*/
-        }
+            }
+        }*/
         public void LoadNextScene()
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
