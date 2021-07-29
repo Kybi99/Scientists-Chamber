@@ -85,10 +85,10 @@ namespace FourGear.Mechanics
         private void FixItInSlot()
         {
             transform.localScale = new Vector2(0.5f, 0.5f);
-            //transform.rotation = resetRotation;
+            transform.rotation = Quaternion.Euler(Vector3.zero);
             this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
             this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
-            this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size *2;
+            this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
@@ -122,7 +122,7 @@ namespace FourGear.Mechanics
         private void PutItBack()
         {
             transform.localScale = new Vector2(1, 1);
-            //transform.rotation = resetRotation;
+            transform.rotation = resetRotation;
             sprite.sortingLayerName = sortingLayer;
             this.transform.parent = resetParent;
             this.transform.position = startPosition;

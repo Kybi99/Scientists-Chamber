@@ -38,13 +38,13 @@ namespace FourGear.Mechanics
             else if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Radna soba" && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)                                       //DragAndDrop                                                                              //OnDrag Find correct placeholder for clicked object 
             {
                 dragAnDrop.resetParent = this.transform.parent;
-                for (int i = 0; i < DragAnDrop.placeholders.Length; i++)
+                for (int i = 0; i < SceneLoaded.placeholders.Length; i++)
                 {
-                    if (DragAnDrop.placeholders[i] != null)
+                    if (SceneLoaded.placeholders[i] != null)
                     {
-                        if (this.gameObject.name == DragAnDrop.placeholders[i].name + "X")
+                        if (this.gameObject.name == SceneLoaded.placeholders[i].name + "X")
                         {
-                            dragAnDrop.correctForm = DragAnDrop.placeholders[i];
+                            dragAnDrop.correctForm = SceneLoaded.placeholders[i];
                             index = i;
                             break;
                         }

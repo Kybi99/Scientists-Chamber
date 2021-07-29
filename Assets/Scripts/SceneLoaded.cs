@@ -10,14 +10,22 @@ namespace FourGear
     public class SceneLoaded : MonoBehaviour
     {
         int i;
+        [SerializeField] private Texture2D cursorTexture;
+        private CursorMode cursorMode;
+        private Vector2 hotSpot;
+        public static GameObject[] placeholders;
+
         void Start()
         {
+            cursorMode = CursorMode.ForceSoftware;
             i = 0;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+            placeholders = GameObject.FindGameObjectsWithTag("placeholders");
+
             if (scene.name == "Radna soba")
             {
                 PrepareSceneRadnaSoba();
@@ -26,7 +34,7 @@ namespace FourGear
                 PrepareSceneSkladiste();
         }
 
-        private static void PrepareSceneRadnaSoba()
+        private void PrepareSceneRadnaSoba()
         {
             for (int i = 0; i < NextScene.otherObjects.Length; i++)
             {
@@ -52,20 +60,23 @@ namespace FourGear
                     NextScene.objects[i].gameObject.SetActive(false);
                 }
             }
-            /*for (int i = 0; i < DragAnDrop.placeholders.Length; i++)
+            for (int i = 0; i < placeholders.Length; i++)
             {
-                if (DragAnDrop.placeholders[i] != null)
-                    DragAnDrop.placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
-                foreach (Transform child in DragAnDrop.placeholders[i].transform)
+                if (placeholders[i] != null)
+                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
+                foreach (Transform child in placeholders[i].transform)
                 {
                     child.GetComponent<SpriteRenderer>().enabled = true;
                 }
-            }*/
+            }
             for (int i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
             {
                 if (FramedObjects.firstFrameObjects[i] != null)
                     FramedObjects.firstFrameObjects[i].gameObject.SetActive(false);
             }
+
+            ChangeCursor();
+
             DontDestroyOnLoadManager.ChangeNames();
         }
 
@@ -87,15 +98,15 @@ namespace FourGear
 
             //Deactivate placeholders
 
-            /*for (i = 0; i < DragAnDrop.placeholders.Length; i++)
+            for (i = 0; i < placeholders.Length; i++)
             {
-                if (DragAnDrop.placeholders[i] != null)
-                    DragAnDrop.placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
-                foreach (Transform child in DragAnDrop.placeholders[i].transform)
+                if (placeholders[i] != null)
+                    placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
+                foreach (Transform child in placeholders[i].transform)
                 {
                     child.GetComponent<SpriteRenderer>().enabled = false;
                 }
-            }*/
+            }
 
             //Change active scripts on incorrect objects and activate deactivated objects when coming back to first room
             for (i = 0; i < NextScene.otherObjects.Length; i++)
@@ -108,17 +119,20 @@ namespace FourGear
                         NextScene.otherObjects[i].gameObject.SetActive(true);
                 }
             }
-            /*for (i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
-            {*/
+
             for (int i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
             {
                 if (FramedObjects.firstFrameObjects[i] != null)
                     FramedObjects.firstFrameObjects[i].gameObject.SetActive(true);
             }
-            /*FramedObjects.firstObjectRenderer.enabled = false;
-            FramedObjects.secondObjectRenderer.enabled = true;*/
+            ChangeCursor();
 
             DontDestroyOnLoadManager.ChangeNames();
         }
+        private void ChangeCursor()
+        {
+            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+        }
     }
+
 }
