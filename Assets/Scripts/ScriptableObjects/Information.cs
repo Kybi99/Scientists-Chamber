@@ -10,6 +10,7 @@ namespace FourGear.ScriptableObjects
         public Sprite blueprint;
         //[SerializeField] Text Info; 
         public string text;
+        
     }
 }
 

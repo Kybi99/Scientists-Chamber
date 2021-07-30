@@ -16,8 +16,7 @@ namespace FourGear.Mechanics
         private int index;
         public void OnMouseDown()                                                                                                           //OnClickFuntions
         {
-
-            if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Skladiste")
+            if (Input.GetMouseButtonDown(0) && (SceneManager.GetActiveScene().name == "Skladiste" || SceneManager.GetActiveScene().name == "PupinSkladiste" || SceneManager.GetActiveScene().name == "TeslaSkladiste" ))
             {
                 if (!objectPath.inInventory && ObjectPath.coroutineAllowed && ObjectPath.routeToGo < Inventory.arraySlots.Length && ShowHint.canClick)
                 {
@@ -35,7 +34,7 @@ namespace FourGear.Mechanics
                 }
             }
 
-            else if (Input.GetMouseButtonDown(0) && SceneManager.GetActiveScene().name == "Radna soba" && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)                                       //DragAndDrop                                                                              //OnDrag Find correct placeholder for clicked object 
+            else if (Input.GetMouseButtonDown(0) && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && (SceneManager.GetActiveScene().name == "Radna soba" || SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))                                       //DragAndDrop                                                                              //OnDrag Find correct placeholder for clicked object 
             {
                 dragAnDrop.resetParent = this.transform.parent;
                 for (int i = 0; i < SceneLoaded.placeholders.Length; i++)
@@ -67,12 +66,12 @@ namespace FourGear.Mechanics
         private void OnMouseUp()                                                                                                                                                    //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
         {
 
-            if (Input.GetMouseButtonUp(0) && SceneManager.GetActiveScene().name == "Radna soba" && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)
+            if (Input.GetMouseButtonUp(0) && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && (SceneManager.GetActiveScene().name == "Radna soba" || SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))
             {
                 dragAnDrop.isMoving = false;
 
                 if (dragAnDrop.correctForm != null && Mathf.Abs(this.transform.localPosition.x - dragAnDrop.correctForm.transform.localPosition.x) <= 0.5f &&
-                Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.5f)
+                    Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.5f)
                 {
                     //Debug.Log( DialogueManager.dialogueTrigger);
                     this.transform.parent = dragAnDrop.correctForm.transform;

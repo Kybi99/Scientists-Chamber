@@ -19,7 +19,7 @@ namespace FourGear.Mechanics
         [HideInInspector] public Vector3 resetPosition;
         //[SerializeField] private DialogueTrigger dialogueTrigger;
         private DialogueTrigger dialogueTrigger;
-        [HideInInspector] public bool thisObjectIsIn;
+        [SerializeField] public bool thisObjectIsIn;
       
         private void Start()
         {

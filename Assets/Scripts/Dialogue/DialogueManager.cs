@@ -21,11 +21,9 @@ namespace FourGear.Dialogue
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
         public TMP_Text continueClick;
-        //private Button myButton;
 
         void Start()
         {
-            //continueClick.enabled = false;
             imageAnimator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
             tesla = GameObject.FindGameObjectWithTag("tesla");
             //tesla.transform.position =  new Vector2(10, 0.46f);
@@ -49,7 +47,6 @@ namespace FourGear.Dialogue
             nameText.text = story.nameOfNpc;
 
 
-            //Debug.Log(DragAnDrop.numberOfPartsIn);
             if (DragAnDrop.numberOfPartsIn < 2)
                 sentence = story.sentences[index];
             else
@@ -78,7 +75,6 @@ namespace FourGear.Dialogue
             {
                 continueClick.enabled = false;
                 isCorrectObjectIn = false;
-                //Debug.Log(imageAnimator.GetBool("isCorrectObjectIn"));
                 imageAnimator.SetBool("isCorrectObjectIn", false);
                 teslaAnimator.SetBool("isCorrectObjectIn", false);
             }

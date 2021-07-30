@@ -6,18 +6,18 @@ using TMPro;
 namespace FourGear.ScriptableObjects
 {
     public class InfoDisplay : MonoBehaviour
-{
-    [SerializeField] Information[] information; 
-    [SerializeField] Image infoImage; 
-    [SerializeField] TMP_Text infoText;
-
-    public int WriteCorrectDataOnCanvas(int index)
     {
-        infoImage.sprite = information[index].blueprint;    
-        infoText.text = information[index].text; 
+        [SerializeField] Information[] information;
+        [SerializeField] Image infoImage;
+        [SerializeField] TMP_Text infoText;
 
-        return index;
+        public int WriteCorrectDataOnCanvas(int index)
+        {
+            infoImage.sprite = information[index].blueprint;
+            infoText.text = information[index].text;
+ 
+            return index;
+        }
     }
-}
 
 }

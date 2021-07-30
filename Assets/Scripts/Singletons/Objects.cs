@@ -10,7 +10,7 @@ namespace FourGear.Singletons
         List<GameObject> goList;
         private GameObject[] objects;
         private GameObject[] otherObjects;
-        private GameObject[] framedObjects;
+        public static GameObject[] framedObjects;
 
         public class myMonsterSorter : IComparer
         {
@@ -45,7 +45,7 @@ namespace FourGear.Singletons
             {
                 for (int j = goList.Count - 1; j > i; j--)
                 {
-                    if (goList[i].name + "X" == goList[j].name )
+                    if (goList[i].name + "X" == goList[j].name)
                     {
                         Destroy(goList[i]);
                         goList.RemoveAt(i);

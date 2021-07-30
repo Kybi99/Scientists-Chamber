@@ -12,7 +12,7 @@ Material:
   m_ShaderKeywords: _COLORADDSUBDIFF_ON _EMISSION _FLIPBOOKBLENDING_ON
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
+  m_DoubleSidedGI: 1
   m_CustomRenderQueue: -1
   stringTagMap: {}
   disabledShaderPasses:
@@ -116,7 +116,7 @@ Material:
     - _ZWrite: 0
     m_Colors:
     - Color_e19d63f390dc48d2ae47e68c238afa04: {r: 0.8679245, g: 0.4508955, b: 0.03684584, a: 0}
-    - Color_fa8a39148cad4574a8651ced18bbb6a2: {r: 766.9961, g: 666.60394, b: 0, a: 0}
+    - Color_fa8a39148cad4574a8651ced18bbb6a2: {r: 102.75575, g: 89.306046, b: 0, a: 0}
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _BaseColorAddSubDiff: {r: 1, g: 0, b: 0, a: 0}
     - _CameraFadeParams: {r: 0, g: Infinity, b: 0, a: 0}

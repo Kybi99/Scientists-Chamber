@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using FourGear.UI;
 using FourGear.Mechanics;
-
+using FourGear.Singletons;
 namespace FourGear
 {
     public class SceneLoaded : MonoBehaviour
@@ -26,11 +26,11 @@ namespace FourGear
         {
             placeholders = GameObject.FindGameObjectsWithTag("placeholders");
 
-            if (scene.name == "Radna soba")
+            if (scene.name == "Radna soba" || scene.name == "PupinRadnaSoba" || scene.name == "TeslaRadnaSoba")
             {
                 PrepareSceneRadnaSoba();
             }
-            else if (scene.name == "Skladiste")
+            else if (scene.name == "Skladiste" || scene.name == "PupinSkladiste" || scene.name == "TeslaSkladiste")
                 PrepareSceneSkladiste();
         }
 
@@ -63,16 +63,19 @@ namespace FourGear
             for (int i = 0; i < placeholders.Length; i++)
             {
                 if (placeholders[i] != null)
-                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
-                foreach (Transform child in placeholders[i].transform)
                 {
-                    child.GetComponent<SpriteRenderer>().enabled = true;
+                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
+                    foreach (Transform child in placeholders[i].transform)
+                    {
+                        child.GetComponent<SpriteRenderer>().enabled = true;
+                    }
                 }
+
             }
-            for (int i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
+            for (int i = 0; i < Objects.framedObjects.Length; i++)
             {
-                if (FramedObjects.firstFrameObjects[i] != null)
-                    FramedObjects.firstFrameObjects[i].gameObject.SetActive(false);
+                if (Objects.framedObjects[i] != null)
+                    Objects.framedObjects[i].gameObject.SetActive(false);
             }
 
             ChangeCursor();
@@ -101,11 +104,15 @@ namespace FourGear
             for (i = 0; i < placeholders.Length; i++)
             {
                 if (placeholders[i] != null)
-                    placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
-                foreach (Transform child in placeholders[i].transform)
                 {
-                    child.GetComponent<SpriteRenderer>().enabled = false;
+                    placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
+                    foreach (Transform child in placeholders[i].transform)
+                    {
+                        child.GetComponent<SpriteRenderer>().enabled = false;
+                        child.GetComponent<BoxCollider2D>().enabled = false;
+                    }
                 }
+
             }
 
             //Change active scripts on incorrect objects and activate deactivated objects when coming back to first room
@@ -120,10 +127,10 @@ namespace FourGear
                 }
             }
 
-            for (int i = 0; i < FramedObjects.firstFrameObjects.Length; i++)
+            for (int i = 0; i < Objects.framedObjects.Length; i++)
             {
-                if (FramedObjects.firstFrameObjects[i] != null)
-                    FramedObjects.firstFrameObjects[i].gameObject.SetActive(true);
+                if (Objects.framedObjects[i] != null)
+                    Objects.framedObjects[i].gameObject.SetActive(true);
             }
             ChangeCursor();
 

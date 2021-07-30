@@ -13,8 +13,17 @@ EditorBuildSettings:
     guid: ac1a87839060088499629335cc0a5cbc
   - enabled: 1
     path: Assets/Scenes/Radna soba.unity
-    guid: 59e811349b2ac3a43952d0eb73cc69bc
-  - enabled: 0
-    path: Assets/Scenes/SkladisteLevel2.unity
-    guid: 8d98c67a588e91b47b3cdd704c276dd2
+    guid: b9c7dadce309cb4469407b0178dd6a8f
+  - enabled: 1
+    path: Assets/Scenes/PupinSkladiste.unity
+    guid: d28a931a5a02f964a9d27533c5653e62
+  - enabled: 1
+    path: Assets/Scenes/PupinRadnaSoba.unity
+    guid: 86f14426cdb96d9438a5d6251ed8b4f1
+  - enabled: 1
+    path: Assets/Scenes/TeslaSkladiste.unity
+    guid: 044ac2dd1c4c74e4ab859ca90e4d9c4e
+  - enabled: 1
+    path: Assets/Scenes/TeslaRadnaSoba.unity
+    guid: 42c44f853505f58479c7c190b78447b6
   m_configObjects: {}
