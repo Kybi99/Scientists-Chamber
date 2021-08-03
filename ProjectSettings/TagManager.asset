@@ -20,7 +20,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Vrata
   - Water
   - UI
   - Prednji plan
@@ -58,6 +58,9 @@ TagManager:
     locked: 0
   - name: Zadnji plan
     uniqueID: 3000766795
+    locked: 0
+  - name: Vrata
+    uniqueID: 3700731075
     locked: 0
   - name: Pozadina
     uniqueID: 34349197

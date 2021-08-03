@@ -57,7 +57,7 @@ namespace FourGear.Mechanics
                 bezierMovement.Bezier(tParam, speedModifier);
                 //Update position and rotation
                 transform.position = objectPosition;
-               // transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
+                // transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
 
                 yield return new WaitForEndOfFrame();
             }
@@ -87,7 +87,7 @@ namespace FourGear.Mechanics
             transform.localScale = new Vector2(0.5f, 0.5f);
             transform.rotation = Quaternion.Euler(Vector3.zero);
             this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
-            this.transform.position = new Vector2(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y);
+            this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -0.5f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
         }
 
@@ -98,12 +98,14 @@ namespace FourGear.Mechanics
             tParam = 1f;
             bezierMovement.GetValuesForBezier(routeNumber);
 
+            transform.localScale = new Vector2(1, 1);
+
             while (tParam > 0)
             {
                 tParam -= Time.deltaTime * speedModifier;
                 bezierMovement.Bezier(tParam, speedModifier);
                 transform.position = objectPosition;
-               // transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
+                // transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
 
                 yield return new WaitForEndOfFrame();
             }
@@ -121,7 +123,6 @@ namespace FourGear.Mechanics
 
         private void PutItBack()
         {
-            transform.localScale = new Vector2(1, 1);
             transform.rotation = resetRotation;
             sprite.sortingLayerName = sortingLayer;
             this.transform.parent = resetParent;

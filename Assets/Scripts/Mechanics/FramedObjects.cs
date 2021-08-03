@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 using FourGear.UI;
 using FourGear.Dialogue;
+
 
 namespace FourGear.Mechanics
 {
@@ -21,6 +23,10 @@ namespace FourGear.Mechanics
         public static SpriteRenderer firstObjectRenderer;
         public static SpriteRenderer secondObjectRenderer;
         private PolygonCollider2D polygonCollider2D;
+        private Animator animator1;
+        private Animator animator2;
+        private TMP_Text tMPro;
+
 
         void Start()
         {
@@ -33,6 +39,7 @@ namespace FourGear.Mechanics
                 secondFrame = this.transform.GetChild(0).gameObject;
             clickCount = 0;
             polygonCollider2D = GetComponent<PolygonCollider2D>();
+
         }
         void Update()
         {                                                                                                                                   //check the active scene and on first scene update next frame for objects, if doors are open on click load next scene
@@ -50,12 +57,26 @@ namespace FourGear.Mechanics
                 if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)           //Open the door
                 {
                     nextScene.LoadNextScene();
+                    if (tMPro != null)
+                        tMPro.text = "";
                     isMouseOnObject = false;
                     Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
                     isObjectMoved = true;
                 }
-                else if ((this.gameObject.name == "DoorsOpen" || this.gameObject.name == "DoorsOpenX") && !secondObjectRenderer.enabled)
-                    secondObjectRenderer.enabled = true;
+                else if ((this.gameObject.name == "DoorsClosed" || this.gameObject.name == "DoorsClosedX") && !secondObjectRenderer.enabled)
+                {
+                    if (animator1 && animator2 != null)
+                    {
+                        animator1.SetBool("isDoorReadyToOpen", true);
+                        animator2.SetBool("isDoorReadyToOpen", true);
+
+                        if (tMPro != null)
+                        {
+                            tMPro.text = "Radna Soba";
+                            tMPro.transform.position = Input.mousePosition + new Vector3(-10, 0, 0);
+                        }
+                    }
+                }
                 else
                 {
                     secondObjectRenderer.enabled = true;
@@ -79,7 +100,10 @@ namespace FourGear.Mechanics
             if (clickCount == 0)
             {
                 firstObjectRenderer = this.gameObject.GetComponent<SpriteRenderer>();
+                animator1 = GetComponent<Animator>();
                 secondObjectRenderer = secondFrame.GetComponent<SpriteRenderer>();
+                animator2 = secondObjectRenderer.GetComponent<Animator>();
+                tMPro = secondObjectRenderer.GetComponentInChildren<TMP_Text>();
                 clickCount++;
             }
 
@@ -87,14 +111,27 @@ namespace FourGear.Mechanics
 
         void OnMouseEnter()
         {
+            if (secondObjectRenderer != null)
+                if (secondObjectRenderer.enabled && tMPro != null)
+                {
+                    tMPro.text = "Radna Soba";
+                    tMPro.transform.position =Input.mousePosition + new Vector3(-10, 0, 0);
+                }
+
             isMouseOnObject = true;
             Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
         }
 
         void OnMouseExit()
         {
+            if (tMPro != null)
+            {
+                tMPro.text = "";
+            }
+
             isMouseOnObject = false;
             Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
+
         }
     }
 }
