@@ -28,7 +28,7 @@ namespace FourGear.Mechanics
         {
             routeToGo = 0;
             tParam = 0f;
-            speedModifier = 1f;
+            speedModifier = 0.8f;
             coroutineAllowed = true;
             inInventory = false;
             resetParent = this.transform.parent;
