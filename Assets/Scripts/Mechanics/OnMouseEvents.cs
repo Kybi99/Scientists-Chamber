@@ -79,6 +79,8 @@ namespace FourGear.Mechanics
                     DialogueManager.dialogueTrigger.TriggerDialogue(index);
 
                     this.transform.position = new Vector3(dragAnDrop.correctForm.transform.position.x, dragAnDrop.correctForm.transform.position.y, dragAnDrop.correctForm.transform.position.z);
+                    this.transform.rotation = dragAnDrop.correctForm.transform.rotation;
+                    this.transform.localScale = new Vector2(1, 1); ;
                     dragAnDrop.isFinished = true;
                     DragAnDrop.numberOfPartsIn++;
                 }

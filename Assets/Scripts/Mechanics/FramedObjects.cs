@@ -42,7 +42,9 @@ namespace FourGear.Mechanics
 
         }
         void Update()
-        {                                                                                                                                   //check the active scene and on first scene update next frame for objects, if doors are open on click load next scene
+        {
+            if (tMPro != null)
+                tMPro.transform.position = Input.mousePosition + new Vector3(-150, -10, 0);                                                                                                                   //check the active scene and on first scene update next frame for objects, if doors are open on click load next scene
             FramedObjectClicked();
         }
 
@@ -73,7 +75,7 @@ namespace FourGear.Mechanics
                         if (tMPro != null)
                         {
                             tMPro.text = "Radna Soba";
-                            tMPro.transform.position = Input.mousePosition + new Vector3(-10, 0, 0);
+                            //tMPro.transform.position = Input.mousePosition + new Vector3(-10, 0, 0);
                         }
                     }
                 }
@@ -115,7 +117,6 @@ namespace FourGear.Mechanics
                 if (secondObjectRenderer.enabled && tMPro != null)
                 {
                     tMPro.text = "Radna Soba";
-                    tMPro.transform.position =Input.mousePosition + new Vector3(-10, 0, 0);
                 }
 
             isMouseOnObject = true;

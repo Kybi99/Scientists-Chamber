@@ -224,7 +224,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: -89.04643, y: 0, z: -83.389786, w: 22.952265}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -247,15 +247,15 @@ RectTransform:
   m_GameObject: {fileID: 88065619}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.0362499, y: 1.0362499, z: 1.0362499}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1646553844}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2.0638, y: -0.0604}
-  m_SizeDelta: {x: 286.4627, y: 71.1727}
+  m_AnchoredPosition: {x: 2.0638, y: -3.14}
+  m_SizeDelta: {x: 286.46, y: 65.02}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &111058387
 GameObject:
@@ -487,7 +487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 301912964}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.79, y: -1.46, z: 0.40540135}
+  m_LocalPosition: {x: -0.79, y: -0.43000007, z: 0.40540135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2141927997}
@@ -715,8 +715,8 @@ Canvas:
   m_GameObject: {fileID: 385814155}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_RenderMode: 1
+  m_Camera: {fileID: 1044713888}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
   m_ReceivesEvents: 1
@@ -724,8 +724,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
-  m_SortingLayerID: 0
-  m_SortingOrder: -1
+  m_SortingLayerID: 639884311
+  m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!1 &508394719
 GameObject:
@@ -994,9 +994,11 @@ MonoBehaviour:
   story:
     nameOfNpc: Tesla
     sentences:
-    - '  Svaka Cast prvi deo je na mestu.'
-    - '  Svaka Cast drugi deo je na mestu.'
-    - '  Svaka Cast treci deo je na mestu.'
+    - " Kako bi mogli da koristimo jednosmernu struju, potreban nam je \u017Eivin
+      prekida\u010D\r.\n"
+    - " Spolja\u0161nji kalem \u0107e omogu\u0107iti elektromotornu slilu suprotnog
+      smera kako bi dobili \u017Eeljeni napon."
+    - " Ako izum bude radio kako treba, izme\u0111u njih \u0107emo videti varni\u010Denje.\r\n"
 --- !u!1 &726438906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1031,8 +1033,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -60.836, y: 49.191628}
-  m_SizeDelta: {x: 121.6713, y: 21.7517}
+  m_AnchoredPosition: {x: -131.5, y: 41.465}
+  m_SizeDelta: {x: 121.67, y: 16.951}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &726438908
 CanvasRenderer:
@@ -1165,8 +1167,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 65.909, y: -47.6}
-  m_SizeDelta: {x: 180.7189, y: 17.7397}
+  m_AnchoredPosition: {x: 132.1, y: -22.21}
+  m_SizeDelta: {x: 180.72, y: 14.72}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &934623484
 MonoBehaviour:
@@ -1341,7 +1343,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -77.50018, y: -23.12503}
+  m_AnchoredPosition: {x: -77.50018, y: -23.125061}
   m_SizeDelta: {x: 160, y: 44.797}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1044713886
@@ -1768,7 +1770,7 @@ RectTransform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1646553843}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -50}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 88065622}
@@ -1779,8 +1781,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 4.3078, y: 257.4825}
-  m_SizeDelta: {x: 312.5365, y: 120.1345}
+  m_AnchoredPosition: {x: 0, y: 254.85}
+  m_SizeDelta: {x: 553.92, y: 111.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1646553845
 MonoBehaviour:
@@ -1802,7 +1804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 6fc7f27064686f14b96d16c22231dbb0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1946,7 +1948,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1782747360}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.65999985, y: -0.13, z: 0.40540135}
+  m_LocalPosition: {x: -2.34, y: -0.54, z: 0.40540135}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2141927997}
@@ -2027,8 +2029,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1932235305}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.53999996, y: -2.51, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.58, y: -1.43, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2141927997}

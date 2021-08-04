@@ -80,6 +80,12 @@ TagManager:
   - name: Objekti
     uniqueID: 448582527
     locked: 0
+  - name: UI
+    uniqueID: 1844047153
+    locked: 0
   - name: Ispred svega
     uniqueID: 704479851
+    locked: 0
+  - name: Tesla
+    uniqueID: 2888746179
     locked: 0

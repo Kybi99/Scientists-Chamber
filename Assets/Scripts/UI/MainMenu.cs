@@ -65,10 +65,7 @@ namespace FourGear.UI
         public void LoadLevel()
         {
             //load specific level
-            if (indexOfButtonClicked == 0)
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 + indexOfButtonClicked);
-            else
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 2 + indexOfButtonClicked);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1 + indexOfButtonClicked * 2);
         }
     }
 }

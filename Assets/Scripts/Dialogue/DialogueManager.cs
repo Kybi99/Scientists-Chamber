@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 using FourGear.Mechanics;
+using FourGear.Singletons;
 using TMPro;
 
 namespace FourGear.Dialogue
@@ -65,6 +67,21 @@ namespace FourGear.Dialogue
             {
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(0.03f);
+            }
+            if (DragAnDrop.numberOfPartsIn > 2)
+            {
+                yield return new WaitForSeconds(2f);
+                var objects = GameObject.FindObjectsOfType<GameObject>();
+                foreach(GameObject o in objects)
+                {
+                    Destroy(o.gameObject);
+                }
+                foreach(GameObject o in Objects.framedObjects)
+                {
+                    Destroy(o.gameObject);
+                }
+                DragAnDrop.numberOfPartsIn = 0;
+                SceneManager.LoadScene("Main menu");
             }
             isContinueButtonEnabled = true;
             continueClick.enabled = true;

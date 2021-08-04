@@ -22,8 +22,8 @@ EditorBuildSettings:
     guid: 86f14426cdb96d9438a5d6251ed8b4f1
   - enabled: 1
     path: Assets/Scenes/TeslaSkladiste.unity
-    guid: 044ac2dd1c4c74e4ab859ca90e4d9c4e
+    guid: 4835819e2bee32342bfc02082135b06b
   - enabled: 1
     path: Assets/Scenes/TeslaRadnaSoba.unity
-    guid: 42c44f853505f58479c7c190b78447b6
+    guid: 507036415875d2a479a3e601ad23a9c8
   m_configObjects: {}
