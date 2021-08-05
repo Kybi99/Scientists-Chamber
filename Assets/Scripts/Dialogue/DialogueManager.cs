@@ -52,7 +52,7 @@ namespace FourGear.Dialogue
             if (DragAnDrop.numberOfPartsIn < 2)
                 sentence = story.sentences[index];
             else
-                sentence = story.sentences[index] + " Uspesno si zavrsio nivo.";
+                sentence = story.sentences[index] + " \nUspesno si zavrsio nivo.";
 
             StopAllCoroutines();
             //if(imageAnimator.GetCurrentAnimatorStateInfo(0).IsName("DialogueCominIn"))
@@ -70,16 +70,15 @@ namespace FourGear.Dialogue
             }
             if (DragAnDrop.numberOfPartsIn > 2)
             {
+                GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
+                GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
+                DontDestroyOnLoadManager.DestroyAll();
+                foreach (GameObject ddol in ddols)
+                    Destroy(ddol);
+                Destroy(inventory);
+
                 yield return new WaitForSeconds(2f);
-                var objects = GameObject.FindObjectsOfType<GameObject>();
-                foreach(GameObject o in objects)
-                {
-                    Destroy(o.gameObject);
-                }
-                foreach(GameObject o in Objects.framedObjects)
-                {
-                    Destroy(o.gameObject);
-                }
+
                 DragAnDrop.numberOfPartsIn = 0;
                 SceneManager.LoadScene("Main menu");
             }

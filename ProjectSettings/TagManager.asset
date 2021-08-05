@@ -16,6 +16,8 @@ TagManager:
   - tesla
   - particle
   - secondParticle
+  - DDOLs
+  - hint
   layers:
   - Default
   - TransparentFX

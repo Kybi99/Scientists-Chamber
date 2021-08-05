@@ -29,7 +29,7 @@ namespace FourGear.UI
                 canClick = true;
                 canZoom = true;
             }
-                
+
         }
         public void CloseHint()
         {

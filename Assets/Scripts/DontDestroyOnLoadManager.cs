@@ -21,12 +21,19 @@ namespace FourGear
                 if (go != null)
                     foreach (Transform child in go.transform.GetComponentsInChildren<Transform>())
                     {
-                        for(int i = 0; i < child.name.Length; i++)
-                            if(!child.name.Contains("X"))
+                        for (int i = 0; i < child.name.Length; i++)
+                            if (!child.name.Contains("X"))
                                 child.name += "X";
                     }
-                            
+
             counter++;
+        }
+        public static void DestroyAll()
+        {
+            foreach (var go in _ddolObjects)
+                if (go != null)
+                    UnityEngine.Object.Destroy(go);
+
             _ddolObjects.Clear();
         }
     }
