@@ -1,19 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FourGear.UI
 {
     public class ShowHint : MonoBehaviour
     {
-        //[SerializeField] private GameObject Canvas;
         [SerializeField] private GameObject helpScript;
         public static bool canClick;
         public static bool canZoom;
+        public static bool isFirstTimeInScene = true;
         private void Start()
         {
-            canClick = true;
-            canZoom = true;
+            if (isFirstTimeInScene)
+                ShowHints();
+            else
+            {
+                canClick = true;
+                canZoom = true;
+            }
         }
         public void ShowHints()
         {

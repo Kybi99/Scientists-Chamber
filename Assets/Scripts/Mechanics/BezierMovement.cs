@@ -1,24 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FourGear.Mechanics
 {
     public class BezierMovement : MonoBehaviour
-    {   
+    {
+        private Vector2 p0, p1, p2, p3;
         public ObjectPath objectPath;
         public Transform[] routes;
-        private Vector2 p0, p1, p2, p3;
-      
+
+
 
         public void Bezier(float tParam, float speedModifier)
         {
-            objectPath.objectPosition = Mathf.Pow(1 - tParam, 3) * p0 +                                                                            //Bezieur formula     
+            //Bezieur formula     
+            objectPath.objectPosition = Mathf.Pow(1 - tParam, 3) * p0 +
                 3 * Mathf.Pow(1 - tParam, 3) * tParam * p1 +
                 3 * (1 - tParam) * Mathf.Pow(tParam, 2) * p2 +
                 Mathf.Pow(tParam, 3) * p3;
-
         }
+
 
         public void GetValuesForBezier(int routeNumber)
         {

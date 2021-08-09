@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FourGear.UI;
 using FourGear.Mechanics;
 using FourGear.Singletons;
+
 namespace FourGear
 {
     public class SceneLoaded : MonoBehaviour
@@ -36,16 +35,21 @@ namespace FourGear
 
         private void PrepareSceneRadnaSoba()
         {
+            ShowHint.isFirstTimeInScene = false;
+            //FramedObjects.doorLight.enabled = false;
+
             for (int i = 0; i < NextScene.otherObjects.Length; i++)
             {
                 if (NextScene.otherObjects[i] != null && NextScene.otherObjects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.otherObjects[i].GetComponent<ObjectPath>().enabled = false;                                                         //change active script
+                    NextScene.otherObjects[i].GetComponent<ObjectPath>().enabled = false;                                                         
+                    //change active script
                     NextScene.otherObjects[i].GetComponent<DragAnDrop>().enabled = true;
                 }
                 else if (NextScene.otherObjects[i] != null && !NextScene.otherObjects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.otherObjects[i].gameObject.SetActive(false);                                                                        //deactivate incorrect objects in next scene
+                    NextScene.otherObjects[i].gameObject.SetActive(false);                                                                        
+                    //deactivate incorrect objects in next scene
                 }
             }
             for (int i = 0; i < NextScene.objects.Length; i++)
@@ -64,7 +68,9 @@ namespace FourGear
             {
                 if (placeholders[i] != null)
                 {
-                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                                                  //activate placeholders
+                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                          
+                    
+                    //activate placeholders
                     foreach (Transform child in placeholders[i].transform)
                     {
                         child.GetComponent<SpriteRenderer>().enabled = true;

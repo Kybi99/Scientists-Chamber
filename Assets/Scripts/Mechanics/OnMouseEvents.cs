@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using FourGear.Singletons;
@@ -12,11 +10,13 @@ namespace FourGear.Mechanics
         [SerializeField] private FindEmptySlot findEmptySlot;
         [SerializeField] private ObjectPath objectPath;
         [SerializeField] private DragAnDrop dragAnDrop;
-        
         private int index;
-        public void OnMouseDown()                                                                                                           //OnClickFuntions
+                    
+        //OnClickFuntions
+        public void OnMouseDown()
         {
-            if (Input.GetMouseButtonDown(0) && (SceneManager.GetActiveScene().name == "Skladiste" || SceneManager.GetActiveScene().name == "PupinSkladiste" || SceneManager.GetActiveScene().name == "TeslaSkladiste" ))
+            if (Input.GetMouseButtonDown(0) && (SceneManager.GetActiveScene().name == "Skladiste" || SceneManager.GetActiveScene().name == "PupinSkladiste" ||
+                SceneManager.GetActiveScene().name == "TeslaSkladiste"))
             {
                 if (!objectPath.inInventory && ObjectPath.coroutineAllowed && ObjectPath.routeToGo < Inventory.arraySlots.Length && ShowHint.canClick)
                 {
@@ -34,8 +34,11 @@ namespace FourGear.Mechanics
                 }
             }
 
-            else if (Input.GetMouseButtonDown(0) && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && (SceneManager.GetActiveScene().name == "Radna soba" || SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))                                       //DragAndDrop                                                                              //OnDrag Find correct placeholder for clicked object 
+            //DragAndDrop                                                                          
+            else if (Input.GetMouseButtonDown(0) && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled &&
+                (SceneManager.GetActiveScene().name == "Radna soba" || SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))
             {
+                //OnDrag Find correct placeholder for clicked object 
                 dragAnDrop.resetParent = this.transform.parent;
                 for (int i = 0; i < SceneLoaded.placeholders.Length; i++)
                 {
@@ -50,8 +53,10 @@ namespace FourGear.Mechanics
                     }
                 }
 
+                //make object bigger
                 this.transform.parent = null;
-                transform.localScale = new Vector2(1, 1);                                                                                                                     //make object bigger
+                transform.localScale = new Vector2(1, 1);
+
 
                 Vector3 mousePos;
                 mousePos = Input.mousePosition;
@@ -63,17 +68,17 @@ namespace FourGear.Mechanics
                 dragAnDrop.isMoving = true;
             }
         }
-        private void OnMouseUp()                                                                                                                                                    //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
+        private void OnMouseUp()
         {
-
-            if (Input.GetMouseButtonUp(0) && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && (SceneManager.GetActiveScene().name == "Radna soba" || SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))
+            //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
+            if (Input.GetMouseButtonUp(0) && !dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && (SceneManager.GetActiveScene().name == "Radna soba" ||
+                SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))
             {
                 dragAnDrop.isMoving = false;
 
                 if (dragAnDrop.correctForm != null && Mathf.Abs(this.transform.localPosition.x - dragAnDrop.correctForm.transform.localPosition.x) <= 0.5f &&
                     Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.5f)
                 {
-                    //Debug.Log( DialogueManager.dialogueTrigger);
                     this.transform.parent = dragAnDrop.correctForm.transform;
                     dragAnDrop.thisObjectIsIn = true;
                     DialogueManager.dialogueTrigger.TriggerDialogue(index);

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FourGear.UI
@@ -8,7 +6,6 @@ namespace FourGear.UI
     {
         [SerializeField] private Transform[] controlPoints;
         private Vector2 gizmosPosition;
-
         private void OnDrawGizmos()
         {
             for (float t = 0; t <= 1; t += 0.05f)

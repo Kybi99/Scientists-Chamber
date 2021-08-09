@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Experimental.Rendering.Universal;
 using TMPro;
 using FourGear.UI;
 using FourGear.Dialogue;
@@ -13,26 +12,28 @@ namespace FourGear.Mechanics
     {
         [SerializeField] private Texture2D resetCursorTexture;
         [SerializeField] private Texture2D cursorTexture;
-        private CursorMode cursorMode;
+
         [SerializeField] private Vector2 hotSpot;
+        private int clickCount;
+        private CursorMode cursorMode;
         private GameObject secondFrame;
         private NextScene nextScene;
-        private bool isMouseOnObject;
-        public static bool isObjectMoved;
-        private int clickCount;
-        public static SpriteRenderer firstObjectRenderer;
-        public static SpriteRenderer secondObjectRenderer;
         private PolygonCollider2D polygonCollider2D;
         private Animator animator1;
         private Animator animator2;
         private TMP_Text tMPro;
+        private bool isMouseOnObject;
+        public static bool isObjectMoved;
+        public static SpriteRenderer firstObjectRenderer;
+        public static SpriteRenderer secondObjectRenderer;
+
+        public static Light2D doorLight;
 
 
         void Start()
         {
             cursorMode = CursorMode.ForceSoftware;
             Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
-            //hotSpot = Vector2.zero;
             isMouseOnObject = false;
             nextScene = this.gameObject.GetComponent<NextScene>();
             if (this.transform.GetChild(0).gameObject != null)
@@ -50,32 +51,37 @@ namespace FourGear.Mechanics
 
         private void FramedObjectClicked()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && (SceneManager.GetActiveScene().name == "Skladiste" || SceneManager.GetActiveScene().name == "PupinSkladiste" || SceneManager.GetActiveScene().name == "TeslaSkladiste"))
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && (SceneManager.GetActiveScene().name == "Skladiste" ||
+                SceneManager.GetActiveScene().name == "PupinSkladiste" || SceneManager.GetActiveScene().name == "TeslaSkladiste") && ShowHint.canClick)
             {
                 FindValues();
 
                 firstObjectRenderer.enabled = false;
 
-                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)           //Open the door
+                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)
                 {
+                    //Load next scene if door is open and none of the objects are moving
+
                     nextScene.LoadNextScene();
                     if (tMPro != null)
                         tMPro.text = "";
+
                     isMouseOnObject = false;
                     Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
                     isObjectMoved = true;
                 }
                 else if ((this.gameObject.name == "DoorsClosed" || this.gameObject.name == "DoorsClosedX") && !secondObjectRenderer.enabled)
                 {
+                    //Open the door if they are closed 
                     if (animator1 && animator2 != null)
                     {
                         animator1.SetBool("isDoorReadyToOpen", true);
                         animator2.SetBool("isDoorReadyToOpen", true);
 
-                        if (tMPro != null)
+                        if (tMPro != null && doorLight != null)
                         {
                             tMPro.text = "Radna Soba";
-                            //tMPro.transform.position = Input.mousePosition + new Vector3(-10, 0, 0);
+                            doorLight.enabled = true;
                         }
                     }
                 }
@@ -86,8 +92,11 @@ namespace FourGear.Mechanics
                         polygonCollider2D.enabled = false;
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && (SceneManager.GetActiveScene().name == "Radna soba" || SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))                      //load previous scene when click on door in radna soba scene
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && (SceneManager.GetActiveScene().name == "Radna soba" ||
+                SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))
             {
+                //load previous scene when click on door in radna soba scene
+
                 if (!DialogueManager.isCorrectObjectIn)
                 {
                     GetComponent<PreviousScene>().LoadPreviousScene();
@@ -106,6 +115,8 @@ namespace FourGear.Mechanics
                 secondObjectRenderer = secondFrame.GetComponent<SpriteRenderer>();
                 animator2 = secondObjectRenderer.GetComponent<Animator>();
                 tMPro = secondObjectRenderer.GetComponentInChildren<TMP_Text>();
+                doorLight = secondObjectRenderer.GetComponentInChildren<Light2D>();
+
                 clickCount++;
             }
 
@@ -115,24 +126,22 @@ namespace FourGear.Mechanics
         {
             if (secondObjectRenderer != null)
                 if (secondObjectRenderer.enabled && tMPro != null)
-                {
                     tMPro.text = "Radna Soba";
-                }
 
-            isMouseOnObject = true;
-            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            if (ShowHint.canClick)
+            {
+                isMouseOnObject = true;
+                Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            }
         }
 
         void OnMouseExit()
         {
             if (tMPro != null)
-            {
                 tMPro.text = "";
-            }
 
             isMouseOnObject = false;
             Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
-
         }
     }
 }

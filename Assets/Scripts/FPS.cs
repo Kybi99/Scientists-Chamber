@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,12 +5,12 @@ namespace FourGear
 {
     public class FPS : MonoBehaviour
     {
-        public Text text;
-        //Declare these in your class
-        int m_frameCounter = 0;
-        float m_timeCounter = 0.0f;
-        float m_lastFramerate = 0.0f;
+
+        private int m_frameCounter = 0;
+        private float m_timeCounter = 0.0f;
+        private float m_lastFramerate = 0.0f;
         public float m_refreshTime = 0.5f;
+        public Text text;
 
 
         void Update()
@@ -30,7 +28,7 @@ namespace FourGear
                 m_timeCounter = 0.0f;
             }
 
-            text.text= m_lastFramerate.ToString("F2");
+            text.text = m_lastFramerate.ToString("F2");
         }
     }
 }

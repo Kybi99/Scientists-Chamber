@@ -7,21 +7,23 @@ namespace FourGear.Mechanics
     public class ObjectPath : MonoBehaviour
     {
         [SerializeField] private BezierMovement bezierMovement;
-        public static int routeToGo;
-        [HideInInspector] public int routeTaken;
         private float tParam;
         private float speedModifier;
         private string sortingLayer;
         private Vector3 startPosition;
         private Vector2 p0, p1, p2, p3;
-        [HideInInspector] public Vector2 objectPosition;
         private Transform resetParent;
         private SpriteRenderer sprite;
-        public static bool coroutineAllowed;
-        [HideInInspector] public bool inInventory;
         private Quaternion resetRotation;
         private Vector2 resetCollider;
         private BoxCollider2D boxCollider2D;
+        public static int routeToGo;
+        public static bool coroutineAllowed;
+        [HideInInspector] public bool inInventory;
+        [HideInInspector] public int routeTaken;
+        [HideInInspector] public Vector2 objectPosition;
+
+
 
 
         void Start()
@@ -32,7 +34,6 @@ namespace FourGear.Mechanics
             coroutineAllowed = true;
             inInventory = false;
             resetParent = this.transform.parent;
-            //bezierMovement.InstantiateRoutes(this.gameObject);
             sprite = this.gameObject.GetComponent<SpriteRenderer>();
             sortingLayer = sprite.sortingLayerName;
             resetRotation = this.gameObject.transform.rotation;
@@ -42,8 +43,6 @@ namespace FourGear.Mechanics
 
         public IEnumerator GoByTheRoute(int routeNumber)
         {
-            //bezierMovement.ObjectParentConfig();
-
             tParam = 0f;
             bezierMovement.GetValuesForBezier(routeNumber);
 
@@ -86,15 +85,13 @@ namespace FourGear.Mechanics
         {
             transform.localScale = new Vector2(0.5f, 0.5f);
             transform.rotation = Quaternion.Euler(Vector3.zero);
-            this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                        //Fix it in slot 
+            this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                      
             this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -0.5f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
         {
-            // bezierMovement.ObjectParentConfig();
-
             tParam = 1f;
             bezierMovement.GetValuesForBezier(routeNumber);
 

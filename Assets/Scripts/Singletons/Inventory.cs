@@ -1,15 +1,13 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+
 namespace FourGear.Singletons
 {
     public class Inventory : MonoBehaviour
     {
         private static Transform inventoryObject;
-        public static Inventory inventoryInstance;
         private int children;
+        public static Inventory inventoryInstance;
         public static GameObject[] arraySlots;
-        //public static GameObject[] arraySlots;
         void Start()
         {
             if (inventoryInstance != null)
@@ -19,10 +17,6 @@ namespace FourGear.Singletons
             }
 
             GetSlotsFromInventory();
-            /*if(arraySlots == null)
-            {
-
-            }  */
 
             inventoryInstance = this;
             GameObject.DontDestroyOnLoad(this.gameObject);
@@ -30,12 +24,10 @@ namespace FourGear.Singletons
 
         private void GetSlotsFromInventory()
         {
-
             inventoryObject = FindObjectOfType<Inventory>().transform;
             children = inventoryObject.childCount;
             arraySlots = new GameObject[inventoryObject.childCount];
 
-            //Debug.Log(inventoryObject);
             for (int i = 0; i < children; i++)
             {
                 arraySlots[i] = inventoryObject.GetChild(i).gameObject;

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace FourGear
@@ -31,7 +29,8 @@ namespace FourGear
             effect.GetComponent<ParticleSystem>().Simulate(1, true, true);
             effect2.GetComponent<ParticleSystem>().Simulate(1, true, true);
 
-            //Destroy(effect);
+            Destroy(effect);
+            Destroy(effect2);
         }
 
     }

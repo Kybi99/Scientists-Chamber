@@ -7,7 +7,7 @@ namespace FourGear.Singletons
 {
     public class Objects : MonoBehaviour
     {
-        List<GameObject> goList;
+        private List<GameObject> goList;
         private GameObject[] objects;
         private GameObject[] otherObjects;
         public static GameObject[] framedObjects;

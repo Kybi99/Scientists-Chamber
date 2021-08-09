@@ -1,20 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 using FourGear.Mechanics;
-using FourGear.Singletons;
+using FourGear.UI;
 using TMPro;
 
 namespace FourGear.Dialogue
 {
     public class DialogueManager : MonoBehaviour
     {
-        public TMP_Text nameText;
-        public TMP_Text dialogueText;
-        private string[] sentences;
+        private float time;
         private string sentence;
+        private bool startTimer;
         private Animator imageAnimator;
         private Animator teslaAnimator;
         private GameObject tesla;
@@ -23,22 +19,33 @@ namespace FourGear.Dialogue
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
         public TMP_Text continueClick;
+        public TMP_Text nameText;
+        public TMP_Text dialogueText;
+        public Animator endScreenAnimator;
 
         void Start()
         {
+            time = 0.7f;
             imageAnimator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
             tesla = GameObject.FindGameObjectWithTag("tesla");
-            //tesla.transform.position =  new Vector2(10, 0.46f);
-            //tesla.GetComponent<SpriteRenderer>().enabled = false;
             teslaRenderer = tesla.GetComponent<SpriteRenderer>();
-            teslaRenderer.enabled = false;
             teslaAnimator = tesla.GetComponent<Animator>();
             dialogueTrigger = GetComponent<DialogueTrigger>();
+            teslaRenderer.enabled = false;
             isContinueButtonEnabled = true;
+            startTimer = false;
+        }
+        private void Update()
+        {
+            ContinueButtonClick();
+            StartCounting();
+            DestoryDDOLs();
         }
 
-        public void StartDialogue(Story story, int index)                                                                       //start a dialogue when right object is on place with animations
+        public void StartDialogue(Story story, int index)
         {
+            //start a dialogue when right object is on place with animations
+
             isCorrectObjectIn = true;
             teslaRenderer.enabled = true;
             isContinueButtonEnabled = false;
@@ -48,14 +55,13 @@ namespace FourGear.Dialogue
             //tesla.SetActive(true);
             nameText.text = story.nameOfNpc;
 
-
             if (DragAnDrop.numberOfPartsIn < 2)
                 sentence = story.sentences[index];
             else
                 sentence = story.sentences[index] + " \nUspesno si zavrsio nivo.";
 
             StopAllCoroutines();
-            //if(imageAnimator.GetCurrentAnimatorStateInfo(0).IsName("DialogueCominIn"))
+
             StartCoroutine(TypeSentence(sentence));
         }
         IEnumerator TypeSentence(string sentence)
@@ -68,34 +74,51 @@ namespace FourGear.Dialogue
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(0.03f);
             }
-            if (DragAnDrop.numberOfPartsIn > 2)
+
+            isContinueButtonEnabled = true;
+            continueClick.enabled = true;
+        }
+
+        private void DestoryDDOLs()
+        {
+            if (time < 0)
             {
                 GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
                 GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
                 DontDestroyOnLoadManager.DestroyAll();
                 foreach (GameObject ddol in ddols)
                     Destroy(ddol);
+
                 Destroy(inventory);
 
-                yield return new WaitForSeconds(2f);
-
                 DragAnDrop.numberOfPartsIn = 0;
-                SceneManager.LoadScene("Main menu");
+                ShowHint.isFirstTimeInScene = true;
             }
-            isContinueButtonEnabled = true;
-            continueClick.enabled = true;
         }
-        private void Update()
+
+        private void StartCounting()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled)                                        //dont let player cancel the text animation and leave room while tesla is done speaking
+            if (DragAnDrop.numberOfPartsIn == 3 && startTimer)
+                time -= Time.deltaTime;
+        }
+
+        private void ContinueButtonClick()
+        {
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled && continueClick.enabled)
             {
+                if (DragAnDrop.numberOfPartsIn == 3)
+                {
+                    startTimer = true;
+                    endScreenAnimator.Play("EndScreenFadeIn");
+                }
+
+                //dont let player cancel the text animation and leave room while tesla is done speaking
+
                 continueClick.enabled = false;
                 isCorrectObjectIn = false;
                 imageAnimator.SetBool("isCorrectObjectIn", false);
                 teslaAnimator.SetBool("isCorrectObjectIn", false);
             }
-
-
         }
     }
 }

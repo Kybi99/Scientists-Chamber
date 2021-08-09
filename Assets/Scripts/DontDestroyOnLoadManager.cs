@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace FourGear
     public static class DontDestroyOnLoadManager
     {
         private static int counter = 0;
-        static List<GameObject> _ddolObjects = new List<GameObject>();
+        private static List<GameObject> _ddolObjects = new List<GameObject>();
 
         public static void DontDestroyOnLoad(this GameObject go)
         {
@@ -25,7 +24,7 @@ namespace FourGear
                             if (!child.name.Contains("X"))
                                 child.name += "X";
                     }
-
+                    
             counter++;
         }
         public static void DestroyAll()

@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FourGear.UI;
 namespace FourGear.Mechanics
@@ -7,11 +5,9 @@ namespace FourGear.Mechanics
     public class CameraZoom : MonoBehaviour
     {
         [SerializeField] private Camera cam;
-
         [SerializeField] private Camera main;
-        Vector3 newPosition;
-        Vector3 pos;
-
+        private Vector3 newPosition;
+        private Vector3 pos;
         private float speed;
         void Start()
         {
