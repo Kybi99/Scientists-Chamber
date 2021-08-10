@@ -10,12 +10,8 @@ namespace FourGear.Mechanics
 {
     public class FramedObjects : MonoBehaviour
     {
-        [SerializeField] private Texture2D resetCursorTexture;
-        [SerializeField] private Texture2D cursorTexture;
-
-        [SerializeField] private Vector2 hotSpot;
+        [SerializeField] private CursorManager.CursorType cursorType;
         private int clickCount;
-        private CursorMode cursorMode;
         private GameObject secondFrame;
         private NextScene nextScene;
         private PolygonCollider2D polygonCollider2D;
@@ -26,14 +22,13 @@ namespace FourGear.Mechanics
         public static bool isObjectMoved;
         public static SpriteRenderer firstObjectRenderer;
         public static SpriteRenderer secondObjectRenderer;
-
         public static Light2D doorLight;
 
 
         void Start()
         {
-            cursorMode = CursorMode.ForceSoftware;
-            Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
+            //cursorMode = CursorMode.ForceSoftware;
+            //Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
             isMouseOnObject = false;
             nextScene = this.gameObject.GetComponent<NextScene>();
             if (this.transform.GetChild(0).gameObject != null)
@@ -56,6 +51,7 @@ namespace FourGear.Mechanics
             {
                 FindValues();
 
+                OnMouseEvents.numberOfMissedClicks--;
                 firstObjectRenderer.enabled = false;
 
                 if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)
@@ -67,7 +63,6 @@ namespace FourGear.Mechanics
                         tMPro.text = "";
 
                     isMouseOnObject = false;
-                    Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
                     isObjectMoved = true;
                 }
                 else if ((this.gameObject.name == "DoorsClosed" || this.gameObject.name == "DoorsClosedX") && !secondObjectRenderer.enabled)
@@ -81,6 +76,7 @@ namespace FourGear.Mechanics
                         if (tMPro != null && doorLight != null)
                         {
                             tMPro.text = "Radna Soba";
+                            CursorManager.Instance.SetActiveCursorType(cursorType);
                             doorLight.enabled = true;
                         }
                     }
@@ -101,7 +97,6 @@ namespace FourGear.Mechanics
                 {
                     GetComponent<PreviousScene>().LoadPreviousScene();
                     isMouseOnObject = false;
-                    Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
                 }
             }
         }
@@ -124,24 +119,36 @@ namespace FourGear.Mechanics
 
         void OnMouseEnter()
         {
-            if (secondObjectRenderer != null)
-                if (secondObjectRenderer.enabled && tMPro != null)
-                    tMPro.text = "Radna Soba";
+            isMouseOnObject = true;
 
-            if (ShowHint.canClick)
+            if (secondObjectRenderer != null)
             {
-                isMouseOnObject = true;
-                Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+                if (secondObjectRenderer.enabled && tMPro != null)
+                {
+                    CursorManager.Instance.SetActiveCursorType(cursorType);
+                    tMPro.text = "Radna Soba";
+                }
+                else if (!secondObjectRenderer.enabled && tMPro != null)
+                    CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.DoorFixed);
+            }
+
+            else if (nextScene != null && ShowHint.canClick)
+                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.DoorFixed);
+
+            if (ShowHint.canClick && nextScene == null)
+            {
+                //Cursor.SetCursor(resetCursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+                CursorManager.Instance.SetActiveCursorType(cursorType);
             }
         }
-
         void OnMouseExit()
         {
             if (tMPro != null)
                 tMPro.text = "";
 
             isMouseOnObject = false;
-            Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
+
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
         }
     }
 }

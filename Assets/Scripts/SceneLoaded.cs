@@ -10,13 +10,13 @@ namespace FourGear
     {
         int i;
         [SerializeField] private Texture2D cursorTexture;
-        private CursorMode cursorMode;
+        //private CursorMode cursorMode;
         private Vector2 hotSpot;
         public static GameObject[] placeholders;
 
         void Start()
         {
-            cursorMode = CursorMode.ForceSoftware;
+            //cursorMode = CursorMode.ForceSoftware;
             i = 0;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
@@ -42,13 +42,13 @@ namespace FourGear
             {
                 if (NextScene.otherObjects[i] != null && NextScene.otherObjects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.otherObjects[i].GetComponent<ObjectPath>().enabled = false;                                                         
+                    NextScene.otherObjects[i].GetComponent<ObjectPath>().enabled = false;
                     //change active script
                     NextScene.otherObjects[i].GetComponent<DragAnDrop>().enabled = true;
                 }
                 else if (NextScene.otherObjects[i] != null && !NextScene.otherObjects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.otherObjects[i].gameObject.SetActive(false);                                                                        
+                    NextScene.otherObjects[i].gameObject.SetActive(false);
                     //deactivate incorrect objects in next scene
                 }
             }
@@ -68,8 +68,8 @@ namespace FourGear
             {
                 if (placeholders[i] != null)
                 {
-                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;                                          
-                    
+                    placeholders[i].GetComponent<SpriteRenderer>().enabled = true;
+
                     //activate placeholders
                     foreach (Transform child in placeholders[i].transform)
                     {
@@ -138,13 +138,14 @@ namespace FourGear
                 if (Objects.framedObjects[i] != null)
                     Objects.framedObjects[i].gameObject.SetActive(true);
             }
+
             ChangeCursor();
 
             DontDestroyOnLoadManager.ChangeNames();
         }
         private void ChangeCursor()
         {
-            Cursor.SetCursor(cursorTexture, hotSpot, cursorMode);
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
         }
     }
 

@@ -8,6 +8,8 @@ namespace FourGear.Dialogue
 {
     public class DialogueManager : MonoBehaviour
     {
+        [SerializeField] CanvasGroup canvasGroup;
+        private int numberOfCorectParts;
         private float time;
         private string sentence;
         private bool startTimer;
@@ -23,9 +25,11 @@ namespace FourGear.Dialogue
         public TMP_Text dialogueText;
         public Animator endScreenAnimator;
 
+
         void Start()
         {
-            time = 0.7f;
+            numberOfCorectParts = 3;
+            time = 1;
             imageAnimator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
             tesla = GameObject.FindGameObjectWithTag("tesla");
             teslaRenderer = tesla.GetComponent<SpriteRenderer>();
@@ -55,7 +59,7 @@ namespace FourGear.Dialogue
             //tesla.SetActive(true);
             nameText.text = story.nameOfNpc;
 
-            if (DragAnDrop.numberOfPartsIn < 2)
+            if (DragAnDrop.numberOfPartsIn < numberOfCorectParts - 1)
                 sentence = story.sentences[index];
             else
                 sentence = story.sentences[index] + " \nUspesno si zavrsio nivo.";
@@ -63,6 +67,7 @@ namespace FourGear.Dialogue
             StopAllCoroutines();
 
             StartCoroutine(TypeSentence(sentence));
+            canvasGroup.interactable = false;
         }
         IEnumerator TypeSentence(string sentence)
         {
@@ -74,7 +79,8 @@ namespace FourGear.Dialogue
                 dialogueText.text += letter;
                 yield return new WaitForSeconds(0.03f);
             }
-
+            if (DragAnDrop.numberOfPartsIn <= numberOfCorectParts - 1)
+                canvasGroup.interactable = true;
             isContinueButtonEnabled = true;
             continueClick.enabled = true;
         }
@@ -98,7 +104,7 @@ namespace FourGear.Dialogue
 
         private void StartCounting()
         {
-            if (DragAnDrop.numberOfPartsIn == 3 && startTimer)
+            if (startTimer)
                 time -= Time.deltaTime;
         }
 

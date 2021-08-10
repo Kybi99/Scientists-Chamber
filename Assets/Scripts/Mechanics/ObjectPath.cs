@@ -11,7 +11,6 @@ namespace FourGear.Mechanics
         private float speedModifier;
         private string sortingLayer;
         private Vector3 startPosition;
-        private Vector2 p0, p1, p2, p3;
         private Transform resetParent;
         private SpriteRenderer sprite;
         private Quaternion resetRotation;

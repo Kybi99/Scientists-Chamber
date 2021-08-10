@@ -15,10 +15,13 @@ namespace FourGear
             public void OnPointerEnter(PointerEventData eventData)
             {
                 canvasGroup.alpha = 1;
+                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Portal);
             }
             public void OnPointerExit(PointerEventData eventData)
             {
                 canvasGroup.alpha = 0;
+                CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
+
             }
         }
     }
