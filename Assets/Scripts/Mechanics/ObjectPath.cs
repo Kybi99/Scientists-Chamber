@@ -84,7 +84,7 @@ namespace FourGear.Mechanics
         {
             transform.localScale = new Vector2(0.5f, 0.5f);
             transform.rotation = Quaternion.Euler(Vector3.zero);
-            this.transform.parent = Inventory.arraySlots[routeTaken].transform;                                                                      
+            this.transform.parent = Inventory.arraySlots[routeTaken].transform;
             this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -0.5f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
         }
@@ -124,6 +124,8 @@ namespace FourGear.Mechanics
             this.transform.parent = resetParent;
             this.transform.position = startPosition;
             boxCollider2D.size = resetCollider;
+            transform.localScale = new Vector2(1, 1);
+
         }
     }
 }

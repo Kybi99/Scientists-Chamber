@@ -20,8 +20,8 @@ namespace FourGear.Mechanics
         private TMP_Text tMPro;
         private bool isMouseOnObject;
         public static bool isObjectMoved;
-        public static SpriteRenderer firstObjectRenderer;
-        public static SpriteRenderer secondObjectRenderer;
+        private SpriteRenderer firstObjectRenderer;
+        private SpriteRenderer secondObjectRenderer;
         public static Light2D doorLight;
 
 
@@ -135,7 +135,7 @@ namespace FourGear.Mechanics
             else if (nextScene != null && ShowHint.canClick)
                 CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.DoorFixed);
 
-            if (ShowHint.canClick && nextScene == null)
+            else if (ShowHint.canClick && nextScene == null)
             {
                 //Cursor.SetCursor(resetCursorTexture, Vector2.zero, CursorMode.ForceSoftware);
                 CursorManager.Instance.SetActiveCursorType(cursorType);

@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Skladiste.unity
     guid: ac1a87839060088499629335cc0a5cbc
   - enabled: 1
-    path: Assets/Scenes/Radna soba.unity
+    path: Assets/Scenes/RadnaSoba.unity
     guid: b9c7dadce309cb4469407b0178dd6a8f
   - enabled: 1
     path: Assets/Scenes/PupinSkladiste.unity
