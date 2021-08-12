@@ -16,8 +16,8 @@ namespace FourGear.Mechanics
         private float rememberTime;
         private TMP_Text tMPro;
         private string backgroundName;
-        private string sceneName;
-        private string sceneName2;
+        public static string sceneName;
+        public static string sceneName2;
 
         private void Start()
         {
@@ -126,7 +126,7 @@ namespace FourGear.Mechanics
             }
         }
 
-        private static string CheckLast9LettersOfSceneName()
+        public static string CheckLast9LettersOfSceneName()
         {
             string sceneName = SceneManager.GetActiveScene().name;
             string last9Letters = sceneName.Substring(sceneName.Length - 9);

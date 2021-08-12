@@ -12,25 +12,36 @@ namespace FourGear
         [SerializeField] private Texture2D cursorTexture;
         //private CursorMode cursorMode;
         private Vector2 hotSpot;
+        private string sceneName;
+        private string sceneName2;
         public static GameObject[] placeholders;
+        public static GameObject[] objects;
+        public static GameObject[] otherObjects;
 
         void Start()
         {
+            //Get objects from scene
+            objects = GameObject.FindGameObjectsWithTag("objects");
+            otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
+
             //cursorMode = CursorMode.ForceSoftware;
             i = 0;
             SceneManager.sceneLoaded += OnSceneLoaded;
+            sceneName = "Skladiste";
+            sceneName2 = "RadnaSoba";
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             placeholders = GameObject.FindGameObjectsWithTag("placeholders");
+            string last9Letters = OnMouseEvents.CheckLast9LettersOfSceneName();
 
-            if (scene.name == "Radna soba" || scene.name == "PupinRadnaSoba" || scene.name == "TeslaRadnaSoba")
-            {
+            if (last9Letters == OnMouseEvents.sceneName2)
                 PrepareSceneRadnaSoba();
-            }
-            else if (scene.name == "Skladiste" || scene.name == "PupinSkladiste" || scene.name == "TeslaSkladiste")
+            else if (last9Letters == OnMouseEvents.sceneName)
                 PrepareSceneSkladiste();
+            else if (last9Letters == "Main menu")
+                PrepareSceneMainMenu();
         }
 
         private void PrepareSceneRadnaSoba()
@@ -38,30 +49,30 @@ namespace FourGear
             ShowHint.isFirstTimeInScene = false;
             //FramedObjects.doorLight.enabled = false;
 
-            for (int i = 0; i < NextScene.otherObjects.Length; i++)
+            for (int i = 0; i < otherObjects.Length; i++)
             {
-                if (NextScene.otherObjects[i] != null && NextScene.otherObjects[i].GetComponent<ObjectPath>().inInventory)
+                if (otherObjects[i] != null && otherObjects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.otherObjects[i].GetComponent<ObjectPath>().enabled = false;
+                    otherObjects[i].GetComponent<ObjectPath>().enabled = false;
                     //change active script
-                    NextScene.otherObjects[i].GetComponent<DragAnDrop>().enabled = true;
+                    otherObjects[i].GetComponent<DragAnDrop>().enabled = true;
                 }
-                else if (NextScene.otherObjects[i] != null && !NextScene.otherObjects[i].GetComponent<ObjectPath>().inInventory)
+                else if (otherObjects[i] != null && !otherObjects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.otherObjects[i].gameObject.SetActive(false);
+                    otherObjects[i].gameObject.SetActive(false);
                     //deactivate incorrect objects in next scene
                 }
             }
-            for (int i = 0; i < NextScene.objects.Length; i++)
+            for (int i = 0; i < objects.Length; i++)
             {
-                if (NextScene.objects[i] != null && NextScene.objects[i].GetComponent<ObjectPath>().inInventory)
+                if (objects[i] != null && objects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.objects[i].GetComponent<ObjectPath>().enabled = false;
-                    NextScene.objects[i].GetComponent<DragAnDrop>().enabled = true;
+                    objects[i].GetComponent<ObjectPath>().enabled = false;
+                    objects[i].GetComponent<DragAnDrop>().enabled = true;
                 }
-                else if (NextScene.objects[i] != null && !NextScene.objects[i].GetComponent<ObjectPath>().inInventory)
+                else if (objects[i] != null && !objects[i].GetComponent<ObjectPath>().inInventory)
                 {
-                    NextScene.objects[i].gameObject.SetActive(false);
+                    objects[i].gameObject.SetActive(false);
                 }
             }
             for (int i = 0; i < placeholders.Length; i++)
@@ -94,14 +105,14 @@ namespace FourGear
 
             //Change active scripts on objects and activate deactivated objects when coming back to first room 
 
-            for (i = 0; i < NextScene.objects.Length; i++)
+            for (i = 0; i < objects.Length; i++)
             {
-                if (NextScene.objects[i] != null)
+                if (objects[i] != null)
                 {
-                    NextScene.objects[i].GetComponent<ObjectPath>().enabled = true;
-                    NextScene.objects[i].GetComponent<DragAnDrop>().enabled = false;
-                    if (NextScene.objects[i].gameObject.activeSelf == false)
-                        NextScene.objects[i].gameObject.SetActive(true);
+                    objects[i].GetComponent<ObjectPath>().enabled = true;
+                    objects[i].GetComponent<DragAnDrop>().enabled = false;
+                    if (objects[i].gameObject.activeSelf == false)
+                        objects[i].gameObject.SetActive(true);
                 }
             }
 
@@ -122,14 +133,14 @@ namespace FourGear
             }
 
             //Change active scripts on incorrect objects and activate deactivated objects when coming back to first room
-            for (i = 0; i < NextScene.otherObjects.Length; i++)
+            for (i = 0; i < otherObjects.Length; i++)
             {
-                if (NextScene.otherObjects[i] != null)
+                if (otherObjects[i] != null)
                 {
-                    NextScene.otherObjects[i].GetComponent<ObjectPath>().enabled = true;
-                    NextScene.otherObjects[i].GetComponent<DragAnDrop>().enabled = false;
-                    if (NextScene.otherObjects[i].gameObject.activeSelf == false)
-                        NextScene.otherObjects[i].gameObject.SetActive(true);
+                    otherObjects[i].GetComponent<ObjectPath>().enabled = true;
+                    otherObjects[i].GetComponent<DragAnDrop>().enabled = false;
+                    if (otherObjects[i].gameObject.activeSelf == false)
+                        otherObjects[i].gameObject.SetActive(true);
                 }
             }
 
@@ -146,6 +157,19 @@ namespace FourGear
         private void ChangeCursor()
         {
             CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
+        }
+        private void PrepareSceneMainMenu()
+        {
+            GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
+            GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
+            DontDestroyOnLoadManager.DestroyAll();
+            foreach (GameObject ddol in ddols)
+                Destroy(ddol);
+
+            Destroy(inventory);
+
+            DragAnDrop.numberOfPartsIn = 0;
+            ShowHint.isFirstTimeInScene = true;
         }
     }
 

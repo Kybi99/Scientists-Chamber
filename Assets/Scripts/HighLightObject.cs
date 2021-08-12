@@ -1,10 +1,12 @@
 using UnityEngine;
+using FourGear.Mechanics;
 
 namespace FourGear
 {
     public class HighLightObject : MonoBehaviour
     {
         private Animator doorAnimator;
+        private float rememberTime;
         void Start()
         {
             doorAnimator = this.gameObject.GetComponent<Animator>();
@@ -12,11 +14,13 @@ namespace FourGear
 
         void Update()
         {
-            if (TimerManager.timeValue % 10 == 0)
+            if (Mathf.Round(TimerManager.timeValue % 10) == 0 && TimerManager.timeValue < 299 && FramedObjects.isHighLightAllowed)
+            {
                 doorAnimator.SetBool("isReadyToPlay", true);
-            /*else if (doorAnimator.GetCurrentAnimatorStateInfo(0).normalizedTime > 1)
-                doorAnimator.SetBool("isReadyToPlay", false);*/
-
+                rememberTime = TimerManager.timeValue;
+            }
+            else if (rememberTime - TimerManager.timeValue > 0.9f)
+                doorAnimator.SetBool("isReadyToPlay", false);
         }
     }
 }

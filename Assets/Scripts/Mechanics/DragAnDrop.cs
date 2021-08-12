@@ -23,22 +23,27 @@ namespace FourGear.Mechanics
         }
         private void Update()
         {
+            ObjectFollowingMouseOnDrag();
+            
+
+        }
+
+        private void ObjectFollowingMouseOnDrag()
+        {
             if (!isFinished)
             {
                 if (isMoving)
                 {
-                    Vector3 mousePos;                                                                                                                                       
+                    Vector3 mousePos;
                     //get mouse position
                     mousePos = Input.mousePosition;
                     mousePos = Camera.main.ScreenToWorldPoint(mousePos);
 
-                    this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY, this.gameObject.transform.localPosition.z);           
+                    this.gameObject.transform.localPosition = new Vector3(mousePos.x - startPosX, mousePos.y - startPosY, this.gameObject.transform.localPosition.z);
                     //change object position (follow the mouse)
                 }
             }
-
         }
-
     }
 
 }

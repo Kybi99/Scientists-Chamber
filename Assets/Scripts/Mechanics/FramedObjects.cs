@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.Experimental.Rendering.Universal;
 using TMPro;
 using FourGear.UI;
@@ -19,9 +18,10 @@ namespace FourGear.Mechanics
         private Animator animator2;
         private TMP_Text tMPro;
         private bool isMouseOnObject;
-        public static bool isObjectMoved;
         private SpriteRenderer firstObjectRenderer;
         private SpriteRenderer secondObjectRenderer;
+        public static bool isHighLightAllowed;
+        public static bool isObjectMoved;
         public static Light2D doorLight;
 
 
@@ -29,12 +29,15 @@ namespace FourGear.Mechanics
         {
             //cursorMode = CursorMode.ForceSoftware;
             //Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
+            isHighLightAllowed = true;
             isMouseOnObject = false;
             nextScene = this.gameObject.GetComponent<NextScene>();
             if (this.transform.GetChild(0).gameObject != null)
                 secondFrame = this.transform.GetChild(0).gameObject;
             clickCount = 0;
             polygonCollider2D = GetComponent<PolygonCollider2D>();
+
+
 
         }
         void Update()
@@ -46,8 +49,9 @@ namespace FourGear.Mechanics
 
         private void FramedObjectClicked()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && (SceneManager.GetActiveScene().name == "Skladiste" ||
-                SceneManager.GetActiveScene().name == "PupinSkladiste" || SceneManager.GetActiveScene().name == "TeslaSkladiste") && ShowHint.canClick)
+            string last9Letters = OnMouseEvents.CheckLast9LettersOfSceneName();
+
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && last9Letters == OnMouseEvents.sceneName && ShowHint.canClick)
             {
                 FindValues();
 
@@ -56,49 +60,69 @@ namespace FourGear.Mechanics
 
                 if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)
                 {
-                    //Load next scene if door is open and none of the objects are moving
-
-                    nextScene.LoadNextScene();
-                    if (tMPro != null)
-                        tMPro.text = "";
-
-                    isMouseOnObject = false;
-                    isObjectMoved = true;
+                    LoadNextSceneIfDoorIsOpen();
                 }
                 else if ((this.gameObject.name == "DoorsClosed" || this.gameObject.name == "DoorsClosedX") && !secondObjectRenderer.enabled)
                 {
-                    //Open the door if they are closed 
-                    if (animator1 && animator2 != null)
-                    {
-                        animator1.SetBool("isDoorReadyToOpen", true);
-                        animator2.SetBool("isDoorReadyToOpen", true);
-
-                        if (tMPro != null && doorLight != null)
-                        {
-                            tMPro.text = "Radna Soba";
-                            CursorManager.Instance.SetActiveCursorType(cursorType);
-                            doorLight.enabled = true;
-                        }
-                    }
+                    OpenTheDoor();
+                    isHighLightAllowed = false;
                 }
                 else
                 {
-                    secondObjectRenderer.enabled = true;
-                    if (polygonCollider2D != null)
-                        polygonCollider2D.enabled = false;
+                    EnableSecondFrame();
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && (SceneManager.GetActiveScene().name == "Radna soba" ||
-                SceneManager.GetActiveScene().name == "PupinRadnaSoba" || SceneManager.GetActiveScene().name == "TeslaRadnaSoba"))
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && last9Letters == OnMouseEvents.sceneName2)
             {
-                //load previous scene when click on door in radna soba scene
+                LoadPreviousScene();
+            }
+        }
 
-                if (!DialogueManager.isCorrectObjectIn)
+        private void LoadPreviousScene()
+        {
+            //load previous scene when click on door in radna soba scene
+
+            if (!DialogueManager.isCorrectObjectIn)
+            {
+                GetComponent<PreviousScene>().LoadPreviousScene();
+                isMouseOnObject = false;
+            }
+        }
+
+        private void EnableSecondFrame()
+        {
+            secondObjectRenderer.enabled = true;
+            if (polygonCollider2D != null)
+                polygonCollider2D.enabled = false;
+        }
+
+        private void OpenTheDoor()
+        {
+            //Open the door if its closed 
+            if (animator1 && animator2 != null)
+            {
+                animator1.SetBool("isDoorReadyToOpen", true);
+                animator2.SetBool("isDoorReadyToOpen", true);
+
+                if (tMPro != null && doorLight != null)
                 {
-                    GetComponent<PreviousScene>().LoadPreviousScene();
-                    isMouseOnObject = false;
+                    tMPro.text = "Radna Soba";
+                    CursorManager.Instance.SetActiveCursorType(cursorType);
+                    doorLight.enabled = true;
                 }
             }
+        }
+
+        private void LoadNextSceneIfDoorIsOpen()
+        {
+            //Load next scene if door is open and none of the objects are moving
+
+            nextScene.LoadNextScene();
+            if (tMPro != null)
+                tMPro.text = "";
+
+            isMouseOnObject = false;
+            isObjectMoved = true;
         }
 
         private void FindValues()

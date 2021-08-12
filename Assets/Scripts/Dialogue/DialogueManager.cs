@@ -10,7 +10,7 @@ namespace FourGear.Dialogue
     {
         [SerializeField] CanvasGroup canvasGroup;
         private int numberOfCorectParts;
-        private float time;
+        public static float time;
         private string sentence;
         private bool startTimer;
         private Animator imageAnimator;
@@ -42,8 +42,6 @@ namespace FourGear.Dialogue
         private void Update()
         {
             ContinueButtonClick();
-            StartCounting();
-            DestoryDDOLs();
         }
 
         public void StartDialogue(Story story, int index)
@@ -85,28 +83,6 @@ namespace FourGear.Dialogue
             continueClick.enabled = true;
         }
 
-        private void DestoryDDOLs()
-        {
-            if (time < 0)
-            {
-                GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
-                GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
-                DontDestroyOnLoadManager.DestroyAll();
-                foreach (GameObject ddol in ddols)
-                    Destroy(ddol);
-
-                Destroy(inventory);
-
-                DragAnDrop.numberOfPartsIn = 0;
-                ShowHint.isFirstTimeInScene = true;
-            }
-        }
-
-        private void StartCounting()
-        {
-            if (startTimer)
-                time -= Time.deltaTime;
-        }
 
         private void ContinueButtonClick()
         {
