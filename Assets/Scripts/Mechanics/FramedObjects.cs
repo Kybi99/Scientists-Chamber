@@ -11,6 +11,7 @@ namespace FourGear.Mechanics
     {
         [SerializeField] private CursorManager.CursorType cursorType;
         private int clickCount;
+        private float rememberTime;
         private GameObject secondFrame;
         private NextScene nextScene;
         private PolygonCollider2D polygonCollider2D;
@@ -72,21 +73,6 @@ namespace FourGear.Mechanics
                     EnableSecondFrame();
                 }
             }
-            else if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && last9Letters == OnMouseEvents.sceneName2)
-            {
-                LoadPreviousScene();
-            }
-        }
-
-        private void LoadPreviousScene()
-        {
-            //load previous scene when click on door in radna soba scene
-
-            if (!DialogueManager.isCorrectObjectIn)
-            {
-                GetComponent<PreviousScene>().LoadPreviousScene();
-                isMouseOnObject = false;
-            }
         }
 
         private void EnableSecondFrame()
@@ -101,6 +87,7 @@ namespace FourGear.Mechanics
             //Open the door if its closed 
             if (animator1 && animator2 != null)
             {
+                rememberTime = TimerManager.timeValue;
                 animator1.SetBool("isDoorReadyToOpen", true);
                 animator2.SetBool("isDoorReadyToOpen", true);
 
@@ -116,8 +103,8 @@ namespace FourGear.Mechanics
         private void LoadNextSceneIfDoorIsOpen()
         {
             //Load next scene if door is open and none of the objects are moving
-
-            nextScene.LoadNextScene();
+            if (rememberTime - TimerManager.timeValue >= 0.3f)
+                nextScene.LoadNextScene();
             if (tMPro != null)
                 tMPro.text = "";
 
@@ -147,7 +134,7 @@ namespace FourGear.Mechanics
 
             if (secondObjectRenderer != null)
             {
-                if (secondObjectRenderer.enabled && tMPro != null)
+                if (secondObjectRenderer.enabled && tMPro != null && !PauseMenu.gameIsPaused)
                 {
                     CursorManager.Instance.SetActiveCursorType(cursorType);
                     tMPro.text = "Radna Soba";
@@ -167,7 +154,7 @@ namespace FourGear.Mechanics
         }
         void OnMouseExit()
         {
-            if (tMPro != null)
+            if (tMPro != null && PauseMenu.gameIsPaused || tMPro != null)
                 tMPro.text = "";
 
             isMouseOnObject = false;

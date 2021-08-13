@@ -27,8 +27,6 @@ namespace FourGear
             //cursorMode = CursorMode.ForceSoftware;
             i = 0;
             SceneManager.sceneLoaded += OnSceneLoaded;
-            sceneName = "Skladiste";
-            sceneName2 = "RadnaSoba";
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -162,11 +160,13 @@ namespace FourGear
         {
             GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
             GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
+            GameObject timer = GameObject.FindObjectOfType<TimerManager>().gameObject;
             DontDestroyOnLoadManager.DestroyAll();
             foreach (GameObject ddol in ddols)
                 Destroy(ddol);
 
             Destroy(inventory);
+            Destroy(timer);
 
             DragAnDrop.numberOfPartsIn = 0;
             ShowHint.isFirstTimeInScene = true;

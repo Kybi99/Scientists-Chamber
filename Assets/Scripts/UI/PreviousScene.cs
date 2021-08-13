@@ -3,7 +3,6 @@ using UnityEngine.SceneManagement;
 
 namespace FourGear.UI
 {
-
     public class PreviousScene : MonoBehaviour
     {
         public void LoadPreviousScene()

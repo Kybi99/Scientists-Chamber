@@ -29,7 +29,7 @@ namespace FourGear.Mechanics
         {
             if (tMPro != null)
                 tMPro.transform.position = Input.mousePosition + new Vector3(-25, 0, 0);
-            if (rememberTime - TimerManager.timeValue > 6)
+            if (rememberTime - TimerManager.timeValue > 6 || TimerManager.timeValue == 0 && tMPro != null)
                 tMPro.text = "";
         }
         //OnClickFuntions

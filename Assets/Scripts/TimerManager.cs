@@ -1,18 +1,22 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
+using FourGear.UI;
+using FourGear.Mechanics;
 namespace FourGear
 {
     public class TimerManager : MonoBehaviour
     {
         public static TimerManager timerInstance { get; private set; }
         public static float timeValue;
+        public static bool timeIsRunning;
+        public static Animator endScreenAnimator;
         [SerializeField] private TMP_Text timerText;
         void Start()
         {
-            timeValue = 300;
+            timeValue = 30;
+            timeIsRunning = true;
+            //endScreenAnimator = GameObject.FindGameObjectWithTag("endScreen").GetComponent<Animator>();
         }
 
         private void Awake()
@@ -29,11 +33,19 @@ namespace FourGear
         // Update is called once per frame
         void Update()
         {
-            if (timeValue > 0)
+            if (timeValue > 0 && timeIsRunning)
                 timeValue -= Time.deltaTime;
-            else
+            else if(timeValue <= 0 && timeIsRunning)
                 timeValue = 0;
 
+            if (timeValue <= 0 && SceneManager.GetActiveScene().name != "Main menu")
+            {
+                endScreenAnimator = GameObject.FindGameObjectWithTag("timeUpEndScreen").GetComponent<Animator>();
+                endScreenAnimator.Play("EndScreenFadeIn");
+                ShowHint.canClick = false;
+                ShowHint.canShowHint = false;
+                OnMouseEvents.numberOfMissedClicks = 0;
+            }
             DisplayTime(timeValue);
         }
         void DisplayTime(float timeToDisplay)

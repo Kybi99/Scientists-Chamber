@@ -12,6 +12,7 @@ namespace FourGear
         private int frameCount;
         private int currentFrame;
         private float frameTimer;
+        public static bool canChangeCursor;
 
         public enum CursorType
         {
@@ -23,6 +24,7 @@ namespace FourGear
         }
         private void Start()
         {
+            canChangeCursor = true;
             SetActiveCursorType(CursorType.Arrow);
         }
         private void Awake()
@@ -49,7 +51,8 @@ namespace FourGear
 
         public void SetActiveCursorType(CursorType cursorType)
         {
-            SetActiveCursorAnimation(GetCursorAnimation(cursorType));
+            if (canChangeCursor)
+                SetActiveCursorAnimation(GetCursorAnimation(cursorType));
         }
 
         private CursorAnimation GetCursorAnimation(CursorType cursorType)

@@ -1,18 +1,16 @@
 using System.Collections;
 using UnityEngine;
 using FourGear.Mechanics;
-using FourGear.UI;
 using TMPro;
 
 namespace FourGear.Dialogue
 {
     public class DialogueManager : MonoBehaviour
     {
-        [SerializeField] CanvasGroup canvasGroup;
+        [SerializeField] CanvasGroup portalCanvasGroup;
         private int numberOfCorectParts;
         public static float time;
         private string sentence;
-        private bool startTimer;
         private Animator imageAnimator;
         private Animator teslaAnimator;
         private GameObject tesla;
@@ -37,7 +35,6 @@ namespace FourGear.Dialogue
             dialogueTrigger = GetComponent<DialogueTrigger>();
             teslaRenderer.enabled = false;
             isContinueButtonEnabled = true;
-            startTimer = false;
         }
         private void Update()
         {
@@ -60,12 +57,15 @@ namespace FourGear.Dialogue
             if (DragAnDrop.numberOfPartsIn < numberOfCorectParts - 1)
                 sentence = story.sentences[index];
             else
+            {
                 sentence = story.sentences[index] + " \nUspesno si zavrsio nivo.";
+                TimerManager.timeIsRunning = false;
+            }
 
             StopAllCoroutines();
 
             StartCoroutine(TypeSentence(sentence));
-            canvasGroup.interactable = false;
+            portalCanvasGroup.interactable = false;
         }
         IEnumerator TypeSentence(string sentence)
         {
@@ -78,7 +78,8 @@ namespace FourGear.Dialogue
                 yield return new WaitForSeconds(0.03f);
             }
             if (DragAnDrop.numberOfPartsIn <= numberOfCorectParts - 1)
-                canvasGroup.interactable = true;
+                portalCanvasGroup.interactable = true;
+
             isContinueButtonEnabled = true;
             continueClick.enabled = true;
         }
@@ -88,9 +89,8 @@ namespace FourGear.Dialogue
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled && continueClick.enabled)
             {
-                if (DragAnDrop.numberOfPartsIn == 3)
+                if (DragAnDrop.numberOfPartsIn == numberOfCorectParts)
                 {
-                    startTimer = true;
                     endScreenAnimator.Play("EndScreenFadeIn");
                 }
 

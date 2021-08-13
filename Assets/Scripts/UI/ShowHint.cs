@@ -8,9 +8,12 @@ namespace FourGear.UI
         [SerializeField] private GameObject helpScript;
         public static bool canClick;
         public static bool canZoom;
+        public static bool canShowHint;
+
         public static bool isFirstTimeInScene = true;
         private void Start()
         {
+            canShowHint = true;
             if (isFirstTimeInScene)
                 ShowHints();
             else
@@ -19,9 +22,15 @@ namespace FourGear.UI
                 canZoom = true;
             }
         }
+        private void Update()
+        {
+            if (PauseMenu.gameIsPaused)
+                helpScript.SetActive(false);
+
+        }
         public void ShowHints()
         {
-            if (helpScript.activeSelf == false)
+            if (helpScript.activeSelf == false && canShowHint)
             {
                 helpScript.SetActive(true);
                 canClick = false;

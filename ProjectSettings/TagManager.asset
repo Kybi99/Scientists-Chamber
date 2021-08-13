@@ -18,6 +18,8 @@ TagManager:
   - secondParticle
   - DDOLs
   - hint
+  - endScreen
+  - timeUpEndScreen
   layers:
   - Default
   - TransparentFX
