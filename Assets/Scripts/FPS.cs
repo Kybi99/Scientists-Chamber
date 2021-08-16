@@ -22,7 +22,6 @@ namespace FourGear
             }
             else
             {
-                //This code will break if you set your m_refreshTime to 0, which makes no sense.
                 m_lastFramerate = (float)m_frameCounter / m_timeCounter;
                 m_frameCounter = 0;
                 m_timeCounter = 0.0f;

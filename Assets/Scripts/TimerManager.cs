@@ -14,7 +14,7 @@ namespace FourGear
         [SerializeField] private TMP_Text timerText;
         void Start()
         {
-            timeValue = 30;
+            timeValue = 300;
             timeIsRunning = true;
             //endScreenAnimator = GameObject.FindGameObjectWithTag("endScreen").GetComponent<Animator>();
         }
@@ -30,7 +30,6 @@ namespace FourGear
             timerInstance = this;
             GameObject.DontDestroyOnLoad(this.gameObject);
         }
-        // Update is called once per frame
         void Update()
         {
             if (timeValue > 0 && timeIsRunning)

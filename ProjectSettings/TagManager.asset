@@ -69,6 +69,9 @@ TagManager:
   - name: Pozadina
     uniqueID: 34349197
     locked: 0
+  - name: Objekti iza
+    uniqueID: 448582527
+    locked: 0
   - name: Srednji plan
     uniqueID: 639884311
     locked: 0
@@ -78,11 +81,11 @@ TagManager:
   - name: Prvi plan
     uniqueID: 945378845
     locked: 0
+  - name: Objekti ispred
+    uniqueID: 58941675
+    locked: 0
   - name: Inventar
     uniqueID: 751630547
-    locked: 0
-  - name: Objekti
-    uniqueID: 448582527
     locked: 0
   - name: UI
     uniqueID: 1844047153

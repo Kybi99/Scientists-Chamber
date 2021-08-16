@@ -1,0 +1,63 @@
+Date : 2021-08-16 15:03:05
+Directory : c:\Users\gamesum-10\Scientist's Chamber\assets\Scripts
+Total : 34 files,  1488 codes, 39 comments, 253 blanks, all 1780 lines
+
+Languages
++----------+------------+------------+------------+------------+------------+
+| language | files      | code       | comment    | blank      | total      |
++----------+------------+------------+------------+------------+------------+
+| C#       |         34 |      1,488 |         39 |        253 |      1,780 |
++----------+------------+------------+------------+------------+------------+
+
+Directories
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| path                                                                                    | files      | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+| .                                                                                       |         34 |      1,488 |         39 |        253 |      1,780 |
+| Dialogue                                                                                |          4 |        122 |          3 |         24 |        149 |
+| Mechanics                                                                               |          8 |        554 |         16 |         98 |        668 |
+| ScriptableObjects                                                                       |          2 |         28 |          0 |          8 |         36 |
+| Singletons                                                                              |          4 |        122 |          0 |         21 |        143 |
+| UI                                                                                      |          8 |        253 |          7 |         41 |        301 |
++-----------------------------------------------------------------------------------------+------------+------------+------------+------------+------------+
+
+Files
++-----------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| filename                                                                                | language | code       | comment    | blank      | total      |
++-----------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\CursorManager.cs                 | C#       |         80 |          0 |          8 |         88 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Dialogue\DialogueManager.cs      | C#       |         88 |          3 |         15 |        106 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Dialogue\DialogueTrigger.cs      | C#       |         12 |          0 |          3 |         15 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Dialogue\ObjectDialogue.cs       | C#       |         11 |          0 |          3 |         14 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Dialogue\Story.cs                | C#       |         11 |          0 |          3 |         14 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\DontDestroyOnLoadManager.cs      | C#       |         34 |          0 |          6 |         40 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\FPS.cs                           | C#       |         28 |          1 |          6 |         35 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\HighLightObject.cs               | C#       |         24 |          0 |          3 |         27 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\HighlightAll.cs                  | C#       |         24 |          0 |          3 |         27 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\BezierMovement.cs      | C#       |         25 |          1 |         10 |         36 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\CameraZoom.cs          | C#       |         51 |          0 |          5 |         56 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\DragAnDrop.cs          | C#       |         40 |          2 |          8 |         50 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\FindEmptySlot.cs       | C#       |         20 |          0 |          3 |         23 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\FramedObjects.cs       | C#       |        135 |          5 |         25 |        165 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\ObjectPath.cs          | C#       |        103 |          3 |         26 |        132 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\OnMouseEvents.cs       | C#       |        148 |          5 |         15 |        168 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Mechanics\Particles.cs           | C#       |         32 |          0 |          6 |         38 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\SceneLoaded.cs                   | C#       |        142 |         10 |         25 |        177 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\ScriptableObjects\InfoDisplay.cs | C#       |         18 |          0 |          4 |         22 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\ScriptableObjects\Information.cs | C#       |         10 |          0 |          4 |         14 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Singletons\Inventory.cs          | C#       |         32 |          0 |          5 |         37 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Singletons\Objects.cs            | C#       |         59 |          0 |         11 |         70 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Singletons\PlaceholdersDDOL.cs   | C#       |         18 |          0 |          3 |         21 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\Singletons\RouteSave.cs          | C#       |         13 |          0 |          2 |         15 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\TimerManager.cs                  | C#       |         57 |          2 |          6 |         65 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\EndScreen.cs                  | C#       |         12 |          0 |          2 |         14 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\MainMenu.cs                   | C#       |         58 |          7 |         10 |         75 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\NextScene.cs                  | C#       |         12 |          0 |          3 |         15 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\OnHoverUI.cs                  | C#       |         35 |          0 |          6 |         41 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\PauseMenu.cs                  | C#       |         52 |          0 |          7 |         59 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\PreviousScene.cs              | C#       |         12 |          0 |          3 |         15 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\Route.cs                      | C#       |         22 |          0 |          5 |         27 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\UI\ShowHint.cs                   | C#       |         50 |          0 |          5 |         55 |
+| c:\Users\gamesum-10\Scientist's Chamber\Assets\Scripts\WorkshopLight.cs                 | C#       |         20 |          0 |          4 |         24 |
+| Total                                                                                   |          |      1,488 |         39 |        253 |      1,780 |
++-----------------------------------------------------------------------------------------+----------+------------+------------+------------+------------+

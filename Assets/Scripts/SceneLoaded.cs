@@ -24,7 +24,6 @@ namespace FourGear
             objects = GameObject.FindGameObjectsWithTag("objects");
             otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
 
-            //cursorMode = CursorMode.ForceSoftware;
             i = 0;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
