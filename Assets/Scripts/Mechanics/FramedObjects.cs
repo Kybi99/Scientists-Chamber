@@ -2,8 +2,6 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering.Universal;
 using TMPro;
 using FourGear.UI;
-using FourGear.Dialogue;
-
 
 namespace FourGear.Mechanics
 {
@@ -15,8 +13,8 @@ namespace FourGear.Mechanics
         private GameObject secondFrame;
         private NextScene nextScene;
         private PolygonCollider2D polygonCollider2D;
-        private Animator animator1;
-        private Animator animator2;
+        private Animator animatorClosedDoor;
+        private Animator animatorOpenedDoor;
         private TMP_Text tMPro;
         private bool isMouseOnObject;
         private SpriteRenderer firstObjectRenderer;
@@ -85,11 +83,11 @@ namespace FourGear.Mechanics
         private void OpenTheDoor()
         {
             //Open the door if its closed 
-            if (animator1 && animator2 != null)
+            if (animatorClosedDoor && animatorOpenedDoor != null)
             {
                 rememberTime = TimerManager.timeValue;
-                animator1.SetBool("isDoorReadyToOpen", true);
-                animator2.SetBool("isDoorReadyToOpen", true);
+                animatorClosedDoor.SetBool("isDoorReadyToOpen", true);
+                animatorOpenedDoor.SetBool("isDoorReadyToOpen", true);
 
                 if (tMPro != null && doorLight != null)
                 {
@@ -117,9 +115,9 @@ namespace FourGear.Mechanics
             if (clickCount == 0)
             {
                 firstObjectRenderer = this.gameObject.GetComponent<SpriteRenderer>();
-                animator1 = GetComponent<Animator>();
+                animatorClosedDoor = GetComponent<Animator>();
                 secondObjectRenderer = secondFrame.GetComponent<SpriteRenderer>();
-                animator2 = secondObjectRenderer.GetComponent<Animator>();
+                animatorOpenedDoor = secondObjectRenderer.GetComponent<Animator>();
                 tMPro = secondObjectRenderer.GetComponentInChildren<TMP_Text>();
                 doorLight = secondObjectRenderer.GetComponentInChildren<Light2D>();
 

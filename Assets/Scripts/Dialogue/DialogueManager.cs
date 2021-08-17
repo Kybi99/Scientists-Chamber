@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using FourGear.Mechanics;
 using TMPro;
-
+using FourGear.Singletons;
 namespace FourGear.Dialogue
 {
     public class DialogueManager : MonoBehaviour
@@ -22,6 +22,9 @@ namespace FourGear.Dialogue
         public TMP_Text nameText;
         public TMP_Text dialogueText;
         public Animator endScreenAnimator;
+        public Material electricityMaterial;
+        public static GameObject[] objects;
+
 
 
         void Start()
@@ -51,13 +54,18 @@ namespace FourGear.Dialogue
             teslaAnimator.SetBool("isCorrectObjectIn", true);
             imageAnimator.SetBool("isCorrectObjectIn", true);
 
-            //tesla.SetActive(true);
             nameText.text = story.nameOfNpc;
 
             if (DragAnDrop.numberOfPartsIn < numberOfCorectParts - 1)
                 sentence = story.sentences[index];
             else
             {
+                objects = GameObject.FindGameObjectsWithTag("objects");
+
+                for (int i = 0; i < objects.Length; i++)
+                {
+                    objects[i].GetComponent<SpriteRenderer>().material = electricityMaterial;
+                }
                 sentence = story.sentences[index] + " \nUspesno si zavrsio nivo.";
                 TimerManager.timeIsRunning = false;
             }

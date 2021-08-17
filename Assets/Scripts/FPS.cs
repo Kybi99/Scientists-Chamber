@@ -6,28 +6,28 @@ namespace FourGear
     public class FPS : MonoBehaviour
     {
 
-        private int m_frameCounter = 0;
-        private float m_timeCounter = 0.0f;
-        private float m_lastFramerate = 0.0f;
-        public float m_refreshTime = 0.5f;
+        private int frameCounter = 0;
+        private float timeCounter = 0.0f;
+        private float lastFramerate = 0.0f;
+        public float refreshTime = 0.5f;
         public Text text;
 
 
         void Update()
         {
-            if (m_timeCounter < m_refreshTime)
+            if (timeCounter < refreshTime)
             {
-                m_timeCounter += Time.deltaTime;
-                m_frameCounter++;
+                timeCounter += Time.deltaTime;
+                frameCounter++;
             }
             else
             {
-                m_lastFramerate = (float)m_frameCounter / m_timeCounter;
-                m_frameCounter = 0;
-                m_timeCounter = 0.0f;
+                lastFramerate = (float)frameCounter / timeCounter;
+                frameCounter = 0;
+                timeCounter = 0.0f;
             }
 
-            text.text = m_lastFramerate.ToString("F2");
+            text.text = lastFramerate.ToString("F2");
         }
     }
 }

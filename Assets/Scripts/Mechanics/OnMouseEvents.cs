@@ -81,7 +81,6 @@ namespace FourGear.Mechanics
         {
             tMPro = this.gameObject.GetComponentInChildren<TMP_Text>();
             numberOfMissedClicks++;
-            Debug.Log(numberOfMissedClicks);
 
             if (numberOfMissedClicks % 10 == 0 && numberOfMissedClicks != 0)
             {

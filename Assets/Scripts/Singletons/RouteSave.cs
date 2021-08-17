@@ -1,4 +1,5 @@
 using UnityEngine;
+
 namespace FourGear.Singletons
 {
     public class RouteSave : MonoBehaviour

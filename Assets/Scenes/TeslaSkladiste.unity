@@ -3967,8 +3967,8 @@ ParticleSystemRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 448582527
-  m_SortingLayer: 5
+  m_SortingLayerID: 704479851
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -10362,7 +10362,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9574a89c8e2428542b11938d1cee7417, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -25698,7 +25698,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 437c2c51ec78f6f4d8d5452e6a4c5ab3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_refreshTime: 0.5
+  refreshTime: 0.5
   text: {fileID: 1257354723}
 --- !u!1 &1529305311
 GameObject:

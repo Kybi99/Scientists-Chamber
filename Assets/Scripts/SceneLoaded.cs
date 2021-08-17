@@ -10,7 +10,6 @@ namespace FourGear
     {
         int i;
         [SerializeField] private Texture2D cursorTexture;
-        //private CursorMode cursorMode;
         private Vector2 hotSpot;
         private string sceneName;
         private string sceneName2;
@@ -21,6 +20,7 @@ namespace FourGear
         void Start()
         {
             //Get objects from scene
+
             objects = GameObject.FindGameObjectsWithTag("objects");
             otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
 
@@ -30,6 +30,7 @@ namespace FourGear
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
+
             placeholders = GameObject.FindGameObjectsWithTag("placeholders");
             string last9Letters = OnMouseEvents.CheckLast9LettersOfSceneName();
 
@@ -44,7 +45,6 @@ namespace FourGear
         private void PrepareSceneRadnaSoba()
         {
             ShowHint.isFirstTimeInScene = false;
-            //FramedObjects.doorLight.enabled = false;
 
             for (int i = 0; i < otherObjects.Length; i++)
             {
