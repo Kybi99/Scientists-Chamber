@@ -15,6 +15,7 @@ namespace FourGear.Mechanics
         private SpriteRenderer sprite;
         private Quaternion resetRotation;
         private Vector2 resetCollider;
+        private Vector2 resetOffset;
         private BoxCollider2D boxCollider2D;
         public static int routeToGo;
         public static bool coroutineAllowed;
@@ -37,6 +38,7 @@ namespace FourGear.Mechanics
             sortingLayer = sprite.sortingLayerName;
             resetRotation = this.gameObject.transform.rotation;
             boxCollider2D = this.gameObject.GetComponent<BoxCollider2D>();
+            resetOffset = boxCollider2D.offset;
             resetCollider = boxCollider2D.size;
         }
 
@@ -82,11 +84,17 @@ namespace FourGear.Mechanics
 
         private void FixItInSlot()
         {
-            transform.localScale = new Vector2(0.5f, 0.5f);
+            if (this.gameObject.name.Contains("Y"))
+                transform.localScale = new Vector2(0.4f, 0.4f);
+            else if (this.gameObject.name.Contains("Z"))
+                transform.localScale = new Vector2(0.5f, 0.5f);
+            else
+                transform.localScale = new Vector2(0.7f, 0.7f);
             transform.rotation = Quaternion.Euler(Vector3.zero);
             this.transform.parent = Inventory.arraySlots[routeTaken].transform;
-            this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -0.5f);
+            this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -3f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
+            boxCollider2D.offset = Vector2.zero;
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
@@ -124,6 +132,7 @@ namespace FourGear.Mechanics
             this.transform.parent = resetParent;
             this.transform.position = startPosition;
             boxCollider2D.size = resetCollider;
+            boxCollider2D.offset = resetOffset;
             transform.localScale = new Vector2(1, 1);
 
         }
