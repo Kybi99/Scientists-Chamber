@@ -72,6 +72,9 @@ TagManager:
   - name: Pozadina
     uniqueID: 34349197
     locked: 0
+  - name: IzmedjuPozadineiSrednjeg
+    uniqueID: 130040407
+    locked: 0
   - name: Srednji plan
     uniqueID: 639884311
     locked: 0

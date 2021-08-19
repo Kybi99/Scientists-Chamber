@@ -54,22 +54,22 @@ namespace FourGear.Mechanics
             {
                 FindValues();
 
-                OnMouseEvents.numberOfMissedClicks--;
                 firstObjectRenderer.enabled = false;
 
                 if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectPath.coroutineAllowed)
                 {
+                    if (OnMouseEvents.numberOfMissedClicks % 10 == 9)
+                        OnMouseEvents.numberOfMissedClicks++;
                     LoadNextSceneIfDoorIsOpen();
                 }
                 else if ((this.gameObject.name == "DoorsClosed" || this.gameObject.name == "DoorsClosedX") && !secondObjectRenderer.enabled)
                 {
+
                     OpenTheDoor();
                     isHighLightAllowed = false;
                 }
                 else
-                {
                     EnableSecondFrame();
-                }
             }
         }
 
@@ -132,7 +132,7 @@ namespace FourGear.Mechanics
 
             if (secondObjectRenderer != null)
             {
-                if (secondObjectRenderer.enabled && tMPro != null && !PauseMenu.gameIsPaused)
+                if (secondObjectRenderer.enabled && tMPro != null && !PauseMenu.gameIsPaused && ShowHint.canClick)
                 {
                     CursorManager.Instance.SetActiveCursorType(cursorType);
                     tMPro.text = "Radna Soba";

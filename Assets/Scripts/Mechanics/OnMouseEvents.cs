@@ -4,6 +4,7 @@ using FourGear.Singletons;
 using FourGear.UI;
 using FourGear.Dialogue;
 using TMPro;
+
 namespace FourGear.Mechanics
 {
     public class OnMouseEvents : MonoBehaviour
@@ -13,6 +14,7 @@ namespace FourGear.Mechanics
         [SerializeField] private DragAnDrop dragAnDrop;
         public static int numberOfMissedClicks = 0;
         private int index;
+        private int rememberClicks;
         private float rememberTime;
         private TMP_Text tMPro;
         private string backgroundName;
@@ -57,6 +59,7 @@ namespace FourGear.Mechanics
         {
             if (this.gameObject.name == backgroundName)
             {
+                rememberClicks = numberOfMissedClicks;
                 CalculateMissClicks();
             }
             else if (!objectPath.inInventory && ObjectPath.coroutineAllowed && ObjectPath.routeToGo < Inventory.arraySlots.Length)
@@ -81,8 +84,9 @@ namespace FourGear.Mechanics
         {
             tMPro = this.gameObject.GetComponentInChildren<TMP_Text>();
             numberOfMissedClicks++;
+            Debug.Log(numberOfMissedClicks);
 
-            if (numberOfMissedClicks % 10 == 0 && numberOfMissedClicks != 0)
+            if (rememberClicks % 10 == 0 && rememberClicks != 0)
             {
                 rememberTime = TimerManager.timeValue;
                 TimerManager.timeValue -= 5;

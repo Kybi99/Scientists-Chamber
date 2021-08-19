@@ -66,7 +66,7 @@ namespace FourGear.Dialogue
                 {
                     objects[i].GetComponent<SpriteRenderer>().material = electricityMaterial;
                 }
-                sentence = story.sentences[index] + " \nUspesno si zavrsio nivo.";
+                sentence = story.sentences[index] + "\nХвала на помоћи Бог ти помогао.";
                 TimerManager.timeIsRunning = false;
             }
 
