@@ -61,10 +61,13 @@ namespace FourGear.Mechanics
 
                 yield return new WaitForEndOfFrame();
             }
+            Particles.PauseParticles();
 
             AddXtoName();
 
             FixItInSlot();
+
+            Particles.ResumeParticles();
 
             StopCoroutine(GoByTheRoute(routeToGo));
 
@@ -114,7 +117,11 @@ namespace FourGear.Mechanics
                 yield return new WaitForEndOfFrame();
             }
 
+            Particles.PauseParticles();
+
             PutItBack();
+
+            Particles.ResumeParticles();
 
             StopCoroutine(GoByTheRoute2(routeTaken));
 
