@@ -13,6 +13,8 @@ namespace FourGear.Mechanics
         [SerializeField] private ObjectMovement objectMovement;
         [SerializeField] private DragAnDrop dragAnDrop;
         public static int numberOfMissedClicks = 0;
+        private static int sceneIndex;
+        private int sceneIndexCheck;
         private int index;
         private int rememberClicks;
         private int rememberLastTimeClicks;
@@ -26,8 +28,6 @@ namespace FourGear.Mechanics
         {
             rememberLastTimeClicks = 0;
             rememberClicks = 0;
-            sceneName = "Skladiste";
-            sceneName2 = "RadnaSoba";
             backgroundName = "Pozadina";
         }
         private void Update()
@@ -37,26 +37,26 @@ namespace FourGear.Mechanics
             if (rememberTime - TimerManager.timeValue > 6 || TimerManager.timeValue == 0 && tMPro != null)
                 tMPro.text = "";
         }
-        //OnClickFuntions
+        //OnClickFunctions
         public void OnMouseDown()
         {
-            string last9Letters = CheckLast9LettersOfSceneName();
-            sceneName = "Skladiste";
-            if (Input.GetMouseButtonDown(0) && last9Letters == sceneName && ShowHint.canClick)
+            //sceneIndexCheck = CheckIfFirstSceneIsActive();
+            //sceneName = "Skladiste";
+            if (Input.GetMouseButtonDown(0) && CheckIfFirstSceneIsActive() && ShowHint.canClick)
             {
                 OnClick();
             }
 
             //DragAndDrop  
-            else if (Input.GetMouseButtonDown(0) && last9Letters == sceneName2)
+            else if (Input.GetMouseButtonDown(0) && !CheckIfFirstSceneIsActive())
             {
                 OnDrag();
             }
         }
         private void OnMouseUp()
         {
-            string last9Letters = CheckLast9LettersOfSceneName();
-            OnDrop(last9Letters);
+            //sceneIndexCheck = CheckIfFirstSceneIsActive();
+            OnDrop();
         }
         private void OnClick()
         {
@@ -133,43 +133,66 @@ namespace FourGear.Mechanics
             }
         }
 
-        public static string CheckLast9LettersOfSceneName()
+        public static bool CheckIfFirstSceneIsActive()
         {
-            string sceneName = SceneManager.GetActiveScene().name;
-            string last9Letters = sceneName.Substring(sceneName.Length - 9);
-            return last9Letters;
+            sceneIndex = SceneManager.GetActiveScene().buildIndex;
+            if (sceneIndex % 2 == 0 && sceneIndex != 0)
+            {
+                Debug.Log(sceneIndex);
+                return false;
+            }
+            else if (sceneIndex % 2 != 0 && sceneIndex != 0)
+            {
+                Debug.Log(sceneIndex);
+                return true;
+            }
+            return false;
         }
-        private void OnDrop(string last9Letters)
+        private void OnDrop()
         {
             //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
-            if (Input.GetMouseButtonUp(0) && last9Letters == sceneName2)
+            if (Input.GetMouseButtonUp(0) && !CheckIfFirstSceneIsActive())
             {
                 if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)
                 {
                     dragAnDrop.isMoving = false;
 
-                    if (dragAnDrop.correctForm != null && Mathf.Abs(this.transform.localPosition.x - dragAnDrop.correctForm.transform.localPosition.x) <= 0.5f &&
-                        Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.5f)
+                    if (dragAnDrop.correctForm != null && IsInRangeOfPlaceholder())
                     {
-                        this.transform.parent = dragAnDrop.correctForm.transform;
-                        dragAnDrop.thisObjectIsIn = true;
-                        DialogueManager.dialogueTrigger.TriggerDialogue(index);
-
-                        this.transform.position = new Vector3(dragAnDrop.correctForm.transform.position.x, dragAnDrop.correctForm.transform.position.y, dragAnDrop.correctForm.transform.position.z);
-                        this.transform.rotation = dragAnDrop.correctForm.transform.rotation;
-                        this.transform.localScale = new Vector2(1, 1); ;
-                        dragAnDrop.isFinished = true;
-                        DragAnDrop.numberOfPartsIn++;
+                        PutObjectInPlaceholder();
                     }
                     else
                     {
-                        this.transform.parent = dragAnDrop.resetParent;
-                        this.transform.localPosition = new Vector3(dragAnDrop.resetPosition.x, dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
-                        transform.localScale = new Vector2(0.5f, 0.5f);
+                        ReturnObjectToInventory();
                     }
                 }
-
             }
+        }
+
+        private void ReturnObjectToInventory()
+        {
+            this.transform.parent = dragAnDrop.resetParent;
+            this.transform.localPosition = new Vector3(dragAnDrop.resetPosition.x, dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
+            transform.localScale = new Vector2(0.5f, 0.5f);
+        }
+
+        private void PutObjectInPlaceholder()
+        {
+            this.transform.parent = dragAnDrop.correctForm.transform;
+            dragAnDrop.thisObjectIsIn = true;
+            DialogueManager.dialogueTrigger.TriggerDialogue(index);
+
+            this.transform.position = new Vector3(dragAnDrop.correctForm.transform.position.x, dragAnDrop.correctForm.transform.position.y, dragAnDrop.correctForm.transform.position.z);
+            this.transform.rotation = dragAnDrop.correctForm.transform.rotation;
+            this.transform.localScale = new Vector2(1, 1);
+            dragAnDrop.isFinished = true;
+            DragAnDrop.numberOfPartsIn++;
+        }
+
+        private bool IsInRangeOfPlaceholder()
+        {
+            return Mathf.Abs(this.transform.localPosition.x - dragAnDrop.correctForm.transform.localPosition.x) <= 0.5f &&
+                    Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.5f;
         }
     }
 }

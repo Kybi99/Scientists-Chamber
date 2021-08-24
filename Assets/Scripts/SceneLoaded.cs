@@ -20,26 +20,23 @@ namespace FourGear
         void Start()
         {
             //Get objects from scene
-
             objects = GameObject.FindGameObjectsWithTag("objects");
             otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
-
             i = 0;
             SceneManager.sceneLoaded += OnSceneLoaded;
         }
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-
             placeholders = GameObject.FindGameObjectsWithTag("placeholders");
-            string last9Letters = OnMouseEvents.CheckLast9LettersOfSceneName();
 
-            if (last9Letters == OnMouseEvents.sceneName2)
-                PrepareSceneRadnaSoba();
-            else if (last9Letters == OnMouseEvents.sceneName)
-                PrepareSceneSkladiste();
-            else if (last9Letters == "Main menu")
+            if (SceneManager.GetActiveScene().buildIndex == 0)
                 PrepareSceneMainMenu();
+            else if (!OnMouseEvents.CheckIfFirstSceneIsActive())
+                PrepareSceneRadnaSoba();
+            else if (OnMouseEvents.CheckIfFirstSceneIsActive())
+                PrepareSceneSkladiste();
+
         }
 
         private void PrepareSceneRadnaSoba()
@@ -158,7 +155,7 @@ namespace FourGear
         private void PrepareSceneMainMenu()
         {
             OnMouseEvents.numberOfMissedClicks = 0;
-            
+
             GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
             GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
             GameObject timer = GameObject.FindObjectOfType<TimerManager>().gameObject;

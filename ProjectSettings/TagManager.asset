@@ -69,6 +69,9 @@ TagManager:
   - name: Objekti iza
     uniqueID: 448582527
     locked: 0
+  - name: FrejmoviIza
+    uniqueID: 2441919335
+    locked: 0
   - name: Pozadina
     uniqueID: 34349197
     locked: 0
@@ -89,6 +92,9 @@ TagManager:
     locked: 0
   - name: Objekti ispred
     uniqueID: 58941675
+    locked: 0
+  - name: FrejmoviIspred
+    uniqueID: 3253362591
     locked: 0
   - name: Inventar
     uniqueID: 751630547

@@ -9,6 +9,7 @@ namespace FourGear.Mechanics
     {
         [SerializeField] private CursorManager.CursorType cursorType;
         private int clickCount;
+        private int indexSceneCheck ;
         private float rememberTime;
         private GameObject secondFrame;
         private NextScene nextScene;
@@ -26,8 +27,6 @@ namespace FourGear.Mechanics
 
         void Start()
         {
-            //cursorMode = CursorMode.ForceSoftware;
-            //Cursor.SetCursor(resetCursorTexture, Vector2.zero, cursorMode);
             isHighLightAllowed = true;
             isMouseOnObject = false;
             nextScene = this.gameObject.GetComponent<NextScene>();
@@ -48,9 +47,7 @@ namespace FourGear.Mechanics
 
         private void FramedObjectClicked()
         {
-            string last9Letters = OnMouseEvents.CheckLast9LettersOfSceneName();
-
-            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && last9Letters == OnMouseEvents.sceneName && ShowHint.canClick)
+            if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && OnMouseEvents.CheckIfFirstSceneIsActive() && ShowHint.canClick)
             {
                 FindValues();
 
@@ -146,7 +143,6 @@ namespace FourGear.Mechanics
 
             else if (ShowHint.canClick && nextScene == null)
             {
-                //Cursor.SetCursor(resetCursorTexture, Vector2.zero, CursorMode.ForceSoftware);
                 CursorManager.Instance.SetActiveCursorType(cursorType);
             }
         }

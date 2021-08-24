@@ -37,7 +37,7 @@ namespace FourGear
             else if(timeValue <= 0 && timeIsRunning)
                 timeValue = 0;
 
-            if (timeValue <= 0 && SceneManager.GetActiveScene().name != "Main menu")
+            if (timeValue <= 0 && SceneManager.GetActiveScene().buildIndex != 0)
             {
                 endScreenAnimator = GameObject.FindGameObjectWithTag("timeUpEndScreen").GetComponent<Animator>();
                 endScreenAnimator.Play("EndScreenFadeIn");

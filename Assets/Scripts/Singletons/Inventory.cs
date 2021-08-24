@@ -8,7 +8,7 @@ namespace FourGear.Singletons
         private int children;
         public static Inventory inventoryInstance;
         public static GameObject[] arraySlots;
-        void Start()
+        void Awake()
         {
             if (inventoryInstance != null)
             {

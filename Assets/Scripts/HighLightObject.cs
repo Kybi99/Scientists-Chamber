@@ -5,22 +5,30 @@ namespace FourGear
 {
     public class HighLightObject : MonoBehaviour
     {
-        private Animator doorAnimator;
+        public Animator doorLightAnimator;
+        public Animator framedObjectLightAnimator;
         private float rememberTime;
-        void Start()
-        {
-            doorAnimator = this.gameObject.GetComponent<Animator>();
-        }
+        private float rememberTime2;
+
 
         void Update()
         {
-            if (Mathf.Round(TimerManager.timeValue % 10) == 0 && TimerManager.timeValue < 299 && FramedObjects.isHighLightAllowed)
+            if (Mathf.Round(TimerManager.timeValue % 10) == 0 && TimerManager.timeValue < 299)
             {
-                doorAnimator.SetBool("isReadyToPlay", true);
+                doorLightAnimator.SetBool("isReadyToPlay", true);
                 rememberTime = TimerManager.timeValue;
             }
             else if (rememberTime - TimerManager.timeValue > 0.9f)
-                doorAnimator.SetBool("isReadyToPlay", false);
+                doorLightAnimator.SetBool("isReadyToPlay", false);
+
+            if (Mathf.Round(TimerManager.timeValue % 21) == 0 && TimerManager.timeValue < 299)
+            {
+                framedObjectLightAnimator.SetBool("isReadyToPlay", true);
+                rememberTime2 = TimerManager.timeValue;
+            }
+            else if (rememberTime2 - TimerManager.timeValue > 2f)
+                framedObjectLightAnimator.SetBool("isReadyToPlay", false);
+
         }
     }
 }

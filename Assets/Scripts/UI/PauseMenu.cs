@@ -49,6 +49,7 @@ namespace FourGear.UI
         {
             Time.timeScale = 1f;
             OnMouseEvents.numberOfMissedClicks = 0;
+            gameIsPaused = false;
             SceneManager.LoadScene("Main Menu");
         }
         public void QuitGame()

@@ -140,7 +140,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5312364
 Transform:
   m_ObjectHideFlags: 0
@@ -173,7 +173,7 @@ MonoBehaviour:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Intensity: 0.27
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 000000009deaa80d4b11dcb2c3ac94dc7fd3bc1a8d200c025742c00717dc2326cbfa3582c7ff69871d565938eb608303d3f8cc2c31ede96d6b82fd29c3c42eac
+  m_ApplyToSortingLayers: 000000009deaa80d4b11dcb2c3ac94dc7fd3bc1a67bb8c918d200c025742c00717dc2326cbfa3582c7ff69871d565938eb6083039f5feac1d3f8cc2c31ede96d6b82fd29c3c42eac
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -538,7 +538,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639884311
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 30b5745c3da2e7649ba4e5560f15d08e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -713,7 +713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 76840179}
+  objectMovement: {fileID: 76840179}
   routes:
   - {fileID: 800136694}
   - {fileID: 1876376706}
@@ -732,7 +732,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 76840176}
-  objectPath: {fileID: 76840179}
+  objectMovement: {fileID: 76840179}
   dragAnDrop: {fileID: 76840178}
 --- !u!114 &76840176
 MonoBehaviour:
@@ -799,7 +799,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 76840174}
+  bezierCurvePath: {fileID: 76840174}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -867,7 +867,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: de4c80519fe534942bd7d54acfdb522b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -982,7 +982,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639884311
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 653f090168275ea4aaf3895c5338f512, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 0}
@@ -1031,7 +1031,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &91640607
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1436,7 +1436,6 @@ GameObject:
   - component: {fileID: 141206309}
   - component: {fileID: 141206310}
   - component: {fileID: 141206312}
-  - component: {fileID: 141206311}
   m_Layer: 0
   m_Name: LineLight
   m_TagString: Untagged
@@ -1499,18 +1498,6 @@ MonoBehaviour:
   - {x: 2.4350288, y: 0.44927168, z: 0}
   - {x: 2.4720547, y: 0.5727596, z: 0}
   - {x: -0.9950018, y: 0.5724392, z: 0}
---- !u!114 &141206311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 141206308}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd2a58f559be5e244a0842032196bac7, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &141206312
 Animator:
   serializedVersion: 3
@@ -2197,7 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 0}
-  objectPath: {fileID: 0}
+  objectMovement: {fileID: 0}
   dragAnDrop: {fileID: 0}
 --- !u!1 &229128618
 GameObject:
@@ -2909,6 +2896,7 @@ Transform:
   - {fileID: 375804865}
   - {fileID: 141206309}
   - {fileID: 428258063}
+  - {fileID: 1014101011}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4276,7 +4264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 444753572}
+  bezierCurvePath: {fileID: 444753572}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -4338,7 +4326,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2110391605
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 839e3aab1a2a7f9489d5445ea804adf0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4411,7 +4399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 444753565}
-  objectPath: {fileID: 444753566}
+  objectMovement: {fileID: 444753566}
   dragAnDrop: {fileID: 444753567}
 --- !u!114 &444753572
 MonoBehaviour:
@@ -4425,7 +4413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 444753566}
+  objectMovement: {fileID: 444753566}
   routes:
   - {fileID: 215274642}
   - {fileID: 450410518}
@@ -4665,7 +4653,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 07f38de7a6b8532409c32b5419d27ce7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4762,7 +4750,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 460487673}
+  bezierCurvePath: {fileID: 460487673}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -4800,7 +4788,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 460487668}
-  objectPath: {fileID: 460487670}
+  objectMovement: {fileID: 460487670}
   dragAnDrop: {fileID: 460487669}
 --- !u!114 &460487673
 MonoBehaviour:
@@ -4814,7 +4802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 460487670}
+  objectMovement: {fileID: 460487670}
   routes:
   - {fileID: 2121670569}
   - {fileID: 1228418592}
@@ -4990,7 +4978,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 704479851
-  m_SortingLayer: 14
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -10350,7 +10338,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 565440857}
+  objectMovement: {fileID: 565440857}
   routes:
   - {fileID: 479684391}
   - {fileID: 1270459936}
@@ -10369,7 +10357,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 565440854}
-  objectPath: {fileID: 565440857}
+  objectMovement: {fileID: 565440857}
   dragAnDrop: {fileID: 565440856}
 --- !u!114 &565440854
 MonoBehaviour:
@@ -10436,7 +10424,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 565440852}
+  bezierCurvePath: {fileID: 565440852}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -10504,7 +10492,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 51e2f9dac502217488b31f312d3e9507, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -10619,7 +10607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 581788379}
+  objectMovement: {fileID: 581788379}
   routes:
   - {fileID: 1815823537}
   - {fileID: 1640750777}
@@ -10638,7 +10626,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 581788375}
-  objectPath: {fileID: 581788379}
+  objectMovement: {fileID: 581788379}
   dragAnDrop: {fileID: 581788378}
 --- !u!114 &581788375
 MonoBehaviour:
@@ -10731,7 +10719,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 581788373}
+  bezierCurvePath: {fileID: 581788373}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -10773,7 +10761,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2110391605
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c574da51f5f3503498b80fae9c30b50b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11707,7 +11695,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 751630547
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 549e4fe0b42c9c140adc815ca23a65ab, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -11904,7 +11892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 747049974}
+  objectMovement: {fileID: 747049974}
   routes:
   - {fileID: 1033049817}
   - {fileID: 1850589036}
@@ -11923,7 +11911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 747049970}
-  objectPath: {fileID: 747049974}
+  objectMovement: {fileID: 747049974}
   dragAnDrop: {fileID: 747049973}
 --- !u!114 &747049970
 MonoBehaviour:
@@ -12016,7 +12004,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 747049968}
+  bezierCurvePath: {fileID: 747049968}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -12058,7 +12046,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 4d2d6f82f41213346bfb17fa12983d06, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -12350,7 +12338,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 704479851
-  m_SortingLayer: 14
+  m_SortingLayer: 16
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -22091,7 +22079,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2110391605
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 321b075d19557964b8a66795e3911b8d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -22177,7 +22165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 822709051}
+  bezierCurvePath: {fileID: 822709051}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -22226,7 +22214,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 822709049}
-  objectPath: {fileID: 822709047}
+  objectMovement: {fileID: 822709047}
   dragAnDrop: {fileID: 822709048}
 --- !u!114 &822709051
 MonoBehaviour:
@@ -22240,7 +22228,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 822709047}
+  objectMovement: {fileID: 822709047}
   routes:
   - {fileID: 316985893}
   - {fileID: 1326549131}
@@ -23589,7 +23577,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 34349197
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 2ab49f774d665fc46b13208a99b18777, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -24180,6 +24168,98 @@ Transform:
   m_Father: {fileID: 988624981}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1014101008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1014101011}
+  - component: {fileID: 1014101010}
+  - component: {fileID: 1014101009}
+  m_Layer: 0
+  m_Name: FramedObjectLight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!95 &1014101009
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014101008}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 68d96b16e0e3bd54eb9ce8419842f888, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1014101010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014101008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 073797afb82c5a1438f328866b10b3f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_LightType: 1
+  m_BlendStyleIndex: 0
+  m_FalloffIntensity: 0.5
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Intensity: 1
+  m_LightVolumeOpacity: 0
+  m_ApplyToSortingLayers: 67bb8c919f5feac1
+  m_LightCookieSprite: {fileID: 0}
+  m_UseNormalMap: 0
+  m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
+  m_ShadowIntensity: 0
+  m_ShadowVolumeIntensity: 0
+  m_PointLightInnerAngle: 360
+  m_PointLightOuterAngle: 360
+  m_PointLightInnerRadius: 0
+  m_PointLightOuterRadius: 1
+  m_PointLightDistance: 3
+  m_PointLightQuality: 1
+  m_ShapeLightParametricSides: 5
+  m_ShapeLightParametricAngleOffset: 0
+  m_ShapeLightParametricRadius: 1
+  m_ShapeLightFalloffSize: 0.3
+  m_ShapeLightFalloffOffset: {x: 0, y: 0}
+  m_ShapePath:
+  - {x: -14.363029, y: 0.28915012, z: 0}
+  - {x: 9.411567, y: 0.61738557, z: 0}
+  - {x: 9.424876, y: 0.77448404, z: 0}
+  - {x: -14.351504, y: 0.48248512, z: 0}
+--- !u!4 &1014101011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1014101008}
+  m_LocalRotation: {x: -0, y: -0, z: -0.16236614, w: 0.9867306}
+  m_LocalPosition: {x: 5.59, y: 6.97, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 300684118}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -18.689}
 --- !u!1 &1017144741
 GameObject:
   m_ObjectHideFlags: 0
@@ -24438,88 +24518,6 @@ MonoBehaviour:
   - {fileID: 1196986114}
   - {fileID: 676878979}
   - {fileID: 1595765430}
---- !u!1 &1037182705
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1037182707}
-  - component: {fileID: 1037182706}
-  m_Layer: 0
-  m_Name: "SKICA \u0422\u0435\u0441\u043B\u0430_0"
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!212 &1037182706
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037182705}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1406221117
-  m_SortingLayer: 15
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 460214333711c4e4a91215c42c9c44a9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 11.601851, y: 7.037037}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &1037182707
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1037182705}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.62, y: -0.2, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 25
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1041981784
 GameObject:
   m_ObjectHideFlags: 0
@@ -25236,7 +25234,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 1191236414}
-  objectPath: {fileID: 1191236417}
+  objectMovement: {fileID: 1191236417}
   dragAnDrop: {fileID: 1191236416}
 --- !u!114 &1191236414
 MonoBehaviour:
@@ -25262,7 +25260,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 1191236417}
+  objectMovement: {fileID: 1191236417}
   routes:
   - {fileID: 1322034195}
   - {fileID: 1467227389}
@@ -25300,7 +25298,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 1191236415}
+  bezierCurvePath: {fileID: 1191236415}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -25368,7 +25366,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5d4e455171fa993489857782fd38e572, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26237,7 +26235,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1844047153
-  m_SortingLayer: 13
+  m_SortingLayer: 15
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 45e4855414fae2445bc264480a031fed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26370,7 +26368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 1282889670}
+  objectMovement: {fileID: 1282889670}
   routes:
   - {fileID: 316985893}
   - {fileID: 1326549131}
@@ -26389,7 +26387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 1282889667}
-  objectPath: {fileID: 1282889670}
+  objectMovement: {fileID: 1282889670}
   dragAnDrop: {fileID: 1282889669}
 --- !u!114 &1282889667
 MonoBehaviour:
@@ -26456,7 +26454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 1282889665}
+  bezierCurvePath: {fileID: 1282889665}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -26524,7 +26522,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2110391605
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 63eb1cdf798b97d4d837e858678de8a5, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -26953,7 +26951,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 1322275883}
+  objectMovement: {fileID: 1322275883}
   routes:
   - {fileID: 883764260}
   - {fileID: 736958602}
@@ -26972,7 +26970,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 1322275879}
-  objectPath: {fileID: 1322275883}
+  objectMovement: {fileID: 1322275883}
   dragAnDrop: {fileID: 1322275882}
 --- !u!114 &1322275879
 MonoBehaviour:
@@ -27065,7 +27063,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 1322275877}
+  bezierCurvePath: {fileID: 1322275877}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -27107,7 +27105,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 6401e1b1b617ea44da4685c2b6e0104d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -27700,9 +27698,9 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.8
+  m_Intensity: 1
   m_LightVolumeOpacity: 0
-  m_ApplyToSortingLayers: 000000009deaa80d4b11dcb2c3ac94dc7fd3bc1a8d200c025742c00717dc2326cbfa3582c7ff69871d565938eb608303d3f8cc2c31ede96d6b82fd29c3c42eac
+  m_ApplyToSortingLayers: 000000009deaa80d4b11dcb2c3ac94dc7fd3bc1a67bb8c918d200c025742c00717dc2326cbfa3582c7ff69871d565938eb6083039f5feac1d3f8cc2c31ede96d6b82fd29c3c42eac
   m_LightCookieSprite: {fileID: 0}
   m_UseNormalMap: 0
   m_LightOrder: 0
@@ -28266,8 +28264,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 751630547
-  m_SortingLayer: 12
+  m_SortingLayerID: -1041604705
+  m_SortingLayer: 13
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 63786e2c10461d04d9bf305228eeb528, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28288,7 +28286,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1448704072}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.798, y: -1.366, z: -2.5}
+  m_LocalPosition: {x: -3.815, y: -1.367, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 735602948}
@@ -28775,7 +28773,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 945378845
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 94df5f053ad6bcf4199d055dd071fc9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -28888,7 +28886,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639884311
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 44eafbe9484a6ad42b0b4546d5296068, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29134,7 +29132,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 34349197
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b1d0757bd7214814d9d97dd47f269de4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -29159,6 +29157,7 @@ GameObject:
   - component: {fileID: 1502961912}
   - component: {fileID: 1502961914}
   - component: {fileID: 1502961915}
+  - component: {fileID: 1502961916}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -29219,6 +29218,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   refreshTime: 0.5
   text: {fileID: 1257354723}
+--- !u!114 &1502961916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1502961911}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd2a58f559be5e244a0842032196bac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  doorLightAnimator: {fileID: 141206312}
+  framedObjectLightAnimator: {fileID: 1014101009}
 --- !u!1 &1512490949
 GameObject:
   m_ObjectHideFlags: 0
@@ -29782,7 +29795,7 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 34349197
+  m_SortingLayerID: -1853047961
   m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 82ae30256f51e1f4e968d7803a9e330c, type: 3}
@@ -30191,7 +30204,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639884311
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 19da30cdaffe4c64b84d2ad69e504c30, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30405,7 +30418,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 58941675
-  m_SortingLayer: 11
+  m_SortingLayer: 12
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 89c7368e6cfc8224fa1db2aafc9ddfe8, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -30482,7 +30495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 1665225009}
+  bezierCurvePath: {fileID: 1665225009}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -30540,7 +30553,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 1665225004}
-  objectPath: {fileID: 1665225005}
+  objectMovement: {fileID: 1665225005}
   dragAnDrop: {fileID: 1665225006}
 --- !u!114 &1665225009
 MonoBehaviour:
@@ -30554,7 +30567,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 1665225005}
+  objectMovement: {fileID: 1665225005}
   routes:
   - {fileID: 1466140478}
   - {fileID: 1728798980}
@@ -30697,7 +30710,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 639884311
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a0e84471c85fb004e8b9b6404cd4dfb4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31147,7 +31160,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 945378845
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: ced3f1872352ba94ca8d7ca0a6276fd6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31230,7 +31243,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 751630547
-  m_SortingLayer: 12
+  m_SortingLayer: 14
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: b7afd900a47b1534dbcb8bb294df4ecf, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -31683,7 +31696,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 945378845
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c24dd9b45470e90478512e7d93e95b6b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32162,7 +32175,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2023096377
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 72e3e060db4a25d4ba77fd95333c2914, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32350,7 +32363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 1871591464}
+  objectMovement: {fileID: 1871591464}
   routes:
   - {fileID: 54441341}
   - {fileID: 2064366944}
@@ -32369,7 +32382,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 1871591461}
-  objectPath: {fileID: 1871591464}
+  objectMovement: {fileID: 1871591464}
   dragAnDrop: {fileID: 1871591463}
 --- !u!114 &1871591461
 MonoBehaviour:
@@ -32436,7 +32449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 1871591459}
+  bezierCurvePath: {fileID: 1871591459}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -32504,7 +32517,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 130040407
-  m_SortingLayer: 6
+  m_SortingLayer: 7
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 999d16d137fdf194ca468cdb072dc67d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -32729,7 +32742,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2023096377
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: d9813c639d8ddcd46b042ae4f28af959, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -33192,7 +33205,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 945378845
-  m_SortingLayer: 10
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_RenderMode: 0
   m_SortMode: 0
@@ -38420,7 +38433,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2023096377
-  m_SortingLayer: 9
+  m_SortingLayer: 10
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5d4ec8d35ff268f4bafef25273ee2281, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -38725,8 +38738,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 704479851
-  m_SortingLayer: 14
+  m_SortingLayerID: 945378845
+  m_SortingLayer: 11
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: c067a4430608abd428d74784684f9dfe, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -39112,7 +39125,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 2052626788}
+  objectMovement: {fileID: 2052626788}
   routes:
   - {fileID: 916054301}
   - {fileID: 1035407140}
@@ -39131,7 +39144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 2052626785}
-  objectPath: {fileID: 2052626788}
+  objectMovement: {fileID: 2052626788}
   dragAnDrop: {fileID: 2052626787}
 --- !u!114 &2052626785
 MonoBehaviour:
@@ -39198,7 +39211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 2052626783}
+  bezierCurvePath: {fileID: 2052626783}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -39256,7 +39269,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2110391605
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7d03ab176fd4b484bb3070b082b905c6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -39818,7 +39831,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 2107628798}
+  objectMovement: {fileID: 2107628798}
   routes:
   - {fileID: 1288916023}
   - {fileID: 59472495}
@@ -39837,7 +39850,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 2107628794}
-  objectPath: {fileID: 2107628798}
+  objectMovement: {fileID: 2107628798}
   dragAnDrop: {fileID: 2107628797}
 --- !u!114 &2107628794
 MonoBehaviour:
@@ -39930,7 +39943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 2107628792}
+  bezierCurvePath: {fileID: 2107628792}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -40125,7 +40138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e50f0dfc5a4a864eb8c1ec6129800f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  objectPath: {fileID: 2118080341}
+  objectMovement: {fileID: 2118080341}
   routes:
   - {fileID: 70707758}
   - {fileID: 728183927}
@@ -40144,7 +40157,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   findEmptySlot: {fileID: 2118080338}
-  objectPath: {fileID: 2118080341}
+  objectMovement: {fileID: 2118080341}
   dragAnDrop: {fileID: 2118080340}
 --- !u!114 &2118080338
 MonoBehaviour:
@@ -40211,7 +40224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04a9377e6278f014497511acf9f63433, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bezierMovement: {fileID: 2118080336}
+  bezierCurvePath: {fileID: 2118080336}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -40279,7 +40292,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -2110391605
-  m_SortingLayer: 8
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: baea6cadb6ad99a41aed8c1f28a279a4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

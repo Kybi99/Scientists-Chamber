@@ -5,7 +5,7 @@ namespace FourGear
     public class PlaceholdersDDOL : MonoBehaviour
     {
         public static PlaceholdersDDOL placeholdersDDOL;
-        void Start()
+        void Awake()
         {
             if(placeholdersDDOL != null)
             {
