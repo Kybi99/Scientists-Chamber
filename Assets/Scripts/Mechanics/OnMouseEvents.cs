@@ -10,11 +10,12 @@ namespace FourGear.Mechanics
     public class OnMouseEvents : MonoBehaviour
     {
         [SerializeField] private FindEmptySlot findEmptySlot;
-        [SerializeField] private ObjectPath objectPath;
+        [SerializeField] private ObjectMovement objectMovement;
         [SerializeField] private DragAnDrop dragAnDrop;
         public static int numberOfMissedClicks = 0;
         private int index;
         private int rememberClicks;
+        private int rememberLastTimeClicks;
         private float rememberTime;
         private TMP_Text tMPro;
         private string backgroundName;
@@ -23,6 +24,8 @@ namespace FourGear.Mechanics
 
         private void Start()
         {
+            rememberLastTimeClicks = 0;
+            rememberClicks = 0;
             sceneName = "Skladiste";
             sceneName2 = "RadnaSoba";
             backgroundName = "Pozadina";
@@ -62,21 +65,21 @@ namespace FourGear.Mechanics
                 rememberClicks = numberOfMissedClicks;
                 CalculateMissClicks();
             }
-            else if (!objectPath.inInventory && ObjectPath.coroutineAllowed && ObjectPath.routeToGo < Inventory.arraySlots.Length)
+            else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length)
             {
                 numberOfMissedClicks--;
                 Particles.PlayParticle(this.gameObject.transform);
-                ObjectPath.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
-                if (ObjectPath.routeToGo != -1)
-                    StartCoroutine(objectPath.GoByTheRoute(ObjectPath.routeToGo));
+                ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
+                if (ObjectMovement.routeToGo != -1)
+                    StartCoroutine(objectMovement.GoByTheRoute(ObjectMovement.routeToGo));
             }
 
-            else if (objectPath.inInventory && ObjectPath.coroutineAllowed)
+            else if (objectMovement.inInventory && ObjectMovement.coroutineAllowed)
             {
                 numberOfMissedClicks--;
                 Particles.PlayParticle(this.gameObject.transform);
-                ObjectPath.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
-                StartCoroutine(objectPath.GoByTheRoute2(objectPath.routeTaken));
+                ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
+                StartCoroutine(objectMovement.GoByTheRoute2(objectMovement.routeTaken));
             }
         }
 
@@ -86,8 +89,9 @@ namespace FourGear.Mechanics
             numberOfMissedClicks++;
             Debug.Log(numberOfMissedClicks);
 
-            if (rememberClicks % 10 == 0 && rememberClicks != 0)
+            if (rememberClicks % 10 == 0 && rememberClicks != 0 && rememberClicks != rememberLastTimeClicks)
             {
+                rememberLastTimeClicks = rememberClicks;
                 rememberTime = TimerManager.timeValue;
                 TimerManager.timeValue -= 5;
                 tMPro.text = "-5s";

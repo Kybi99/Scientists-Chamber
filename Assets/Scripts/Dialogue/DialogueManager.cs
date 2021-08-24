@@ -29,7 +29,7 @@ namespace FourGear.Dialogue
 
         void Start()
         {
-            numberOfCorectParts = 3;
+            numberOfCorectParts = 4;
             time = 0.7f;
             imageAnimator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
             tesla = GameObject.FindGameObjectWithTag("tesla");

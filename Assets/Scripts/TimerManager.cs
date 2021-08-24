@@ -43,7 +43,6 @@ namespace FourGear
                 endScreenAnimator.Play("EndScreenFadeIn");
                 ShowHint.canClick = false;
                 ShowHint.canShowHint = false;
-                OnMouseEvents.numberOfMissedClicks = 0;
             }
             DisplayTime(timeValue);
         }

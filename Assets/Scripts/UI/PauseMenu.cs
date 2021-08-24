@@ -18,8 +18,6 @@ namespace FourGear.UI
                     Resume();
                 else
                     Pause();
-
-
             }
         }
         public void Resume()
@@ -27,10 +25,12 @@ namespace FourGear.UI
             pausemenuUi.SetActive(false);
             ShowHint.canClick = true;
             ShowHint.canShowHint = true;
-            CursorManager.canChangeCursor = true;
+            //CursorManager.canChangeCursor = true;
             Time.timeScale = 1f;
             gameIsPaused = false;
             Cursor.SetCursor(resetCursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
+
         }
 
         public void Pause()
@@ -38,10 +38,12 @@ namespace FourGear.UI
             pausemenuUi.SetActive(true);
             ShowHint.canClick = false;
             ShowHint.canShowHint = false;
-            CursorManager.canChangeCursor = false;
+            //CursorManager.canChangeCursor = false;
             Time.timeScale = 0f;
             gameIsPaused = true;
             Cursor.SetCursor(resetCursorTexture, Vector2.zero, CursorMode.ForceSoftware);
+            CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
+
         }
         public void LoadMenu()
         {

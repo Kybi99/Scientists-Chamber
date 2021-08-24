@@ -48,13 +48,13 @@ namespace FourGear
 
             for (int i = 0; i < otherObjects.Length; i++)
             {
-                if (otherObjects[i] != null && otherObjects[i].GetComponent<ObjectPath>().inInventory)
+                if (otherObjects[i] != null && otherObjects[i].GetComponent<ObjectMovement>().inInventory)
                 {
-                    otherObjects[i].GetComponent<ObjectPath>().enabled = false;
+                    otherObjects[i].GetComponent<ObjectMovement>().enabled = false;
                     //change active script
                     otherObjects[i].GetComponent<DragAnDrop>().enabled = true;
                 }
-                else if (otherObjects[i] != null && !otherObjects[i].GetComponent<ObjectPath>().inInventory)
+                else if (otherObjects[i] != null && !otherObjects[i].GetComponent<ObjectMovement>().inInventory)
                 {
                     otherObjects[i].gameObject.SetActive(false);
                     //deactivate incorrect objects in next scene
@@ -62,12 +62,12 @@ namespace FourGear
             }
             for (int i = 0; i < objects.Length; i++)
             {
-                if (objects[i] != null && objects[i].GetComponent<ObjectPath>().inInventory)
+                if (objects[i] != null && objects[i].GetComponent<ObjectMovement>().inInventory)
                 {
-                    objects[i].GetComponent<ObjectPath>().enabled = false;
+                    objects[i].GetComponent<ObjectMovement>().enabled = false;
                     objects[i].GetComponent<DragAnDrop>().enabled = true;
                 }
-                else if (objects[i] != null && !objects[i].GetComponent<ObjectPath>().inInventory)
+                else if (objects[i] != null && !objects[i].GetComponent<ObjectMovement>().inInventory)
                 {
                     objects[i].gameObject.SetActive(false);
                 }
@@ -106,7 +106,7 @@ namespace FourGear
             {
                 if (objects[i] != null)
                 {
-                    objects[i].GetComponent<ObjectPath>().enabled = true;
+                    objects[i].GetComponent<ObjectMovement>().enabled = true;
                     objects[i].GetComponent<DragAnDrop>().enabled = false;
                     if (objects[i].gameObject.activeSelf == false)
                         objects[i].gameObject.SetActive(true);
@@ -134,7 +134,7 @@ namespace FourGear
             {
                 if (otherObjects[i] != null)
                 {
-                    otherObjects[i].GetComponent<ObjectPath>().enabled = true;
+                    otherObjects[i].GetComponent<ObjectMovement>().enabled = true;
                     otherObjects[i].GetComponent<DragAnDrop>().enabled = false;
                     if (otherObjects[i].gameObject.activeSelf == false)
                         otherObjects[i].gameObject.SetActive(true);
@@ -157,6 +157,8 @@ namespace FourGear
         }
         private void PrepareSceneMainMenu()
         {
+            OnMouseEvents.numberOfMissedClicks = 0;
+            
             GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
             GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
             GameObject timer = GameObject.FindObjectOfType<TimerManager>().gameObject;

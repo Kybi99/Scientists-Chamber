@@ -35,6 +35,7 @@ namespace FourGear.UI
                 helpScript.SetActive(true);
                 canClick = false;
                 canZoom = false;
+                OnMouseEvents.numberOfMissedClicks--;
             }
             else
             {
