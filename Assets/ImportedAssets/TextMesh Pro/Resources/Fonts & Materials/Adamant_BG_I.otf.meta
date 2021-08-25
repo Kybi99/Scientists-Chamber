@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 8e41e3f67b7b72e4b92a1092f3b8a917
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Adamant BG
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 66b9c0fbefdc8114dbe67800af9dffda, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

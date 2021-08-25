@@ -19,7 +19,6 @@ namespace FourGear.Dialogue
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
         public TMP_Text continueClick;
-        public TMP_Text nameText;
         public TMP_Text dialogueText;
         public Animator endScreenAnimator;
         public Material electricityMaterial;
@@ -29,7 +28,7 @@ namespace FourGear.Dialogue
 
         void Start()
         {
-            numberOfCorectParts = 3;
+            numberOfCorectParts = 4;
             time = 0.7f;
             imageAnimator = GameObject.FindGameObjectWithTag("image").GetComponent<Animator>();
             tesla = GameObject.FindGameObjectWithTag("tesla");
@@ -54,8 +53,6 @@ namespace FourGear.Dialogue
             teslaAnimator.SetBool("isCorrectObjectIn", true);
             imageAnimator.SetBool("isCorrectObjectIn", true);
 
-            nameText.text = story.nameOfNpc;
-
             if (DragAnDrop.numberOfPartsIn < numberOfCorectParts - 1)
                 sentence = story.sentences[index];
             else
@@ -66,7 +63,7 @@ namespace FourGear.Dialogue
                 {
                     objects[i].GetComponent<SpriteRenderer>().material = electricityMaterial;
                 }
-                sentence = story.sentences[index] + "\nХвала на помоћи Бог ти помогао.";
+                sentence = story.sentences[index] + "\nХвала на помоћи не бих успео ово без тебе.";
                 TimerManager.timeIsRunning = false;
             }
 

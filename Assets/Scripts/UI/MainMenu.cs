@@ -16,9 +16,12 @@ namespace FourGear.UI
         private CursorMode cursorMode;
         private int indexOfButtonClicked;
         private bool flag;
+        private GameObject darkSide;
 
         private void Start()
         {
+            darkSide = GameObject.FindGameObjectWithTag("DarkSide");
+            darkSide.SetActive(false);
             cursorMode = CursorMode.ForceSoftware;
             Cursor.SetCursor(cursorTexture, new Vector2(0, 3), cursorMode);
 
@@ -38,6 +41,8 @@ namespace FourGear.UI
             indexOfButtonClicked = infoDisplay.WriteCorrectDataOnCanvas(buttonIndex);
             //poziva fju iz klase InfoDisplay koja postavlja vrednosti u svoje promenljive u zavisnosti od indexa dugmeta na koje je kliknuto
             animator.Play("Transformation");
+            darkSide.gameObject.SetActive(true);
+
             //info image coming into scene
             flag = false;
             ButtonsOnOff();
@@ -46,6 +51,7 @@ namespace FourGear.UI
         public void TaskOnClick2()
         {
             animator.Play("Reverse");
+            darkSide.gameObject.SetActive(false);
             //info image leaving scene
             flag = true;
             ButtonsOnOff();

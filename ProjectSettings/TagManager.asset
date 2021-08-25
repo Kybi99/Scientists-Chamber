@@ -20,6 +20,7 @@ TagManager:
   - hint
   - endScreen
   - timeUpEndScreen
+  - DarkSide
   layers:
   - Default
   - TransparentFX

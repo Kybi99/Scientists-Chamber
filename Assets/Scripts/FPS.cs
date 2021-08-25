@@ -12,7 +12,6 @@ namespace FourGear
         public float refreshTime = 0.5f;
         public Text text;
 
-
         void Update()
         {
             if (timeCounter < refreshTime)
