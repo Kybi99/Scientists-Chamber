@@ -21,6 +21,7 @@ namespace FourGear.Mechanics
         private float rememberTime;
         private TMP_Text tMPro;
         private string backgroundName;
+        private Quaternion resetRotation;
         public static string sceneName;
         public static string sceneName2;
 
@@ -48,7 +49,7 @@ namespace FourGear.Mechanics
             }
 
             //DragAndDrop  
-            else if (Input.GetMouseButtonDown(0) && !CheckIfFirstSceneIsActive())
+            else if (Input.GetMouseButtonDown(0) && !CheckIfFirstSceneIsActive() && ShowHint.canClick)
             {
                 OnDrag();
             }
@@ -104,6 +105,7 @@ namespace FourGear.Mechanics
             {
                 //OnDrag Find correct placeholder for clicked object 
                 dragAnDrop.resetParent = this.transform.parent;
+                resetRotation =  this.transform.rotation;
                 for (int i = 0; i < SceneLoaded.placeholders.Length; i++)
                 {
                     if (SceneLoaded.placeholders[i] != null)
@@ -111,6 +113,7 @@ namespace FourGear.Mechanics
                         if (this.gameObject.name == SceneLoaded.placeholders[i].name + "X")
                         {
                             dragAnDrop.correctForm = SceneLoaded.placeholders[i];
+                            this.transform.rotation = dragAnDrop.correctForm.transform.rotation;
                             index = i;
                             break;
                         }
@@ -174,6 +177,7 @@ namespace FourGear.Mechanics
             this.transform.parent = dragAnDrop.resetParent;
             this.transform.localPosition = new Vector3(dragAnDrop.resetPosition.x, dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
             transform.localScale = new Vector2(0.5f, 0.5f);
+            this.transform.rotation = resetRotation;
         }
 
         private void PutObjectInPlaceholder()

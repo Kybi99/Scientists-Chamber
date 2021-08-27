@@ -13,7 +13,7 @@ namespace FourGear.Mechanics
         [HideInInspector] public float startPosX;
         [HideInInspector] public float startPosY;
         [HideInInspector] public Vector3 resetPosition;
-        [SerializeField] public bool thisObjectIsIn;
+        [HideInInspector] public bool thisObjectIsIn;
         public static int numberOfPartsIn = 0;
 
         private void Start()
@@ -24,7 +24,7 @@ namespace FourGear.Mechanics
         private void Update()
         {
             ObjectFollowingMouseOnDrag();
-            
+
 
         }
 

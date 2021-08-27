@@ -89,7 +89,7 @@ namespace FourGear.Mechanics
         {
             if (this.gameObject.name.Contains("Y"))
                 transform.localScale = new Vector2(0.4f, 0.4f);
-            else if (this.gameObject.name.Contains("Z"))
+            else if (this.gameObject.name.Contains("W"))
                 transform.localScale = new Vector2(0.5f, 0.5f);
             else
                 transform.localScale = new Vector2(0.7f, 0.7f);

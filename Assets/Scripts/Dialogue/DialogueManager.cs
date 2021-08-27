@@ -50,6 +50,7 @@ namespace FourGear.Dialogue
             isCorrectObjectIn = true;
             teslaRenderer.enabled = true;
             isContinueButtonEnabled = false;
+            TimerManager.timeIsRunning = false;
             teslaAnimator.SetBool("isCorrectObjectIn", true);
             imageAnimator.SetBool("isCorrectObjectIn", true);
 
@@ -64,7 +65,6 @@ namespace FourGear.Dialogue
                     objects[i].GetComponent<SpriteRenderer>().material = electricityMaterial;
                 }
                 sentence = story.sentences[index] + "\nХвала на помоћи не бих успео ово без тебе.";
-                TimerManager.timeIsRunning = false;
             }
 
             StopAllCoroutines();
@@ -95,12 +95,11 @@ namespace FourGear.Dialogue
             if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled && continueClick.enabled)
             {
                 if (DragAnDrop.numberOfPartsIn == numberOfCorectParts)
-                {
                     endScreenAnimator.Play("EndScreenFadeIn");
-                }
+                else
+                    TimerManager.timeIsRunning = true;
 
                 //dont let player cancel the text animation and leave room while tesla is done speaking
-
                 continueClick.enabled = false;
                 isCorrectObjectIn = false;
                 imageAnimator.SetBool("isCorrectObjectIn", false);

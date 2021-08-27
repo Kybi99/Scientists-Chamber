@@ -88,7 +88,7 @@ namespace FourGear.Mechanics
 
                 if (tMPro != null && doorLight != null)
                 {
-                    tMPro.text = "Radna Soba";
+                    tMPro.text = "Радна Соба";
                     CursorManager.Instance.SetActiveCursorType(cursorType);
                     doorLight.enabled = true;
                 }
@@ -132,7 +132,7 @@ namespace FourGear.Mechanics
                 if (secondObjectRenderer.enabled && tMPro != null && !PauseMenu.gameIsPaused && ShowHint.canClick)
                 {
                     CursorManager.Instance.SetActiveCursorType(cursorType);
-                    tMPro.text = "Radna Soba";
+                    tMPro.text = "Радна Соба";
                 }
                 else if (!secondObjectRenderer.enabled && tMPro != null)
                     CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.DoorFixed);
