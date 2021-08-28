@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 using FourGear.Mechanics;
 using TMPro;
-using FourGear.Singletons;
+using FourGear.UI;
 namespace FourGear.Dialogue
 {
     public class DialogueManager : MonoBehaviour
@@ -95,7 +95,10 @@ namespace FourGear.Dialogue
             if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled && continueClick.enabled)
             {
                 if (DragAnDrop.numberOfPartsIn == numberOfCorectParts)
+                {
                     endScreenAnimator.Play("EndScreenFadeIn");
+                    ShowHint.canClick = false;
+                }
                 else
                     TimerManager.timeIsRunning = true;
 

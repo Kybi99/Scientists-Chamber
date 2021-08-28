@@ -20,6 +20,7 @@ namespace FourGear.Mechanics
         private int rememberLastTimeClicks;
         private float rememberTime;
         private TMP_Text tMPro;
+        //private Vector3 resetPostion;
         private string backgroundName;
         private Quaternion resetRotation;
         public static string sceneName;
@@ -96,6 +97,7 @@ namespace FourGear.Mechanics
                 rememberTime = TimerManager.timeValue;
                 TimerManager.timeValue -= 5;
                 tMPro.text = "-5s";
+
             }
         }
 
@@ -105,6 +107,7 @@ namespace FourGear.Mechanics
             {
                 //OnDrag Find correct placeholder for clicked object 
                 dragAnDrop.resetParent = this.transform.parent;
+                //resetPostion = this.transform.position;
                 resetRotation =  this.transform.rotation;
                 for (int i = 0; i < SceneLoaded.placeholders.Length; i++)
                 {
@@ -178,11 +181,12 @@ namespace FourGear.Mechanics
             this.transform.localPosition = new Vector3(dragAnDrop.resetPosition.x, dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
             transform.localScale = new Vector2(0.5f, 0.5f);
             this.transform.rotation = resetRotation;
+            //this.transform.position = resetPostion;
         }
 
         private void PutObjectInPlaceholder()
         {
-            this.transform.parent = dragAnDrop.correctForm.transform;
+            this.transform.SetParent(dragAnDrop.correctForm.transform);
             dragAnDrop.thisObjectIsIn = true;
             DialogueManager.dialogueTrigger.TriggerDialogue(index);
 

@@ -18,14 +18,13 @@ namespace FourGear.Mechanics
 
         private void Start()
         {
+            isFinished = false;
             thisObjectIsIn = false;
             resetPosition = this.transform.localPosition;
         }
         private void Update()
         {
             ObjectFollowingMouseOnDrag();
-
-
         }
 
         private void ObjectFollowingMouseOnDrag()
