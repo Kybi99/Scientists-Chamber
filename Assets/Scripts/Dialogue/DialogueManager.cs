@@ -85,6 +85,8 @@ namespace FourGear.Dialogue
             if (DragAnDrop.numberOfPartsIn <= numberOfCorectParts - 1)
                 portalCanvasGroup.interactable = true;
 
+            yield return new WaitForSeconds(0.3f);
+
             isContinueButtonEnabled = true;
             continueClick.enabled = true;
         }
@@ -96,9 +98,10 @@ namespace FourGear.Dialogue
             {
                 if (DragAnDrop.numberOfPartsIn == numberOfCorectParts)
                 {
-                    endScreenAnimator.Play("EndScreenFadeIn");
                     ShowHint.canClick = false;
+                    endScreenAnimator.Play("EndScreenFadeIn");
                 }
+
                 else
                     TimerManager.timeIsRunning = true;
 

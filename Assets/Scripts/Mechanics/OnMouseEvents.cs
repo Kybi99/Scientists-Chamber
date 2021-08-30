@@ -108,7 +108,7 @@ namespace FourGear.Mechanics
                 //OnDrag Find correct placeholder for clicked object 
                 dragAnDrop.resetParent = this.transform.parent;
                 //resetPostion = this.transform.position;
-                resetRotation =  this.transform.rotation;
+                resetRotation = this.transform.rotation;
                 for (int i = 0; i < SceneLoaded.placeholders.Length; i++)
                 {
                     if (SceneLoaded.placeholders[i] != null)
@@ -143,15 +143,10 @@ namespace FourGear.Mechanics
         {
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
             if (sceneIndex % 2 == 0 && sceneIndex != 0)
-            {
-                Debug.Log(sceneIndex);
                 return false;
-            }
             else if (sceneIndex % 2 != 0 && sceneIndex != 0)
-            {
-                Debug.Log(sceneIndex);
                 return true;
-            }
+                
             return false;
         }
         private void OnDrop()
@@ -177,8 +172,8 @@ namespace FourGear.Mechanics
 
         private void ReturnObjectToInventory()
         {
-            this.transform.parent = dragAnDrop.resetParent;
-            this.transform.localPosition = new Vector3(dragAnDrop.resetPosition.x, dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
+            this.transform.SetParent(dragAnDrop.resetParent);
+            this.transform.position = new Vector3(dragAnDrop.resetParent.position.x - dragAnDrop.resetPosition.x, dragAnDrop.resetParent.position.y - dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
             transform.localScale = new Vector2(0.5f, 0.5f);
             this.transform.rotation = resetRotation;
             //this.transform.position = resetPostion;
@@ -199,8 +194,8 @@ namespace FourGear.Mechanics
 
         private bool IsInRangeOfPlaceholder()
         {
-            return Mathf.Abs(this.transform.localPosition.x - dragAnDrop.correctForm.transform.localPosition.x) <= 0.5f &&
-                    Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.5f;
+            return Mathf.Abs(this.transform.localPosition.x - dragAnDrop.correctForm.transform.localPosition.x) <= 0.7f &&
+                    Mathf.Abs(this.transform.localPosition.y - dragAnDrop.correctForm.transform.localPosition.y) <= 0.7f;
         }
     }
 }
