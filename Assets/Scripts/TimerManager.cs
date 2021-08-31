@@ -35,11 +35,7 @@ namespace FourGear
             if (timeValue > 0 && timeIsRunning)
                 timeValue -= Time.deltaTime;
             else if (timeValue <= 0 && timeIsRunning)
-            {
                 timeValue = 0;
-                ShowHint.canClick = false;
-            }
-
 
 
             if (timeValue <= 0 && SceneManager.GetActiveScene().buildIndex != 0)

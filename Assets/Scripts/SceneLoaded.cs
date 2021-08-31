@@ -155,6 +155,10 @@ namespace FourGear
         private void PrepareSceneMainMenu()
         {
             OnMouseEvents.numberOfMissedClicks = 0;
+            for (int i = 0; i < Objects.otherObjects.Length; i++)
+                Destroy(Objects.otherObjects[i]);
+            for (int i = 0; i < Objects.objects.Length; i++)
+                Destroy(Objects.objects[i]);
 
             GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
             GameObject inventory = GameObject.FindGameObjectWithTag("inventory");

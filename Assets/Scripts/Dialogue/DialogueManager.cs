@@ -71,6 +71,7 @@ namespace FourGear.Dialogue
 
             StartCoroutine(TypeSentence(sentence));
             portalCanvasGroup.interactable = false;
+
         }
         IEnumerator TypeSentence(string sentence)
         {
@@ -85,10 +86,9 @@ namespace FourGear.Dialogue
             if (DragAnDrop.numberOfPartsIn <= numberOfCorectParts - 1)
                 portalCanvasGroup.interactable = true;
 
-            yield return new WaitForSeconds(0.3f);
-
-            isContinueButtonEnabled = true;
             continueClick.enabled = true;
+            isContinueButtonEnabled = true;
+
         }
 
 

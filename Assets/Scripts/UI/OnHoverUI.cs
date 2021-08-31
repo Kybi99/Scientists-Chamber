@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
 using TMPro;
+using FourGear.Mechanics;
 namespace FourGear
 {
     public class OnHoverUI : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
@@ -29,6 +30,7 @@ namespace FourGear
         public void OnPointerEnter(PointerEventData eventData)
         {
             canvasGroup.alpha = 1;
+            WorkshopLight.workshopLight.enabled = false;
             CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Portal);
             if (tMPro != null)
                 tMPro.text = "Складиште";
@@ -37,6 +39,8 @@ namespace FourGear
         public void OnPointerExit(PointerEventData eventData)
         {
             canvasGroup.alpha = 0;
+            if(!OnMouseEvents.CheckIfFirstSceneIsActive())
+            WorkshopLight.workshopLight.enabled = true;
             CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
             if (tMPro != null)
                 tMPro.text = "";

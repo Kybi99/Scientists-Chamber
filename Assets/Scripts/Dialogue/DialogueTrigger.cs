@@ -8,7 +8,10 @@ namespace FourGear.Dialogue
 
         public void TriggerDialogue(int index)
         {
-            FindObjectOfType<DialogueManager>().StartDialogue(story,index);
+            if (TimerManager.timeValue > 0)
+            {
+                FindObjectOfType<DialogueManager>().StartDialogue(story, index);
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace FourGear.Mechanics
         private SpriteRenderer sprite;
         private Quaternion resetRotation;
         private Vector2 resetCollider;
+        private Vector3 resetScale;
         private Vector2 resetOffset;
         private BoxCollider2D boxCollider2D;
         public static int routeToGo;
@@ -40,6 +41,7 @@ namespace FourGear.Mechanics
             boxCollider2D = this.gameObject.GetComponent<BoxCollider2D>();
             resetOffset = boxCollider2D.offset;
             resetCollider = boxCollider2D.size;
+            resetScale = this.gameObject.transform.localScale;
         }
 
         public IEnumerator GoByTheRoute(int routeNumber)
@@ -105,7 +107,7 @@ namespace FourGear.Mechanics
             tParam = 1f;
             bezierCurvePath.GetValuesForBezier(routeNumber);
 
-            transform.localScale = new Vector2(1, 1);
+            transform.localScale = resetScale;
 
             while (tParam > 0)
             {
@@ -140,8 +142,6 @@ namespace FourGear.Mechanics
             this.transform.position = startPosition;
             boxCollider2D.size = resetCollider;
             boxCollider2D.offset = resetOffset;
-            transform.localScale = new Vector2(1, 1);
-
         }
     }
 }

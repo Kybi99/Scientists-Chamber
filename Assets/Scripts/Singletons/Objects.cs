@@ -8,8 +8,8 @@ namespace FourGear.Singletons
     public class Objects : MonoBehaviour
     {
         private List<GameObject> goList;
-        private GameObject[] objects;
-        private GameObject[] otherObjects;
+        public static GameObject[] objects;
+        public static GameObject[] otherObjects;
         public static GameObject[] framedObjects;
 
         public class myMonsterSorter : IComparer

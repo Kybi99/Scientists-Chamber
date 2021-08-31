@@ -20,11 +20,11 @@ namespace FourGear.Mechanics
         private int rememberLastTimeClicks;
         private float rememberTime;
         private TMP_Text tMPro;
-        //private Vector3 resetPostion;
         private string backgroundName;
         private Quaternion resetRotation;
         public static string sceneName;
         public static string sceneName2;
+
 
         private void Start()
         {
@@ -136,6 +136,9 @@ namespace FourGear.Mechanics
                 dragAnDrop.startPosY = mousePos.y - this.transform.localPosition.y;
 
                 dragAnDrop.isMoving = true;
+
+                if(TimerManager.timeValue == 0)
+                    Destroy(this.gameObject);
             }
         }
 
@@ -146,7 +149,7 @@ namespace FourGear.Mechanics
                 return false;
             else if (sceneIndex % 2 != 0 && sceneIndex != 0)
                 return true;
-                
+
             return false;
         }
         private void OnDrop()
@@ -154,7 +157,7 @@ namespace FourGear.Mechanics
             //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
             if (Input.GetMouseButtonUp(0) && !CheckIfFirstSceneIsActive())
             {
-                if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)
+                if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && dragAnDrop.isMoving)
                 {
                     dragAnDrop.isMoving = false;
 
@@ -173,7 +176,13 @@ namespace FourGear.Mechanics
         private void ReturnObjectToInventory()
         {
             this.transform.SetParent(dragAnDrop.resetParent);
-            this.transform.position = new Vector3(dragAnDrop.resetParent.position.x - dragAnDrop.resetPosition.x, dragAnDrop.resetParent.position.y - dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
+            if (dragAnDrop.resetParent != null)
+            {
+                Debug.Log(dragAnDrop.resetParent);
+                this.transform.position = new Vector3(dragAnDrop.resetParent.position.x - dragAnDrop.resetPosition.x, dragAnDrop.resetParent.position.y - dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
+            }
+            else
+                Destroy(this.gameObject);
             transform.localScale = new Vector2(0.5f, 0.5f);
             this.transform.rotation = resetRotation;
             //this.transform.position = resetPostion;
