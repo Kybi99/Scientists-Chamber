@@ -23,6 +23,7 @@ namespace FourGear.Dialogue
         public Animator endScreenAnimator;
         public Material electricityMaterial;
         public static GameObject[] objects;
+        public static GameObject[] otherObjects;
 
 
 
@@ -59,6 +60,7 @@ namespace FourGear.Dialogue
             else
             {
                 objects = GameObject.FindGameObjectsWithTag("objects");
+                otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
 
                 for (int i = 0; i < objects.Length; i++)
                 {

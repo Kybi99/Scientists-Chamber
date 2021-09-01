@@ -39,8 +39,8 @@ namespace FourGear
         public void OnPointerExit(PointerEventData eventData)
         {
             canvasGroup.alpha = 0;
-            if(!OnMouseEvents.CheckIfFirstSceneIsActive())
-            WorkshopLight.workshopLight.enabled = true;
+            if (WorkshopLight.workshopLight != null)
+                WorkshopLight.workshopLight.enabled = true;
             CursorManager.Instance.SetActiveCursorType(CursorManager.CursorType.Arrow);
             if (tMPro != null)
                 tMPro.text = "";

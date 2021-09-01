@@ -178,12 +178,18 @@ namespace FourGear.Mechanics
             this.transform.SetParent(dragAnDrop.resetParent);
             if (dragAnDrop.resetParent != null)
             {
-                Debug.Log(dragAnDrop.resetParent);
+                //Debug.Log(dragAnDrop.resetParent);
                 this.transform.position = new Vector3(dragAnDrop.resetParent.position.x - dragAnDrop.resetPosition.x, dragAnDrop.resetParent.position.y - dragAnDrop.resetPosition.y, dragAnDrop.resetPosition.z);
             }
             else
                 Destroy(this.gameObject);
-            transform.localScale = new Vector2(0.5f, 0.5f);
+
+            if (this.gameObject.name.Contains("Y"))
+                transform.localScale = new Vector2(0.4f, 0.4f);
+            else if (this.gameObject.name.Contains("W"))
+                transform.localScale = new Vector2(0.5f, 0.5f);
+            else
+                transform.localScale = new Vector2(0.7f, 0.7f);
             this.transform.rotation = resetRotation;
             //this.transform.position = resetPostion;
         }
