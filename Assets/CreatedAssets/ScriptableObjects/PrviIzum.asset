@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d1ec9144e8e10489927174d7dd7e97, type: 3}
   m_Name: PrviIzum
   m_EditorClassIdentifier: 
-  blueprint: {fileID: 21300000, guid: 84902ed268c37604fb07b7aaea0a86a2, type: 3}
+  blueprint: {fileID: 21300000, guid: d30c18da1360ab34d9a6568887a20492, type: 3}
   text: Rumkorpf

@@ -4,6 +4,7 @@ using FourGear.UI;
 using FourGear.Mechanics;
 using FourGear.Singletons;
 using FourGear.Dialogue;
+
 namespace FourGear
 {
     public class SceneLoaded : MonoBehaviour
@@ -155,13 +156,12 @@ namespace FourGear
         private void PrepareSceneMainMenu()
         {
             OnMouseEvents.numberOfMissedClicks = 0;
-            if (DialogueManager.otherObjects != null || DialogueManager.objects != null)
+            if (Objects.otherObjects != null || Objects.objects != null)
             {
-                for (int i = 0; i < DialogueManager.otherObjects.Length; i++)
-                    Destroy(DialogueManager.otherObjects[i]);
-                for (int i = 0; i < DialogueManager.objects.Length; i++)
-                    Destroy(DialogueManager.objects[i]);
-
+                for (int i = 0; i < Objects.otherObjects.Length; i++)
+                    Destroy(Objects.otherObjects[i]);
+                for (int i = 0; i < Objects.objects.Length; i++)
+                    Destroy(Objects.objects[i]);
             }
 
             GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");

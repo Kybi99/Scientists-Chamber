@@ -12,7 +12,7 @@ namespace FourGear.UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
             {
                 if (gameIsPaused)
                     Resume();

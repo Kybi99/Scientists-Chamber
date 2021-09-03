@@ -137,7 +137,7 @@ namespace FourGear.Mechanics
 
                 dragAnDrop.isMoving = true;
 
-                if(TimerManager.timeValue == 0)
+                if (TimerManager.timeValue == 0)
                     Destroy(this.gameObject);
             }
         }
@@ -197,6 +197,7 @@ namespace FourGear.Mechanics
         private void PutObjectInPlaceholder()
         {
             this.transform.SetParent(dragAnDrop.correctForm.transform);
+            this.gameObject.GetComponent<SpriteRenderer>().sprite = this.gameObject.transform.parent.GetComponent<SpriteRenderer>().sprite;
             dragAnDrop.thisObjectIsIn = true;
             DialogueManager.dialogueTrigger.TriggerDialogue(index);
 
