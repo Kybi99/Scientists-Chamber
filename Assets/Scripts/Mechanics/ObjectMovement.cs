@@ -7,6 +7,8 @@ namespace FourGear.Mechanics
     public class ObjectMovement : MonoBehaviour
     {
         [SerializeField] private BezierCurvePath bezierCurvePath;
+        public bool thisObjectIsFlying;
+        public static bool isNextSceneAllowed;
         private float tParam;
         private float speedModifier;
         private string sortingLayer;
@@ -18,22 +20,24 @@ namespace FourGear.Mechanics
         private Vector3 resetScale;
         private Vector2 resetOffset;
         private BoxCollider2D boxCollider2D;
+        public static int numberOfObjectsFlying;
         public static int routeToGo;
         public static bool coroutineAllowed;
+        public Particles particles;
         [HideInInspector] public bool inInventory;
         [HideInInspector] public int routeTaken;
         [HideInInspector] public Vector2 objectPosition;
 
-
-
-
         void Start()
         {
+            numberOfObjectsFlying = 0;
             routeToGo = 0;
             tParam = 0f;
             speedModifier = 0.8f;
             coroutineAllowed = true;
             inInventory = false;
+            isNextSceneAllowed = true;
+            thisObjectIsFlying = false;
             resetParent = this.transform.parent;
             sprite = this.gameObject.GetComponent<SpriteRenderer>();
             sortingLayer = sprite.sortingLayerName;
@@ -46,38 +50,65 @@ namespace FourGear.Mechanics
 
         public IEnumerator GoByTheRoute(int routeNumber)
         {
-            tParam = 0f;
-            bezierCurvePath.GetValuesForBezier(routeNumber);
+            isNextSceneAllowed = false;
 
-            routeTaken = routeToGo;
-            startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            sprite.sortingLayerName = "Ispred svega";
-
-            while (tParam < 1)
+            if (!thisObjectIsFlying && coroutineAllowed)
             {
-                tParam += Time.deltaTime * speedModifier;
-                bezierCurvePath.Bezier(tParam, speedModifier);
-                //Update position and rotation
-                transform.position = objectPosition;
-                // transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
+                thisObjectIsFlying = true;
+                numberOfObjectsFlying++;
+                //Debug.Log(numberOfObjectsFlying);
+                tParam = 0f;
+                bezierCurvePath.GetValuesForBezier(routeNumber);
 
-                yield return new WaitForEndOfFrame();
+
+                routeTaken = routeToGo;
+                this.transform.SetParent(Inventory.arraySlots[routeTaken].transform);
+
+                startPosition = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+                sprite.sortingLayerName = "Ispred svega";
+
+                while (tParam < 1)
+                {
+                    tParam += Time.deltaTime * speedModifier;
+                    bezierCurvePath.Bezier(tParam, speedModifier);
+                    //Update position and rotation
+                    transform.position = objectPosition;
+                    // transform.Rotate(new Vector3(0, 0, -360 * Time.deltaTime * speedModifier));
+
+                    yield return new WaitForEndOfFrame();
+                }
+                particles.PauseParticles();
+
+                AddXtoName();
+
+                FixItInSlot();
+
+                particles.ResumeParticles();
+
+                StopCoroutine(GoByTheRoute(routeToGo));
+
+                //routeToGo++;
+                inInventory = true;
+
+                yield return new WaitForSeconds(0.5f);
+
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
+                //particles.RestartParticles();
+
+                yield return new WaitForSeconds(0.5f);
+
+                numberOfObjectsFlying--;
+
+                if (numberOfObjectsFlying == 0)
+                    isNextSceneAllowed = true;
+        
+
+                coroutineAllowed = true;
+
+                thisObjectIsFlying = false;
             }
-            Particles.PauseParticles();
 
-            AddXtoName();
-
-            FixItInSlot();
-
-            Particles.ResumeParticles();
-
-            StopCoroutine(GoByTheRoute(routeToGo));
-
-            routeToGo++;
-            inInventory = true;
-            yield return new WaitForSeconds(0.4f);
-            Particles.RestartParticles();
-            coroutineAllowed = true;
         }
 
         private void AddXtoName()
@@ -96,7 +127,7 @@ namespace FourGear.Mechanics
             else
                 transform.localScale = new Vector2(0.7f, 0.7f);
             transform.rotation = Quaternion.Euler(Vector3.zero);
-            this.transform.parent = Inventory.arraySlots[routeTaken].transform;
+
             this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -3f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
             boxCollider2D.offset = Vector2.zero;
@@ -104,34 +135,55 @@ namespace FourGear.Mechanics
 
         public IEnumerator GoByTheRoute2(int routeNumber)
         {
-            tParam = 1f;
-            bezierCurvePath.GetValuesForBezier(routeNumber);
+            isNextSceneAllowed = false;
 
-            transform.localScale = resetScale;
-
-            while (tParam > 0)
+            if (!thisObjectIsFlying && coroutineAllowed)
             {
-                tParam -= Time.deltaTime * speedModifier;
-                bezierCurvePath.Bezier(tParam, speedModifier);
-                transform.position = objectPosition;
-                // transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
+                thisObjectIsFlying = true;
+                numberOfObjectsFlying++;
+                //Debug.Log(numberOfObjectsFlying);
+                tParam = 1f;
+                bezierCurvePath.GetValuesForBezier(routeNumber);
 
-                yield return new WaitForEndOfFrame();
+                transform.localScale = resetScale;
+
+                while (tParam > 0)
+                {
+                    tParam -= Time.deltaTime * speedModifier;
+                    bezierCurvePath.Bezier(tParam, speedModifier);
+                    transform.position = objectPosition;
+                    // transform.Rotate(new Vector3(0, 0, 360 * Time.deltaTime * speedModifier));
+
+                    yield return new WaitForEndOfFrame();
+                }
+
+                particles.PauseParticles();
+
+                PutItBack();
+
+                particles.ResumeParticles();
+
+                StopCoroutine(GoByTheRoute2(routeTaken));
+
+                inInventory = false;
+
+                yield return new WaitForSeconds(0.5f);
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
+                yield return new WaitForSeconds(0.5f);
+                //particles.RestartParticles();
+                numberOfObjectsFlying--;
+
+                if (numberOfObjectsFlying == 0)
+                    isNextSceneAllowed = true;
+
+
+                coroutineAllowed = true;
+
+                thisObjectIsFlying = false;
+
             }
 
-            Particles.PauseParticles();
-
-            PutItBack();
-
-            Particles.ResumeParticles();
-
-            StopCoroutine(GoByTheRoute2(routeTaken));
-
-            inInventory = false;
-
-            yield return new WaitForSeconds(0.4f);
-            Particles.RestartParticles();
-            coroutineAllowed = true;
         }
 
         private void PutItBack()

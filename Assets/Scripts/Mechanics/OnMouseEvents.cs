@@ -24,6 +24,7 @@ namespace FourGear.Mechanics
         private Quaternion resetRotation;
         public static string sceneName;
         public static string sceneName2;
+        public Particles particles;
 
 
         private void Start()
@@ -62,6 +63,7 @@ namespace FourGear.Mechanics
         }
         private void OnClick()
         {
+            Debug.Log(ObjectMovement.routeToGo);
             if (this.gameObject.name == backgroundName)
             {
                 rememberClicks = numberOfMissedClicks;
@@ -70,8 +72,10 @@ namespace FourGear.Mechanics
             else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length)
             {
                 numberOfMissedClicks--;
-                Particles.PlayParticle(this.gameObject.transform);
+                if (this.gameObject.transform.childCount == 0 && !objectMovement.thisObjectIsFlying)
+                    particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
+                Debug.Log(ObjectMovement.routeToGo);
                 if (ObjectMovement.routeToGo != -1)
                     StartCoroutine(objectMovement.GoByTheRoute(ObjectMovement.routeToGo));
             }
@@ -79,7 +83,8 @@ namespace FourGear.Mechanics
             else if (objectMovement.inInventory && ObjectMovement.coroutineAllowed)
             {
                 numberOfMissedClicks--;
-                Particles.PlayParticle(this.gameObject.transform);
+                if (this.gameObject.transform.childCount == 0 && !objectMovement.thisObjectIsFlying)
+                    particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
                 StartCoroutine(objectMovement.GoByTheRoute2(objectMovement.routeTaken));
             }
@@ -89,7 +94,7 @@ namespace FourGear.Mechanics
         {
             tMPro = this.gameObject.GetComponentInChildren<TMP_Text>();
             numberOfMissedClicks++;
-            Debug.Log(numberOfMissedClicks);
+            //            Debug.Log(numberOfMissedClicks);
 
             if (rememberClicks % 10 == 0 && rememberClicks != 0 && rememberClicks != rememberLastTimeClicks)
             {

@@ -22,7 +22,7 @@ namespace FourGear.Mechanics
 
         public void GetValuesForBezier(int routeNumber)
         {
-            ObjectMovement.coroutineAllowed = false;
+            //ObjectMovement.coroutineAllowed = false;
 
             p0 = routes[routeNumber].GetChild(0).position;
             p1 = routes[routeNumber].GetChild(1).position;

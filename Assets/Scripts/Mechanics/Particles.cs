@@ -4,20 +4,19 @@ namespace FourGear.Mechanics
 {
     public class Particles : MonoBehaviour
     {
-        private static GameObject effect;
-        private static GameObject effect2;
-        private static ParticleSystem particleSystem1;
-        private static ParticleSystem particleSystem2;
-
-        private static GameObject trail;
-        private static GameObject trail2;
+        private GameObject effect;
+        private GameObject effect2;
+        private ParticleSystem particleSystem1;
+        private ParticleSystem particleSystem2;
+        public GameObject trail;
+        public GameObject trail2;
 
         void Start()
         {
             trail = GameObject.FindGameObjectWithTag("particle");
-            trail2 = GameObject.FindGameObjectWithTag("secondParticle");
+            //trail2 = GameObject.FindGameObjectWithTag("secondParticle");
         }
-        public static void PlayParticle(Transform objectTransform)
+        public void PlayParticle(Transform objectTransform)
         {
             effect = Instantiate(trail, objectTransform.position, Quaternion.identity);
             particleSystem1 = effect.GetComponent<ParticleSystem>();
@@ -29,25 +28,35 @@ namespace FourGear.Mechanics
             particleSystem2.Play();
             effect2.transform.parent = objectTransform;
         }
-        public static void PauseParticles()
+        public void PauseParticles()
         {
-            particleSystem1.Pause();
-            particleSystem2.Pause();
+            if (particleSystem1 != null && particleSystem2 != null)
+            {
+                particleSystem1.Pause();
+                particleSystem2.Pause();
+            }
+
         }
-        public static void ResumeParticles()
+        public void ResumeParticles()
         {
-            particleSystem1.Play();
-            particleSystem2.Play();
+            if (particleSystem1 != null && particleSystem2 != null)
+            {
+                particleSystem1.Play();
+                particleSystem2.Play();
+            }
+
         }
 
 
-        public static void RestartParticles()
+        public void RestartParticles()
         {
+            effect.GetComponent<ParticleSystem>().Stop();
+            effect2.GetComponent<ParticleSystem>().Stop();
             effect.GetComponent<ParticleSystem>().Simulate(1, true, true);
             effect2.GetComponent<ParticleSystem>().Simulate(1, true, true);
 
-            Destroy(effect);
-            Destroy(effect2);
+            /* Destroy(effect);
+             Destroy(effect2);*/
         }
 
     }

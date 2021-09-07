@@ -53,7 +53,7 @@ namespace FourGear.Mechanics
 
                 firstObjectRenderer.enabled = false;
 
-                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectMovement.coroutineAllowed)
+                if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectMovement.coroutineAllowed && ObjectMovement.isNextSceneAllowed)
                 {
                     if (OnMouseEvents.numberOfMissedClicks % 10 == 9)
                         OnMouseEvents.numberOfMissedClicks++;
