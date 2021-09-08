@@ -69,10 +69,13 @@ namespace FourGear.Mechanics
                 rememberClicks = numberOfMissedClicks;
                 CalculateMissClicks();
             }
-            else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length)
+            else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length && !objectMovement.thisObjectIsFlying )
             {
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
+
                 numberOfMissedClicks--;
-                if (this.gameObject.transform.childCount == 0 && !objectMovement.thisObjectIsFlying)
+               // if (this.gameObject.transform.childCount == 0 )
                     particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
                 Debug.Log(ObjectMovement.routeToGo);
@@ -80,10 +83,13 @@ namespace FourGear.Mechanics
                     StartCoroutine(objectMovement.GoByTheRoute(ObjectMovement.routeToGo));
             }
 
-            else if (objectMovement.inInventory && ObjectMovement.coroutineAllowed)
+            else if (objectMovement.inInventory && ObjectMovement.coroutineAllowed && !objectMovement.thisObjectIsFlying)
             {
+                foreach (Transform child in transform)
+                    Destroy(child.gameObject);
+
                 numberOfMissedClicks--;
-                if (this.gameObject.transform.childCount == 0 && !objectMovement.thisObjectIsFlying)
+                //if (this.gameObject.transform.childCount == 0)
                     particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
                 StartCoroutine(objectMovement.GoByTheRoute2(objectMovement.routeTaken));

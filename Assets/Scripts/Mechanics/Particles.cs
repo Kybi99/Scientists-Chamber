@@ -13,7 +13,7 @@ namespace FourGear.Mechanics
 
         void Start()
         {
-            trail = GameObject.FindGameObjectWithTag("particle");
+            //trail = GameObject.FindGameObjectWithTag("particle");
             //trail2 = GameObject.FindGameObjectWithTag("secondParticle");
         }
         public void PlayParticle(Transform objectTransform)
@@ -28,32 +28,42 @@ namespace FourGear.Mechanics
             particleSystem2.Play();
             effect2.transform.parent = objectTransform;
         }
-        public void PauseParticles()
+        public void PauseParticles(ParticleSystem[] particleSystem)
         {
-            if (particleSystem1 != null && particleSystem2 != null)
+            for (int i = 0; i < particleSystem.Length; i++)
             {
-                particleSystem1.Pause();
-                particleSystem2.Pause();
+                if (particleSystem[i] != null)
+                {
+                    particleSystem[i].Pause();
+                }
             }
-
         }
-        public void ResumeParticles()
+        public void ResumeParticles(ParticleSystem[] particleSystem)
         {
-            if (particleSystem1 != null && particleSystem2 != null)
+            for (int i = 0; i < particleSystem.Length; i++)
             {
-                particleSystem1.Play();
-                particleSystem2.Play();
+                if (particleSystem[i] != null)
+                {
+                    particleSystem[i].Play();
+                }
             }
-
         }
 
 
-        public void RestartParticles()
+        public void RestartParticles(ParticleSystem[] particleSystem)
         {
-            effect.GetComponent<ParticleSystem>().Stop();
+            for (int i = 0; i < particleSystem.Length; i++)
+            {
+                if (particleSystem[i] != null)
+                {
+                    particleSystem[i].Stop();
+                    particleSystem[i].Simulate(0.4f, true, true);;
+                }
+            }
+            /*effect.GetComponent<ParticleSystem>().Stop();
             effect2.GetComponent<ParticleSystem>().Stop();
-            effect.GetComponent<ParticleSystem>().Simulate(1, true, true);
-            effect2.GetComponent<ParticleSystem>().Simulate(1, true, true);
+            effect.GetComponent<ParticleSystem>().Simulate(0, true, true);
+            effect2.GetComponent<ParticleSystem>().Simulate(0, true, true);*/
 
             /* Destroy(effect);
              Destroy(effect2);*/

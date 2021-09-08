@@ -20,6 +20,7 @@ namespace FourGear.Mechanics
         private Vector3 resetScale;
         private Vector2 resetOffset;
         private BoxCollider2D boxCollider2D;
+        private ParticleSystem[] particlesSystem;
         public static int numberOfObjectsFlying;
         public static int routeToGo;
         public static bool coroutineAllowed;
@@ -50,6 +51,8 @@ namespace FourGear.Mechanics
 
         public IEnumerator GoByTheRoute(int routeNumber)
         {
+            particlesSystem = this.gameObject.transform.GetComponentsInChildren<ParticleSystem>();
+
             isNextSceneAllowed = false;
 
             if (!thisObjectIsFlying && coroutineAllowed)
@@ -77,36 +80,36 @@ namespace FourGear.Mechanics
 
                     yield return new WaitForEndOfFrame();
                 }
-                particles.PauseParticles();
+                particles.PauseParticles(particlesSystem);
 
                 AddXtoName();
 
                 FixItInSlot();
 
-                particles.ResumeParticles();
+                particles.ResumeParticles(particlesSystem);
+
 
                 StopCoroutine(GoByTheRoute(routeToGo));
 
                 //routeToGo++;
                 inInventory = true;
 
-                yield return new WaitForSeconds(0.5f);
+                yield return new WaitForSeconds(0.3f);
 
-                foreach (Transform child in transform)
-                    Destroy(child.gameObject);
-                //particles.RestartParticles();
+               /* foreach (Transform child in transform)
+                    Destroy(child.gameObject);*/
 
-                yield return new WaitForSeconds(0.5f);
-
+                //particles.RestartParticles(particlesSystem);
                 numberOfObjectsFlying--;
 
                 if (numberOfObjectsFlying == 0)
                     isNextSceneAllowed = true;
-        
-
-                coroutineAllowed = true;
 
                 thisObjectIsFlying = false;
+
+                yield return new WaitForSeconds(0.5f);
+
+                coroutineAllowed = true;
             }
 
         }
@@ -135,6 +138,8 @@ namespace FourGear.Mechanics
 
         public IEnumerator GoByTheRoute2(int routeNumber)
         {
+            particlesSystem = this.gameObject.transform.GetComponentsInChildren<ParticleSystem>();
+
             isNextSceneAllowed = false;
 
             if (!thisObjectIsFlying && coroutineAllowed)
@@ -157,30 +162,34 @@ namespace FourGear.Mechanics
                     yield return new WaitForEndOfFrame();
                 }
 
-                particles.PauseParticles();
+                particles.PauseParticles(particlesSystem);
 
                 PutItBack();
 
-                particles.ResumeParticles();
+                particles.ResumeParticles(particlesSystem);
 
                 StopCoroutine(GoByTheRoute2(routeTaken));
 
                 inInventory = false;
 
-                yield return new WaitForSeconds(0.5f);
-                foreach (Transform child in transform)
-                    Destroy(child.gameObject);
-                yield return new WaitForSeconds(0.5f);
-                //particles.RestartParticles();
+                yield return new WaitForSeconds(0.3f);
+
+                /*foreach (Transform child in transform)
+                    Destroy(child.gameObject);*/
+
+
+                //particles.RestartParticles(particlesSystem);
                 numberOfObjectsFlying--;
 
                 if (numberOfObjectsFlying == 0)
                     isNextSceneAllowed = true;
 
+                thisObjectIsFlying = false;
+
+                yield return new WaitForSeconds(0.5f);
 
                 coroutineAllowed = true;
 
-                thisObjectIsFlying = false;
 
             }
 

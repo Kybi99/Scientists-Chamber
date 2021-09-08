@@ -906,6 +906,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 76840176}
   objectMovement: {fileID: 76840179}
   dragAnDrop: {fileID: 76840178}
+  particles: {fileID: 782424499}
 --- !u!114 &76840176
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -972,6 +973,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 76840174}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -2711,6 +2714,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 0}
   objectMovement: {fileID: 0}
   dragAnDrop: {fileID: 0}
+  particles: {fileID: 0}
 --- !u!1 &229128618
 GameObject:
   m_ObjectHideFlags: 0
@@ -4718,6 +4722,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 444753572}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -4854,6 +4860,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 444753565}
   objectMovement: {fileID: 444753566}
   dragAnDrop: {fileID: 444753567}
+  particles: {fileID: 782424499}
 --- !u!114 &444753572
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5204,6 +5211,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 460487673}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -5243,6 +5252,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 460487668}
   objectMovement: {fileID: 460487670}
   dragAnDrop: {fileID: 460487669}
+  particles: {fileID: 782424499}
 --- !u!114 &460487673
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10314,7 +10324,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 483985101}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.54, y: -0.48, z: -28.07}
+  m_LocalPosition: {x: 1.78, y: -1.08, z: -28.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1368791298}
@@ -10332,6 +10342,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d2aad2f54e15145bd5974d7551cf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trail: {fileID: 483985101}
+  trail2: {fileID: 782424497}
 --- !u!1 &492087685
 GameObject:
   m_ObjectHideFlags: 0
@@ -10436,6 +10448,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 492337785}
   objectMovement: {fileID: 492337788}
   dragAnDrop: {fileID: 492337786}
+  particles: {fileID: 782424499}
 --- !u!114 &492337785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10499,6 +10512,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 492337787}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -11447,6 +11462,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 565440854}
   objectMovement: {fileID: 565440857}
   dragAnDrop: {fileID: 565440856}
+  particles: {fileID: 782424499}
 --- !u!114 &565440854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11513,6 +11529,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 565440852}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -11806,6 +11824,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 581788375}
   objectMovement: {fileID: 581788379}
   dragAnDrop: {fileID: 581788378}
+  particles: {fileID: 782424499}
 --- !u!114 &581788375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11898,6 +11917,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 581788373}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -13610,6 +13631,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 747049970}
   objectMovement: {fileID: 747049974}
   dragAnDrop: {fileID: 747049973}
+  particles: {fileID: 782424499}
 --- !u!114 &747049970
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13702,6 +13724,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 747049968}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -14090,7 +14114,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 782424497}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 1.73, y: 3.1799994, z: -28.07}
+  m_LocalPosition: {x: 2.02, y: 0.17, z: -28.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1368791298}
@@ -14108,6 +14132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42d2aad2f54e15145bd5974d7551cf85, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  trail: {fileID: 483985101}
+  trail2: {fileID: 782424497}
 --- !u!199 &782424500
 ParticleSystemRenderer:
   serializedVersion: 6
@@ -18984,6 +19010,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 791402864}
   objectMovement: {fileID: 791402867}
   dragAnDrop: {fileID: 791402865}
+  particles: {fileID: 782424499}
 --- !u!114 &791402864
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19047,6 +19074,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 791402866}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -24222,6 +24251,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 822709051}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -24272,6 +24303,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 822709049}
   objectMovement: {fileID: 822709047}
   dragAnDrop: {fileID: 822709048}
+  particles: {fileID: 782424499}
 --- !u!114 &822709051
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25579,6 +25611,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 931292075}
   objectMovement: {fileID: 931292078}
   dragAnDrop: {fileID: 931292076}
+  particles: {fileID: 782424499}
 --- !u!114 &931292075
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -25642,6 +25675,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 931292077}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -27785,6 +27820,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1057507457}
   objectMovement: {fileID: 1057507460}
   dragAnDrop: {fileID: 1057507458}
+  particles: {fileID: 782424499}
 --- !u!114 &1057507457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27848,6 +27884,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1057507459}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -28563,6 +28601,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1191236414}
   objectMovement: {fileID: 1191236417}
   dragAnDrop: {fileID: 1191236416}
+  particles: {fileID: 782424499}
 --- !u!114 &1191236414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28626,6 +28665,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1191236415}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -29940,6 +29981,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1282889667}
   objectMovement: {fileID: 1282889670}
   dragAnDrop: {fileID: 1282889669}
+  particles: {fileID: 0}
 --- !u!114 &1282889667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30006,6 +30048,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1282889665}
+  thisObjectIsFlying: 0
+  particles: {fileID: 0}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -30553,6 +30597,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1322275879}
   objectMovement: {fileID: 1322275883}
   dragAnDrop: {fileID: 1322275882}
+  particles: {fileID: 782424499}
 --- !u!114 &1322275879
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30645,6 +30690,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1322275877}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -31325,6 +31372,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1368791298}
+  - component: {fileID: 1368791299}
   m_Layer: 0
   m_Name: Particles
   m_TagString: Untagged
@@ -31350,6 +31398,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1368791299
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1368791297}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302034fa1e16f8549b45f880a812b1cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1369569532
 GameObject:
   m_ObjectHideFlags: 0
@@ -34615,6 +34675,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1657216093}
   objectMovement: {fileID: 1657216096}
   dragAnDrop: {fileID: 1657216094}
+  particles: {fileID: 782424499}
 --- !u!114 &1657216093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -34678,6 +34739,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1657216095}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -36574,6 +36637,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1807501226}
   objectMovement: {fileID: 1807501229}
   dragAnDrop: {fileID: 1807501227}
+  particles: {fileID: 782424499}
 --- !u!114 &1807501226
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -36637,6 +36701,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1807501228}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -37395,6 +37461,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 1871591461}
   objectMovement: {fileID: 1871591464}
   dragAnDrop: {fileID: 1871591463}
+  particles: {fileID: 782424499}
 --- !u!114 &1871591461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -37461,6 +37528,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 1871591459}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -44531,6 +44600,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 2052626785}
   objectMovement: {fileID: 2052626788}
   dragAnDrop: {fileID: 2052626787}
+  particles: {fileID: 782424499}
 --- !u!114 &2052626785
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44597,6 +44667,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 2052626783}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -45380,6 +45452,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 2107628794}
   objectMovement: {fileID: 2107628798}
   dragAnDrop: {fileID: 2107628797}
+  particles: {fileID: 782424499}
 --- !u!114 &2107628794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45472,6 +45545,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 2107628792}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
@@ -45687,6 +45762,7 @@ MonoBehaviour:
   findEmptySlot: {fileID: 2118080338}
   objectMovement: {fileID: 2118080341}
   dragAnDrop: {fileID: 2118080340}
+  particles: {fileID: 782424499}
 --- !u!114 &2118080338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45753,6 +45829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bezierCurvePath: {fileID: 2118080336}
+  thisObjectIsFlying: 0
+  particles: {fileID: 782424499}
   inInventory: 0
   routeTaken: 0
   objectPosition: {x: 0, y: 0}
