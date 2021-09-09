@@ -10,10 +10,6 @@ namespace FourGear
     public class SceneLoaded : MonoBehaviour
     {
         int i;
-        [SerializeField] private Texture2D cursorTexture;
-        private Vector2 hotSpot;
-        private string sceneName;
-        private string sceneName2;
         public static GameObject[] placeholders;
         public static GameObject[] objects;
         public static GameObject[] otherObjects;
@@ -97,7 +93,6 @@ namespace FourGear
 
         private void PrepareSceneSkladiste()
         {
-
             //Change active scripts on objects and activate deactivated objects when coming back to first room 
 
             for (i = 0; i < objects.Length; i++)

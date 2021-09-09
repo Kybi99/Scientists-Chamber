@@ -5,77 +5,82 @@ namespace FourGear.UI
 {
     public class ShowHint : MonoBehaviour
     {
-        [SerializeField] private GameObject helpScript;
         private int numberOfClosedHints = 0;
-        public Image image;
-        private Color tempColor;
+        public static CanvasGroup canvasGroup;
+        public GameObject helpScript;
         public static bool canClick;
         public static bool canZoom;
         public static bool canShowHint;
         public Animator animator;
         public static bool isFirstTimeInScene = true;
-        private void Start()
+        private void Awake()
         {
-            tempColor = image.color;
+            canvasGroup = GetComponentInChildren<CanvasGroup>();
 
             canShowHint = true;
             if (isFirstTimeInScene)
-                ShowHints();
+                canvasGroup.alpha = 1;
             else
             {
+                animator.SetBool("OpenTheScroll", false);
+                animator.SetBool("CloseTheScroll", true);
                 canClick = true;
                 canZoom = true;
             }
+            if (ShowHint.isFirstTimeInScene)
+                this.GetComponent<Canvas>().enabled = true;
+            else
+                this.GetComponent<Canvas>().enabled = false;
         }
         private void Update()
         {
-            if (PauseMenu.gameIsPaused)
-                helpScript.SetActive(false);
+            /*if (PauseMenu.gameIsPaused)
+            {
+                animator.SetBool("CloseTheScroll", true);
+                this.GetComponent<Canvas>().enabled = false;
+            }*/
         }
         public void ShowHints()
         {
-            if (helpScript.GetComponent<Image>().color.a == 0 && canShowHint)
+            if (canShowHint && canvasGroup.alpha == 0)
             {
-                tempColor.a = 1f;
-                image.color = tempColor;
-
+                animator.SetBool("OpenTheScroll", true);
                 animator.SetBool("CloseTheScroll", false);
+
+                this.GetComponent<Canvas>().enabled = true;
+
                 canClick = false;
                 canZoom = false;
                 OnMouseEvents.numberOfMissedClicks--;
             }
-            else
+            else if (!isFirstTimeInScene && canShowHint && canvasGroup.alpha == 0)
             {
-                if (numberOfClosedHints == 0)
-                {
-                    animator.SetBool("CloseTheScroll", true);
-                }
-                /* else
-                     helpScript.SetActive(false);*/
+                canvasGroup.alpha = 0;
+                OnMouseEvents.numberOfMissedClicks--;
+                animator.SetBool("OpenTheScroll", true);
+                animator.SetBool("CloseTheScroll", false);
+
+                this.GetComponent<Canvas>().enabled = true;
+
+            }
+            else if (canvasGroup.alpha == 1)
+            {
                 animator.SetBool("CloseTheScroll", true);
+                animator.SetBool("OpenTheScroll", false);
+
                 canClick = true;
                 canZoom = true;
+                OnMouseEvents.numberOfMissedClicks--;
             }
 
         }
         public void CloseHint()
         {
-            if (numberOfClosedHints == 0)
-            {
-                animator.SetBool("CloseTheScroll", true);
-            }
-            /*else
-                helpScript.SetActive(false);*/
+            OnMouseEvents.numberOfMissedClicks--;
+            animator.SetBool("CloseTheScroll", true);
+            animator.SetBool("OpenTheScroll", false);
             canClick = true;
             canZoom = true;
-        }
-        public void DisableClick()
-        {
-            tempColor.a = 1f;
-            image.color = tempColor;
-
-            canClick = false;
-            canZoom = false;
         }
     }
 

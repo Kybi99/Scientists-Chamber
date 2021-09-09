@@ -9,10 +9,11 @@ namespace FourGear.UI
         public static bool gameIsPaused;
         public GameObject pausemenuUi;
         public Texture2D resetCursorTexture;
+        public ShowHint showHint;
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
+            if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 && (ShowHint.canvasGroup.alpha == 0 || ShowHint.canvasGroup.alpha == 1))
             {
                 if (gameIsPaused)
                     Resume();
@@ -22,6 +23,8 @@ namespace FourGear.UI
         }
         public void Resume()
         {
+            showHint.helpScript.SetActive(true); 
+
             pausemenuUi.SetActive(false);
             ShowHint.canClick = true;
             ShowHint.canShowHint = true;
@@ -35,6 +38,8 @@ namespace FourGear.UI
 
         public void Pause()
         {
+            showHint.helpScript.SetActive(false);
+        
             pausemenuUi.SetActive(true);
             ShowHint.canClick = false;
             ShowHint.canShowHint = false;
