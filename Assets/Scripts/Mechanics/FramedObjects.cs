@@ -98,7 +98,7 @@ namespace FourGear.Mechanics
         private void LoadNextSceneIfDoorIsOpen()
         {
             //Load next scene if door is open and none of the objects are moving
-            if (rememberTime - TimerManager.timeValue >= 0.3f)
+            if (rememberTime - TimerManager.timeValue >= 0.4f)
                 nextScene.LoadNextScene();
             if (tMPro != null)
                 tMPro.text = "";

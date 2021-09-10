@@ -8,13 +8,13 @@ namespace FourGear.Mechanics
         private GameObject effect2;
         private ParticleSystem particleSystem1;
         private ParticleSystem particleSystem2;
-        public GameObject trail;
-        public GameObject trail2;
+        private GameObject trail;
+        private GameObject particles;
 
         void Start()
         {
-            //trail = GameObject.FindGameObjectWithTag("particle");
-            //trail2 = GameObject.FindGameObjectWithTag("secondParticle");
+            trail = GameObject.FindGameObjectWithTag("particle");
+            particles = GameObject.FindGameObjectWithTag("secondParticle");
         }
         public void PlayParticle(Transform objectTransform)
         {
@@ -23,7 +23,7 @@ namespace FourGear.Mechanics
             particleSystem1.Play();
             effect.transform.parent = objectTransform;
 
-            effect2 = Instantiate(trail2, objectTransform.position, Quaternion.identity);
+            effect2 = Instantiate(particles, objectTransform.position, Quaternion.identity);
             particleSystem2 = effect2.GetComponent<ParticleSystem>();
             particleSystem2.Play();
             effect2.transform.parent = objectTransform;

@@ -7,6 +7,7 @@ namespace FourGear.Mechanics
     public class ObjectMovement : MonoBehaviour
     {
         [SerializeField] private BezierCurvePath bezierCurvePath;
+        private Particles particles;
         public bool thisObjectIsFlying;
         public static bool isNextSceneAllowed;
         private float tParam;
@@ -24,7 +25,7 @@ namespace FourGear.Mechanics
         public static int numberOfObjectsFlying;
         public static int routeToGo;
         public static bool coroutineAllowed;
-        public Particles particles;
+
         [HideInInspector] public bool inInventory;
         [HideInInspector] public int routeTaken;
         [HideInInspector] public Vector2 objectPosition;
@@ -41,6 +42,7 @@ namespace FourGear.Mechanics
             thisObjectIsFlying = false;
             resetParent = this.transform.parent;
             sprite = this.gameObject.GetComponent<SpriteRenderer>();
+            particles = GameObject.FindObjectOfType<Particles>();
             sortingLayer = sprite.sortingLayerName;
             resetRotation = this.gameObject.transform.rotation;
             boxCollider2D = this.gameObject.GetComponent<BoxCollider2D>();
@@ -96,8 +98,8 @@ namespace FourGear.Mechanics
 
                 yield return new WaitForSeconds(0.3f);
 
-               /* foreach (Transform child in transform)
-                    Destroy(child.gameObject);*/
+                /* foreach (Transform child in transform)
+                     Destroy(child.gameObject);*/
 
                 //particles.RestartParticles(particlesSystem);
                 numberOfObjectsFlying--;

@@ -5,8 +5,9 @@ namespace FourGear.UI
 {
     public class ShowHint : MonoBehaviour
     {
-        private int numberOfClosedHints = 0;
+        //private int numberOfClosedHints = 0;
         public static CanvasGroup canvasGroup;
+        public Button hintButton;
         public GameObject helpScript;
         public static bool canClick;
         public static bool canZoom;
@@ -15,6 +16,7 @@ namespace FourGear.UI
         public static bool isFirstTimeInScene = true;
         private void Awake()
         {
+
             canvasGroup = GetComponentInChildren<CanvasGroup>();
 
             canShowHint = true;
@@ -24,6 +26,7 @@ namespace FourGear.UI
             {
                 animator.SetBool("OpenTheScroll", false);
                 animator.SetBool("CloseTheScroll", true);
+                canvasGroup.alpha = 0;
                 canClick = true;
                 canZoom = true;
             }
@@ -34,11 +37,13 @@ namespace FourGear.UI
         }
         private void Update()
         {
-            /*if (PauseMenu.gameIsPaused)
+            if (PauseMenu.gameIsPaused)
             {
-                animator.SetBool("CloseTheScroll", true);
-                this.GetComponent<Canvas>().enabled = false;
-            }*/
+                hintButton.interactable = false;
+            }
+            else
+                hintButton.interactable = true;         
+
         }
         public void ShowHints()
         {

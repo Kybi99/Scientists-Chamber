@@ -13,7 +13,18 @@ namespace FourGear.UI
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 && (ShowHint.canvasGroup.alpha == 0 || ShowHint.canvasGroup.alpha == 1))
+            if (ShowHint.canvasGroup != null)
+            {
+                if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 && (ShowHint.canvasGroup.alpha == 0 || ShowHint.canvasGroup.alpha == 1))
+                {
+                    if (gameIsPaused)
+                        Resume();
+                    else
+                        Pause();
+                }
+            }
+
+            else if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
             {
                 if (gameIsPaused)
                     Resume();
@@ -23,11 +34,16 @@ namespace FourGear.UI
         }
         public void Resume()
         {
-            showHint.helpScript.SetActive(true); 
+            if (showHint.helpScript != null)
+                showHint.helpScript.SetActive(true);
 
             pausemenuUi.SetActive(false);
-            ShowHint.canClick = true;
-            ShowHint.canShowHint = true;
+            if (ShowHint.canvasGroup.alpha == 0)
+            {
+                ShowHint.canClick = true;
+                ShowHint.canShowHint = true;
+            }
+
             //CursorManager.canChangeCursor = true;
             Time.timeScale = 1f;
             gameIsPaused = false;
@@ -38,8 +54,9 @@ namespace FourGear.UI
 
         public void Pause()
         {
-            showHint.helpScript.SetActive(false);
-        
+            if (showHint.helpScript != null)
+                showHint.helpScript.SetActive(false);
+
             pausemenuUi.SetActive(true);
             ShowHint.canClick = false;
             ShowHint.canShowHint = false;

@@ -24,11 +24,12 @@ namespace FourGear.Mechanics
         private Quaternion resetRotation;
         public static string sceneName;
         public static string sceneName2;
-        public Particles particles;
+        public static Particles particles;
 
 
         private void Start()
         {
+            particles = GameObject.FindObjectOfType<Particles>();
             rememberLastTimeClicks = 0;
             rememberClicks = 0;
             backgroundName = "Pozadina";
@@ -69,14 +70,14 @@ namespace FourGear.Mechanics
                 rememberClicks = numberOfMissedClicks;
                 CalculateMissClicks();
             }
-            else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length && !objectMovement.thisObjectIsFlying )
+            else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length && !objectMovement.thisObjectIsFlying)
             {
                 foreach (Transform child in transform)
                     Destroy(child.gameObject);
 
                 numberOfMissedClicks--;
-               // if (this.gameObject.transform.childCount == 0 )
-                    particles.PlayParticle(this.gameObject.transform);
+                //if (this.gameObject.transform.childCount == 0)
+                particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
                 Debug.Log(ObjectMovement.routeToGo);
                 if (ObjectMovement.routeToGo != -1)
@@ -90,7 +91,7 @@ namespace FourGear.Mechanics
 
                 numberOfMissedClicks--;
                 //if (this.gameObject.transform.childCount == 0)
-                    particles.PlayParticle(this.gameObject.transform);
+                particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
                 StartCoroutine(objectMovement.GoByTheRoute2(objectMovement.routeTaken));
             }
@@ -108,7 +109,6 @@ namespace FourGear.Mechanics
                 rememberTime = TimerManager.timeValue;
                 TimerManager.timeValue -= 5;
                 tMPro.text = "-5s";
-
             }
         }
 
