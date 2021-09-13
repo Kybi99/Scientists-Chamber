@@ -21,6 +21,7 @@ TagManager:
   - endScreen
   - timeUpEndScreen
   - DarkSide
+  - cameraShake
   layers:
   - Default
   - TransparentFX

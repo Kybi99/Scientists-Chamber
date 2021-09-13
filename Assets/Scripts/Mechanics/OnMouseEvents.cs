@@ -12,7 +12,7 @@ namespace FourGear.Mechanics
         [SerializeField] private FindEmptySlot findEmptySlot;
         [SerializeField] private ObjectMovement objectMovement;
         [SerializeField] private DragAnDrop dragAnDrop;
-        public static int numberOfMissedClicks = 0;
+        private Animator cameraShakeAnimator;
         private static int sceneIndex;
         private int sceneIndexCheck;
         private int index;
@@ -22,6 +22,7 @@ namespace FourGear.Mechanics
         private TMP_Text tMPro;
         private string backgroundName;
         private Quaternion resetRotation;
+        public static int numberOfMissedClicks = 0;
         public static string sceneName;
         public static string sceneName2;
         public static Particles particles;
@@ -29,6 +30,7 @@ namespace FourGear.Mechanics
 
         private void Start()
         {
+            cameraShakeAnimator = GameObject.FindGameObjectWithTag("cameraShake").GetComponent<Animator>();
             particles = GameObject.FindObjectOfType<Particles>();
             rememberLastTimeClicks = 0;
             rememberClicks = 0;
@@ -65,11 +67,19 @@ namespace FourGear.Mechanics
         private void OnClick()
         {
             Debug.Log(ObjectMovement.routeToGo);
+            if (this.gameObject.name != backgroundName)
+                if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < 0 && !objectMovement.thisObjectIsFlying && ObjectMovement.numberOfObjectsInInventory > 3)
+                {
+                    cameraShakeAnimator.Play("CameraShake");
+                    Debug.Log(ObjectMovement.routeToGo);
+                }
+
             if (this.gameObject.name == backgroundName)
             {
                 rememberClicks = numberOfMissedClicks;
                 CalculateMissClicks();
             }
+
             else if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < Inventory.arraySlots.Length && !objectMovement.thisObjectIsFlying)
             {
                 foreach (Transform child in transform)
@@ -156,9 +166,9 @@ namespace FourGear.Mechanics
         public static bool CheckIfFirstSceneIsActive()
         {
             sceneIndex = SceneManager.GetActiveScene().buildIndex;
-            if (sceneIndex % 2 == 0 && sceneIndex != 0)
+            if (sceneIndex % 2 != 0 && sceneIndex != 0)
                 return false;
-            else if (sceneIndex % 2 != 0 && sceneIndex != 0)
+            else if (sceneIndex % 2 == 0 && sceneIndex != 0)
                 return true;
 
             return false;

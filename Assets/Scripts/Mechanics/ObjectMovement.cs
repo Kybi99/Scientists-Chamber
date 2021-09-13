@@ -24,6 +24,7 @@ namespace FourGear.Mechanics
         private ParticleSystem[] particlesSystem;
         public static int numberOfObjectsFlying;
         public static int routeToGo;
+        public static int numberOfObjectsInInventory = 0;
         public static bool coroutineAllowed;
 
         [HideInInspector] public bool inInventory;
@@ -61,7 +62,6 @@ namespace FourGear.Mechanics
             {
                 thisObjectIsFlying = true;
                 numberOfObjectsFlying++;
-                //Debug.Log(numberOfObjectsFlying);
                 tParam = 0f;
                 bezierCurvePath.GetValuesForBezier(routeNumber);
 
@@ -136,6 +136,8 @@ namespace FourGear.Mechanics
             this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -3f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
             boxCollider2D.offset = Vector2.zero;
+            numberOfObjectsInInventory++;
+            this.gameObject.layer = 6;
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
@@ -205,6 +207,8 @@ namespace FourGear.Mechanics
             this.transform.position = startPosition;
             boxCollider2D.size = resetCollider;
             boxCollider2D.offset = resetOffset;
+            numberOfObjectsInInventory--;
+            this.gameObject.layer = 0;
         }
     }
 }

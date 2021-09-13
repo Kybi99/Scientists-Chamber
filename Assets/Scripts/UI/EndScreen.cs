@@ -31,7 +31,7 @@ namespace FourGear.UI
         }
         public void LoadMainMenu()
         {
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene(1);
         }
     }
 }

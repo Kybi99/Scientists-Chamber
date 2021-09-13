@@ -9,6 +9,7 @@ namespace FourGear.Dialogue
     {
         [SerializeField] CanvasGroup portalCanvasGroup;
         private int numberOfCorectParts;
+        private bool isDialgoueDone;
         public static float time;
         private string sentence;
         private Animator imageAnimator;
@@ -37,7 +38,9 @@ namespace FourGear.Dialogue
             teslaAnimator = tesla.GetComponent<Animator>();
             dialogueTrigger = GetComponent<DialogueTrigger>();
             teslaRenderer.enabled = false;
+            continueClick.enabled = false;
             isContinueButtonEnabled = true;
+            isDialgoueDone = false;
         }
         private void Update()
         {
@@ -77,26 +80,38 @@ namespace FourGear.Dialogue
         }
         IEnumerator TypeSentence(string sentence)
         {
-            yield return new WaitForSeconds(0.25f);
-
+            continueClick.enabled = false;
+            yield return new WaitForSeconds(0.5f);
             dialogueText.text = "";
+            yield return new WaitForSeconds(0.2f);
+            continueClick.enabled = true;
             foreach (char letter in sentence.ToCharArray())
             {
                 dialogueText.text += letter;
-                yield return new WaitForSeconds(0.03f);
+                yield return new WaitForSeconds(0.02f);
             }
             if (DragAnDrop.numberOfPartsIn <= numberOfCorectParts - 1)
                 portalCanvasGroup.interactable = true;
 
-            continueClick.enabled = true;
             isContinueButtonEnabled = true;
-
+            isDialgoueDone = true;
         }
 
 
         private void ContinueButtonClick()
         {
-            if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled && continueClick.enabled)
+            //SkipDialogue
+            if (Input.GetKeyDown(KeyCode.Mouse0) && !isContinueButtonEnabled && continueClick.enabled)
+            {
+                StopAllCoroutines();
+                dialogueText.text = sentence;
+                isContinueButtonEnabled = true;
+                isDialgoueDone = true;
+                if (DragAnDrop.numberOfPartsIn <= numberOfCorectParts - 1)
+                    portalCanvasGroup.interactable = true;
+            }
+            //ShowEndScreen
+            else if (Input.GetKeyDown(KeyCode.Mouse0) && isContinueButtonEnabled && isDialgoueDone)
             {
                 if (DragAnDrop.numberOfPartsIn == numberOfCorectParts)
                 {
@@ -107,7 +122,6 @@ namespace FourGear.Dialogue
                 else
                     TimerManager.timeIsRunning = true;
 
-                //dont let player cancel the text animation and leave room while tesla is done speaking
                 continueClick.enabled = false;
                 isCorrectObjectIn = false;
                 imageAnimator.SetBool("isCorrectObjectIn", false);

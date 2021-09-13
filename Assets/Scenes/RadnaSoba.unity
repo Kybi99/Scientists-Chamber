@@ -1689,6 +1689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7482b3afd119ded4fa7bfdf2946c738f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dialogueManager: {fileID: 0}
 --- !u!1 &856160010
 GameObject:
   m_ObjectHideFlags: 0
@@ -1923,6 +1924,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c4a9b2d8e29754c8ac250bbf60e1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalCanvas: {fileID: 0}
 --- !u!1 &934623482
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,6 +3129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2c4a9b2d8e29754c8ac250bbf60e1d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  portalCanvas: {fileID: 0}
 --- !u!225 &1365059408
 CanvasGroup:
   m_ObjectHideFlags: 0

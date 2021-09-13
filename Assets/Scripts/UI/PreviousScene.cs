@@ -1,13 +1,15 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+using FourGear.Dialogue;
 namespace FourGear.UI
 {
     public class PreviousScene : MonoBehaviour
     {
+        public DialogueManager dialogueManager;
         public void LoadPreviousScene()
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
+            if (!dialogueManager.continueClick.enabled)
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
         }
     }
 

@@ -27,7 +27,7 @@ namespace FourGear
         {
             placeholders = GameObject.FindGameObjectsWithTag("placeholders");
 
-            if (SceneManager.GetActiveScene().buildIndex == 0)
+            if (SceneManager.GetActiveScene().buildIndex == 1)
                 PrepareSceneMainMenu();
             else if (!OnMouseEvents.CheckIfFirstSceneIsActive())
                 PrepareSceneRadnaSoba();
