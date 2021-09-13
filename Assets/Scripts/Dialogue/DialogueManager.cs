@@ -10,12 +10,14 @@ namespace FourGear.Dialogue
         [SerializeField] CanvasGroup portalCanvasGroup;
         private int numberOfCorectParts;
         private bool isDialgoueDone;
+        private float timeToDisplay;
         public static float time;
         private string sentence;
         private Animator imageAnimator;
         private Animator teslaAnimator;
         private GameObject tesla;
         private SpriteRenderer teslaRenderer;
+        private TimerManager timerManager;
         public static bool isContinueButtonEnabled;
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
@@ -81,8 +83,8 @@ namespace FourGear.Dialogue
         IEnumerator TypeSentence(string sentence)
         {
             continueClick.enabled = false;
-            yield return new WaitForSeconds(0.5f);
             dialogueText.text = "";
+            yield return new WaitForSeconds(0.5f);
             yield return new WaitForSeconds(0.2f);
             continueClick.enabled = true;
             foreach (char letter in sentence.ToCharArray())
@@ -117,6 +119,13 @@ namespace FourGear.Dialogue
                 {
                     ShowHint.canClick = false;
                     endScreenAnimator.Play("EndScreenFadeIn");
+                    Debug.Log(TimerManager.timeOnStart);
+                    Debug.Log(TimerManager.timeValue);
+                    timeToDisplay = TimerManager.timeOnStart - TimerManager.timeValue;
+                    Debug.Log(timeToDisplay);
+                    timerManager = FindObjectOfType<TimerManager>();
+                    TimerManager.gameHasEnded = true;
+                    timerManager.DisplayEndTime(timeToDisplay);
                 }
 
                 else
