@@ -81,11 +81,13 @@ namespace FourGear
 
             float minutes = Mathf.FloorToInt(timeToDisplay / 60);
             float seconds = Mathf.FloorToInt(timeToDisplay % 60);
+            float miliseconds = timeToDisplay * 100;
+            miliseconds = Mathf.FloorToInt(miliseconds % 100);
 
             if (gameHasEnded && timeToDisplay != 0)
             {
                 endScreenTime = GameObject.FindGameObjectWithTag("endScreenImage").GetComponentInChildren<TMP_Text>();
-                endScreenTime.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+                endScreenTime.text = string.Format("{0:00}:{1:00}:{2:00}", minutes, seconds, miliseconds);
             }
 
         }

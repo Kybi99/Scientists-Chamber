@@ -21,14 +21,13 @@ namespace FourGear.Dialogue
         public static bool isContinueButtonEnabled;
         public static bool isCorrectObjectIn;
         public static DialogueTrigger dialogueTrigger;
+        public static GameObject[] objects;
+        public static GameObject[] otherObjects;
         public TMP_Text continueClick;
         public TMP_Text dialogueText;
         public Animator endScreenAnimator;
         public Material electricityMaterial;
-        public static GameObject[] objects;
-        public static GameObject[] otherObjects;
-
-
+        public ParticleSystem conffetis;
 
         void Start()
         {
@@ -119,10 +118,9 @@ namespace FourGear.Dialogue
                 {
                     ShowHint.canClick = false;
                     endScreenAnimator.Play("EndScreenFadeIn");
-                    Debug.Log(TimerManager.timeOnStart);
-                    Debug.Log(TimerManager.timeValue);
+                    conffetis.Emit(100);
                     timeToDisplay = TimerManager.timeOnStart - TimerManager.timeValue;
-                    Debug.Log(timeToDisplay);
+
                     timerManager = FindObjectOfType<TimerManager>();
                     TimerManager.gameHasEnded = true;
                     timerManager.DisplayEndTime(timeToDisplay);

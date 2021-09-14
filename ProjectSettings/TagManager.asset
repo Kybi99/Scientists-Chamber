@@ -114,3 +114,6 @@ TagManager:
   - name: Tesla
     uniqueID: 2888746179
     locked: 0
+  - name: confettis
+    uniqueID: 4179089079
+    locked: 0

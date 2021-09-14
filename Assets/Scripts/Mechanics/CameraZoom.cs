@@ -5,6 +5,7 @@ namespace FourGear.Mechanics
     public class CameraZoom : MonoBehaviour
     {
         [SerializeField] private Camera cam;
+        [SerializeField] private Camera cameraShake;
         [SerializeField] private Camera main;
         private Vector3 newPosition;
         private Vector3 pos;
@@ -40,12 +41,14 @@ namespace FourGear.Mechanics
                 if (Input.GetMouseButtonDown(1))
                 {
                     main.enabled = false;
+                    cameraShake.enabled = false;
                     cam.enabled = true;
                     speed  = 0;
                 }
                 if (Input.GetMouseButtonUp(1))
                 {
                     main.enabled = true;
+                    cameraShake.enabled = true;
                     cam.enabled = false;
                     speed = 20;
                 }
