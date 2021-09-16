@@ -81,6 +81,12 @@ namespace FourGear.UI
         }
         public void CloseHint()
         {
+            if (isFirstTimeInScene)
+            {
+                TimerManager.timeIsRunning = true;
+                //Play Audio
+            }
+                
             OnMouseEvents.numberOfMissedClicks--;
             animator.SetBool("CloseTheScroll", true);
             animator.SetBool("OpenTheScroll", false);

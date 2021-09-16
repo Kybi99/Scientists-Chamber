@@ -49,6 +49,7 @@ namespace FourGear.Mechanics
         {
             if (Input.GetKeyDown(KeyCode.Mouse0) && isMouseOnObject && OnMouseEvents.CheckIfFirstSceneIsActive() && ShowHint.canClick)
             {
+               // Debug.Log(ObjectMovement.numberOfObjectsFlying);
                 FindValues();
 
                 firstObjectRenderer.enabled = false;
@@ -97,6 +98,8 @@ namespace FourGear.Mechanics
 
         private void LoadNextSceneIfDoorIsOpen()
         {
+            Debug.Log(ObjectMovement.isNextSceneAllowed);
+
             //Load next scene if door is open and none of the objects are moving
             if (rememberTime - TimerManager.timeValue >= 0.4f)
                 nextScene.LoadNextScene();

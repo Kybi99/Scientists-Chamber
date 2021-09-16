@@ -31,7 +31,7 @@ namespace FourGear.Mechanics
         private void Start()
         {
             cameraShakeAnimator = GameObject.FindGameObjectWithTag("cameraShake").GetComponent<Animator>();
-            particles = GameObject.FindObjectOfType<Particles>();
+            particles = FindObjectOfType<Particles>();
             rememberLastTimeClicks = 0;
             rememberClicks = 0;
             backgroundName = "Pozadina";
@@ -66,10 +66,10 @@ namespace FourGear.Mechanics
         }
         private void OnClick()
         {
-            Debug.Log(ObjectMovement.routeToGo);
             if (this.gameObject.name != backgroundName)
                 if (!objectMovement.inInventory && ObjectMovement.coroutineAllowed && ObjectMovement.routeToGo < 0 && !objectMovement.thisObjectIsFlying && ObjectMovement.numberOfObjectsInInventory > 3)
                 {
+                    if(cameraShakeAnimator != null)
                     cameraShakeAnimator.Play("CameraShake");
                     Debug.Log(ObjectMovement.routeToGo);
                 }
@@ -89,7 +89,6 @@ namespace FourGear.Mechanics
                 //if (this.gameObject.transform.childCount == 0)
                 particles.PlayParticle(this.gameObject.transform);
                 ObjectMovement.routeToGo = findEmptySlot.CheckFirstEmptySlot(Inventory.arraySlots);
-                Debug.Log(ObjectMovement.routeToGo);
                 if (ObjectMovement.routeToGo != -1)
                     StartCoroutine(objectMovement.GoByTheRoute(ObjectMovement.routeToGo));
             }
@@ -124,8 +123,10 @@ namespace FourGear.Mechanics
 
         private void OnDrag()
         {
+            
             if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)
             {
+                Destroy(objectMovement.shadow);
                 //OnDrag Find correct placeholder for clicked object 
                 dragAnDrop.resetParent = this.transform.parent;
                 //resetPostion = this.transform.position;
@@ -212,6 +213,8 @@ namespace FourGear.Mechanics
             else
                 transform.localScale = new Vector2(0.7f, 0.7f);
             this.transform.rotation = resetRotation;
+
+            objectMovement.CreateObjectShadow();
             //this.transform.position = resetPostion;
         }
 

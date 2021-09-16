@@ -22,18 +22,19 @@ namespace FourGear.Mechanics
         private Vector2 resetOffset;
         private BoxCollider2D boxCollider2D;
         private ParticleSystem[] particlesSystem;
-        public static int numberOfObjectsFlying;
+        private SpriteRenderer shadowSprite;
+        private Collider2D[] shadowColliders;
+        public static int numberOfObjectsFlying = 0;
         public static int routeToGo;
         public static int numberOfObjectsInInventory = 0;
         public static bool coroutineAllowed;
-
+        [HideInInspector] public GameObject shadow;
         [HideInInspector] public bool inInventory;
         [HideInInspector] public int routeTaken;
         [HideInInspector] public Vector2 objectPosition;
 
         void Start()
         {
-            numberOfObjectsFlying = 0;
             routeToGo = 0;
             tParam = 0f;
             speedModifier = 0.8f;
@@ -90,7 +91,6 @@ namespace FourGear.Mechanics
 
                 particles.ResumeParticles(particlesSystem);
 
-
                 StopCoroutine(GoByTheRoute(routeToGo));
 
                 //routeToGo++;
@@ -98,14 +98,12 @@ namespace FourGear.Mechanics
 
                 yield return new WaitForSeconds(0.3f);
 
-                /* foreach (Transform child in transform)
-                     Destroy(child.gameObject);*/
-
-                //particles.RestartParticles(particlesSystem);
                 numberOfObjectsFlying--;
 
                 if (numberOfObjectsFlying == 0)
                     isNextSceneAllowed = true;
+                else
+                    isNextSceneAllowed = false;
 
                 thisObjectIsFlying = false;
 
@@ -136,8 +134,29 @@ namespace FourGear.Mechanics
             this.transform.position = new Vector3(Inventory.arraySlots[routeTaken].transform.position.x, Inventory.arraySlots[routeTaken].transform.position.y, -3f);
             this.boxCollider2D.size = this.gameObject.transform.parent.GetComponent<BoxCollider2D>().size * 2.5f;
             boxCollider2D.offset = Vector2.zero;
+
+            CreateObjectShadow();
             numberOfObjectsInInventory++;
             this.gameObject.layer = 6;
+        }
+
+        public void CreateObjectShadow()
+        {
+            shadow = Instantiate(this.gameObject, new Vector3(this.transform.position.x + 0.08f, this.transform.position.y - 0.08f, this.transform.position.z + 1), Quaternion.identity);
+            shadowSprite = shadow.GetComponent<SpriteRenderer>();
+            shadowSprite.color = new Color(0, 0, 0, 0.5f);
+            shadowColliders = shadow.GetComponents<Collider2D>();
+            for (int i = 0; i < shadowColliders.Length; i++) 
+            {
+                shadowColliders[i].enabled = false;
+            }
+            shadow.GetComponent<ObjectMovement>().enabled = false;
+            shadow.GetComponent<OnMouseEvents>().enabled = false;
+
+            shadow.transform.localScale = this.transform.localScale;
+            shadow.transform.parent = this.gameObject.transform;
+            shadow.layer = 6;
+            shadowSprite.sortingLayerName = "Senka";
         }
 
         public IEnumerator GoByTheRoute2(int routeNumber)
@@ -148,6 +167,7 @@ namespace FourGear.Mechanics
 
             if (!thisObjectIsFlying && coroutineAllowed)
             {
+                Destroy(shadow);
                 thisObjectIsFlying = true;
                 numberOfObjectsFlying++;
                 //Debug.Log(numberOfObjectsFlying);
@@ -187,6 +207,8 @@ namespace FourGear.Mechanics
 
                 if (numberOfObjectsFlying == 0)
                     isNextSceneAllowed = true;
+                else
+                    isNextSceneAllowed = false;
 
                 thisObjectIsFlying = false;
 

@@ -119,6 +119,8 @@ namespace FourGear.Dialogue
                     ShowHint.canClick = false;
                     endScreenAnimator.Play("EndScreenFadeIn");
                     conffetis.Emit(100);
+
+
                     timeToDisplay = TimerManager.timeOnStart - TimerManager.timeValue;
 
                     timerManager = FindObjectOfType<TimerManager>();

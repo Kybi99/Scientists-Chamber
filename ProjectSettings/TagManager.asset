@@ -108,6 +108,9 @@ TagManager:
   - name: UI
     uniqueID: 1844047153
     locked: 0
+  - name: Senka
+    uniqueID: 504070497
+    locked: 0
   - name: Ispred svega
     uniqueID: 704479851
     locked: 0

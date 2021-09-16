@@ -21,7 +21,7 @@ namespace FourGear
             gameHasEnded = false;
             timeOnStart = 300;
             timeValue = timeOnStart;
-            timeIsRunning = true;
+            timeIsRunning = false;
             //endScreenAnimator = GameObject.FindGameObjectWithTag("endScreen").GetComponent<Animator>();
         }
 
