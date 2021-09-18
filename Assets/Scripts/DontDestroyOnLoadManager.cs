@@ -6,17 +6,17 @@ namespace FourGear
     public static class DontDestroyOnLoadManager
     {
         private static int counter = 0;
-        private static List<GameObject> _ddolObjects = new List<GameObject>();
+        private static List<GameObject> ddolObjects = new List<GameObject>();
 
         public static void DontDestroyOnLoad(this GameObject go)
         {
             UnityEngine.Object.DontDestroyOnLoad(go);
-            _ddolObjects.Add(go);
+            ddolObjects.Add(go);
         }
 
         public static void ChangeNames()
         {
-            foreach (GameObject go in _ddolObjects)
+            foreach (GameObject go in ddolObjects)
                 if (go != null)
                     foreach (Transform child in go.transform.GetComponentsInChildren<Transform>())
                     {
@@ -24,16 +24,16 @@ namespace FourGear
                             if (!child.name.Contains("X"))
                                 child.name += "X";
                     }
-                    
+
             counter++;
         }
         public static void DestroyAll()
         {
-            foreach (var go in _ddolObjects)
+            foreach (var go in ddolObjects)
                 if (go != null)
                     UnityEngine.Object.Destroy(go);
 
-            _ddolObjects.Clear();
+            ddolObjects.Clear();
         }
     }
 }

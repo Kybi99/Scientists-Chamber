@@ -34,15 +34,13 @@ namespace FourGear.UI
         }
         public void Resume()
         {
-            if (showHint.helpScript != null)
+            if (showHint != null)
                 showHint.helpScript.SetActive(true);
 
             pausemenuUi.SetActive(false);
-            if (ShowHint.canvasGroup.alpha == 0)
-            {
-                ShowHint.canClick = true;
-                ShowHint.canShowHint = true;
-            }
+
+            ShowHint.canClick = true;
+            ShowHint.canShowHint = true;
 
             //CursorManager.canChangeCursor = true;
             Time.timeScale = 1f;
@@ -54,7 +52,7 @@ namespace FourGear.UI
 
         public void Pause()
         {
-            if (showHint.helpScript != null)
+            if (showHint != null)
                 showHint.helpScript.SetActive(false);
 
             pausemenuUi.SetActive(true);

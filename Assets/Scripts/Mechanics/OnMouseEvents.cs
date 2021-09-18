@@ -20,6 +20,7 @@ namespace FourGear.Mechanics
         private int rememberLastTimeClicks;
         private float rememberTime;
         private TMP_Text tMPro;
+        private SpriteRenderer sprite;
         private string backgroundName;
         private Quaternion resetRotation;
         public static int numberOfMissedClicks = 0;
@@ -123,9 +124,10 @@ namespace FourGear.Mechanics
 
         private void OnDrag()
         {
-            
             if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled)
             {
+                sprite = this.gameObject.GetComponent<SpriteRenderer>();
+                sprite.sortingLayerName = "Tesla";
                 Destroy(objectMovement.shadow);
                 //OnDrag Find correct placeholder for clicked object 
                 dragAnDrop.resetParent = this.transform.parent;
@@ -179,6 +181,8 @@ namespace FourGear.Mechanics
             //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
             if (Input.GetMouseButtonUp(0) && !CheckIfFirstSceneIsActive())
             {
+                sprite.sortingLayerName = "Ispred svega";
+
                 if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && dragAnDrop.isMoving)
                 {
                     dragAnDrop.isMoving = false;

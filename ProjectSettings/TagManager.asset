@@ -23,6 +23,7 @@ TagManager:
   - DarkSide
   - cameraShake
   - endScreenImage
+  - levelLoader
   layers:
   - Default
   - TransparentFX

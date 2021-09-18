@@ -6,6 +6,7 @@ namespace FourGear.UI
     public class ShowHint : MonoBehaviour
     {
         //private int numberOfClosedHints = 0;
+        private static int numberOfTimesAnimationPlayed = 0;
         public static CanvasGroup canvasGroup;
         public Button hintButton;
         public GameObject helpScript;
@@ -13,10 +14,10 @@ namespace FourGear.UI
         public static bool canZoom;
         public static bool canShowHint;
         public Animator animator;
+        public GameObject levelLoader;
         public static bool isFirstTimeInScene = true;
         private void Awake()
         {
-
             canvasGroup = GetComponentInChildren<CanvasGroup>();
 
             canShowHint = true;
@@ -24,13 +25,14 @@ namespace FourGear.UI
                 canvasGroup.alpha = 1;
             else
             {
+                Destroy(levelLoader);
                 animator.SetBool("OpenTheScroll", false);
                 animator.SetBool("CloseTheScroll", true);
                 canvasGroup.alpha = 0;
                 canClick = true;
                 canZoom = true;
             }
-            if (ShowHint.isFirstTimeInScene)
+            if (isFirstTimeInScene)
                 this.GetComponent<Canvas>().enabled = true;
             else
                 this.GetComponent<Canvas>().enabled = false;
@@ -42,7 +44,7 @@ namespace FourGear.UI
                 hintButton.interactable = false;
             }
             else
-                hintButton.interactable = true;         
+                hintButton.interactable = true;
 
         }
         public void ShowHints()
@@ -84,9 +86,10 @@ namespace FourGear.UI
             if (isFirstTimeInScene)
             {
                 TimerManager.timeIsRunning = true;
+                numberOfTimesAnimationPlayed++;
                 //Play Audio
             }
-                
+
             OnMouseEvents.numberOfMissedClicks--;
             animator.SetBool("CloseTheScroll", true);
             animator.SetBool("OpenTheScroll", false);

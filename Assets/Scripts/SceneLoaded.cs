@@ -161,11 +161,13 @@ namespace FourGear
 
             GameObject[] ddols = GameObject.FindGameObjectsWithTag("DDOLs");
             GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
-            GameObject timer = GameObject.FindObjectOfType<TimerManager>().gameObject;
+            GameObject timer = FindObjectOfType<TimerManager>().gameObject;
+            ParticlesSave[] particles = FindObjectsOfType<ParticlesSave>();
             DontDestroyOnLoadManager.DestroyAll();
             foreach (GameObject ddol in ddols)
                 Destroy(ddol);
-
+            foreach (ParticlesSave particle in particles)
+                Destroy(particle.gameObject);
             Destroy(inventory);
             Destroy(timer);
 

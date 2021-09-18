@@ -11,6 +11,7 @@ namespace FourGear.Singletons
         public static GameObject[] objects;
         public static GameObject[] otherObjects;
         public static GameObject[] framedObjects;
+        public static GameObject[] levelLoader;
 
         public class myMonsterSorter : IComparer
         {
@@ -26,12 +27,13 @@ namespace FourGear.Singletons
             objects = GameObject.FindGameObjectsWithTag("objects");
             otherObjects = GameObject.FindGameObjectsWithTag("otherObjects");
             framedObjects = GameObject.FindGameObjectsWithTag("firstFrame");
+            levelLoader = GameObject.FindGameObjectsWithTag("levelLoader");
             DestroyDuplicates(myComparer, objects);
             DestroyDuplicates(myComparer, otherObjects);
             DestroyDDOLDuplicates(myComparer, framedObjects);
+            DestroyDDOLDuplicates(myComparer, levelLoader);
         }
-
-        private void DestroyDuplicates(IComparer myComparer, GameObject[] objects)
+            private void DestroyDuplicates(IComparer myComparer, GameObject[] objects)
         {
             Array.Sort(objects, myComparer);
 

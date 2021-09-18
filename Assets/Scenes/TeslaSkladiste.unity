@@ -11625,6 +11625,7 @@ MonoBehaviour:
   hintButton: {fileID: 942251500}
   helpScript: {fileID: 91640606}
   animator: {fileID: 91640610}
+  levelLoader: {fileID: 0}
 --- !u!1 &559429307
 GameObject:
   m_ObjectHideFlags: 0
@@ -46769,6 +46770,10 @@ PrefabInstance:
     - target: {fileID: 3500547543898089808, guid: 78faeca66404a844dbad8886a64ee228, type: 3}
       propertyPath: m_Name
       value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 3500547543898089808, guid: 78faeca66404a844dbad8886a64ee228, type: 3}
+      propertyPath: m_TagString
+      value: levelLoader
       objectReference: {fileID: 0}
     - target: {fileID: 3500547543898089814, guid: 78faeca66404a844dbad8886a64ee228, type: 3}
       propertyPath: m_RootOrder
