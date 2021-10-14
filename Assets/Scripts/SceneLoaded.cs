@@ -163,6 +163,7 @@ namespace FourGear
             GameObject inventory = GameObject.FindGameObjectWithTag("inventory");
             GameObject timer = FindObjectOfType<TimerManager>().gameObject;
             ParticlesSave[] particles = FindObjectsOfType<ParticlesSave>();
+            GameObject audioSave = FindObjectOfType<AudioSave>().gameObject;
             DontDestroyOnLoadManager.DestroyAll();
             foreach (GameObject ddol in ddols)
                 Destroy(ddol);
@@ -170,6 +171,7 @@ namespace FourGear
                 Destroy(particle.gameObject);
             Destroy(inventory);
             Destroy(timer);
+            Destroy(audioSave);
 
             DragAnDrop.numberOfPartsIn = 0;
             ShowHint.isFirstTimeInScene = true;

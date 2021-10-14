@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d1ec9144e8e10489927174d7dd7e97, type: 3}
   m_Name: Izum2
   m_EditorClassIdentifier: 
-  blueprint: {fileID: 21300000, guid: 55572ecfc2bce3c4fb2276a170fdd056, type: 3}
+  blueprint: {fileID: 21300000, guid: e7f4dfe731e40154c803b7e88baecbf1, type: 3}
   text: Pupin

@@ -144,7 +144,7 @@ namespace FourGear.Mechanics
         {
             shadow = Instantiate(this.gameObject, new Vector3(this.transform.position.x + 0.08f, this.transform.position.y - 0.08f, this.transform.position.z + 1), Quaternion.identity);
             shadowSprite = shadow.GetComponent<SpriteRenderer>();
-            shadowSprite.color = new Color(0, 0, 0, 0.5f);
+            shadowSprite.color = new Color(0, 0, 0, 0.2f);
             shadowColliders = shadow.GetComponents<Collider2D>();
             for (int i = 0; i < shadowColliders.Length; i++) 
             {

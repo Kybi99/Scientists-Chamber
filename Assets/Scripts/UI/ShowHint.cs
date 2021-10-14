@@ -7,6 +7,7 @@ namespace FourGear.UI
     {
         //private int numberOfClosedHints = 0;
         private static int numberOfTimesAnimationPlayed = 0;
+        private static AudioSource audioData;
         public static CanvasGroup canvasGroup;
         public Button hintButton;
         public GameObject helpScript;
@@ -14,10 +15,11 @@ namespace FourGear.UI
         public static bool canZoom;
         public static bool canShowHint;
         public Animator animator;
-        public GameObject levelLoader;
+        //public GameObject levelLoader;
         public static bool isFirstTimeInScene = true;
         private void Awake()
         {
+            audioData = GameObject.FindGameObjectWithTag("music").GetComponent<AudioSource>();
             canvasGroup = GetComponentInChildren<CanvasGroup>();
 
             canShowHint = true;
@@ -25,7 +27,7 @@ namespace FourGear.UI
                 canvasGroup.alpha = 1;
             else
             {
-                Destroy(levelLoader);
+                //Destroy(levelLoader);
                 animator.SetBool("OpenTheScroll", false);
                 animator.SetBool("CloseTheScroll", true);
                 canvasGroup.alpha = 0;
@@ -87,7 +89,7 @@ namespace FourGear.UI
             {
                 TimerManager.timeIsRunning = true;
                 numberOfTimesAnimationPlayed++;
-                //Play Audio
+                audioData.Play(0);
             }
 
             OnMouseEvents.numberOfMissedClicks--;

@@ -7,14 +7,18 @@ namespace FourGear.UI
     {
         private CanvasGroup canvasGroup;
         public Canvas portalCanvas;
+        public static float alphaCount;
         private void Start()
         {
+            alphaCount = 0;
             canvasGroup = this.GetComponentInChildren<CanvasGroup>();
             canvasGroup.interactable = false;
         }
         private void Update()
         {
-            if (canvasGroup.alpha == 1)
+            if(alphaCount < 300)
+                alphaCount += canvasGroup.alpha;
+            if (alphaCount >= 100)
             {
                 canvasGroup.interactable = true;
                 if (portalCanvas != null)

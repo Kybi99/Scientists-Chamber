@@ -181,7 +181,8 @@ namespace FourGear.Mechanics
             //OnDrop reset position if its wrong object on wrong position or fix in placeholder if its right
             if (Input.GetMouseButtonUp(0) && !CheckIfFirstSceneIsActive())
             {
-                sprite.sortingLayerName = "Ispred svega";
+                if(sprite != null)
+                    sprite.sortingLayerName = "Ispred svega";
 
                 if (!dragAnDrop.thisObjectIsIn && DialogueManager.isContinueButtonEnabled && dragAnDrop.isMoving)
                 {
