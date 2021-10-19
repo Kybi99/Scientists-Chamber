@@ -24,7 +24,7 @@ namespace FourGear.UI
                 }
             }
 
-            else if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0)
+            else if (Input.GetKeyDown(KeyCode.Escape) && SceneManager.GetActiveScene().buildIndex != 0 && SceneManager.GetActiveScene().buildIndex != 1)
             {
                 if (gameIsPaused)
                     Resume();
@@ -37,7 +37,8 @@ namespace FourGear.UI
             if (showHint != null)
                 showHint.helpScript.SetActive(true);
 
-            pausemenuUi.SetActive(false);
+            if(pausemenuUi != null)
+                pausemenuUi.SetActive(false);
 
             ShowHint.canClick = true;
             ShowHint.canShowHint = true;
@@ -55,7 +56,8 @@ namespace FourGear.UI
             if (showHint != null)
                 showHint.helpScript.SetActive(false);
 
-            pausemenuUi.SetActive(true);
+            if (pausemenuUi != null)
+                pausemenuUi.SetActive(true);
             ShowHint.canClick = false;
             ShowHint.canShowHint = false;
             //CursorManager.canChangeCursor = false;

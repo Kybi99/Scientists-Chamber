@@ -9,7 +9,9 @@ namespace FourGear
 {
     public class SceneLoaded : MonoBehaviour
     {
-        int i;
+        private int i;
+        private int children;
+        private static Transform placeholder;
         public static GameObject[] placeholders;
         public static GameObject[] objects;
         public static GameObject[] otherObjects;
@@ -25,8 +27,7 @@ namespace FourGear
 
         void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
-            placeholders = GameObject.FindGameObjectsWithTag("placeholders");
-
+            
             if (SceneManager.GetActiveScene().buildIndex == 1)
                 PrepareSceneMainMenu();
             else if (!OnMouseEvents.CheckIfFirstSceneIsActive())
@@ -38,6 +39,15 @@ namespace FourGear
 
         private void PrepareSceneRadnaSoba()
         {
+            placeholder = FindObjectOfType<PlaceholdersDDOL>().transform;
+            children = placeholder.childCount;
+            placeholders = new GameObject[placeholder.childCount];
+            for (int i = 0; i < children; i++)
+            {
+                placeholders[i] = placeholder.GetChild(i).gameObject;
+            }
+
+
             ShowHint.isFirstTimeInScene = false;
 
             for (int i = 0; i < otherObjects.Length; i++)
@@ -108,19 +118,20 @@ namespace FourGear
 
             //Deactivate placeholders
 
-            for (i = 0; i < placeholders.Length; i++)
-            {
-                if (placeholders[i] != null)
+            if(placeholders != null)
+                for (i = 0; i < placeholders.Length; i++)
                 {
-                    placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
-                    foreach (Transform child in placeholders[i].transform)
+                    if (placeholders[i] != null)
                     {
-                        child.GetComponent<SpriteRenderer>().enabled = false;
-                        child.GetComponent<BoxCollider2D>().enabled = false;
+                        placeholders[i].GetComponent<SpriteRenderer>().enabled = false;
+                        foreach (Transform child in placeholders[i].transform)
+                        {
+                            child.GetComponent<SpriteRenderer>().enabled = false;
+                            child.GetComponent<BoxCollider2D>().enabled = false;
+                        }
                     }
-                }
 
-            }
+                }
 
             //Change active scripts on incorrect objects and activate deactivated objects when coming back to first room
             for (i = 0; i < otherObjects.Length; i++)
