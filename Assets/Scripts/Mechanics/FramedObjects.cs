@@ -54,6 +54,8 @@ namespace FourGear.Mechanics
 
                 firstObjectRenderer.enabled = false;
 
+                Debug.Log(ObjectMovement.isNextSceneAllowed);
+
                 if (secondObjectRenderer.enabled && (secondFrame.gameObject.name == "DoorsOpen" || secondFrame.gameObject.name == "DoorsOpenX") && ObjectMovement.coroutineAllowed && ObjectMovement.isNextSceneAllowed)
                 {
                     if (OnMouseEvents.numberOfMissedClicks % 10 == 9)
@@ -98,7 +100,6 @@ namespace FourGear.Mechanics
 
         private void LoadNextSceneIfDoorIsOpen()
         {
-            Debug.Log(ObjectMovement.isNextSceneAllowed);
 
             //Load next scene if door is open and none of the objects are moving
             if (rememberTime - TimerManager.timeValue >= 0.4f)

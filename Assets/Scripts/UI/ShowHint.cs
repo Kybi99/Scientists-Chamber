@@ -74,6 +74,13 @@ namespace FourGear.UI
             }
             else if (canvasGroup.alpha == 1)
             {
+                if (isFirstTimeInScene)
+                {
+                    TimerManager.timeIsRunning = true;
+                    numberOfTimesAnimationPlayed++;
+                    audioData.Play(0);
+                }
+
                 animator.SetBool("CloseTheScroll", true);
                 animator.SetBool("OpenTheScroll", false);
 

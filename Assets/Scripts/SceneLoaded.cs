@@ -161,6 +161,9 @@ namespace FourGear
         }
         private void PrepareSceneMainMenu()
         {
+            ObjectMovement.numberOfObjectsFlying = 0;
+            ObjectMovement.isNextSceneAllowed = true;
+
             OnMouseEvents.numberOfMissedClicks = 0;
             if (Objects.otherObjects != null || Objects.objects != null)
             {

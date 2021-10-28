@@ -99,6 +99,7 @@ namespace FourGear.Mechanics
                 yield return new WaitForSeconds(0.3f);
 
                 numberOfObjectsFlying--;
+                Debug.Log(numberOfObjectsFlying);
 
                 if (numberOfObjectsFlying == 0)
                     isNextSceneAllowed = true;
@@ -204,7 +205,7 @@ namespace FourGear.Mechanics
 
                 //particles.RestartParticles(particlesSystem);
                 numberOfObjectsFlying--;
-
+                Debug.Log(numberOfObjectsFlying);
                 if (numberOfObjectsFlying == 0)
                     isNextSceneAllowed = true;
                 else
