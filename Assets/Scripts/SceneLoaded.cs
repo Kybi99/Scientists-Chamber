@@ -47,8 +47,7 @@ namespace FourGear
                 placeholders[i] = placeholder.GetChild(i).gameObject;
             }
 
-
-            ShowHint.isFirstTimeInScene = false;
+            //ShowHint.isFirstTimeInScene = false;
 
             for (int i = 0; i < otherObjects.Length; i++)
             {

@@ -79,9 +79,11 @@ namespace FourGear.UI
                     TimerManager.timeIsRunning = true;
                     numberOfTimesAnimationPlayed++;
                     audioData.Play(0);
-                }
+                    isFirstTimeInScene = false;
 
-                animator.SetBool("CloseTheScroll", true);
+    }
+
+    animator.SetBool("CloseTheScroll", true);
                 animator.SetBool("OpenTheScroll", false);
 
                 canClick = true;
@@ -97,6 +99,7 @@ namespace FourGear.UI
                 TimerManager.timeIsRunning = true;
                 numberOfTimesAnimationPlayed++;
                 audioData.Play(0);
+                isFirstTimeInScene = false;
             }
 
             OnMouseEvents.numberOfMissedClicks--;
